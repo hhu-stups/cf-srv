@@ -8,6 +8,7 @@ import cflib.crazyflie
 import cflib.crazyflie.syncCrazyflie
 import cflib.crazyflie.syncLogger
 import cflib.crazyflie.log
+from cflib.positioning.motion_commander import MotionCommander
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -18,6 +19,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     _log_data: dict[str, dict[str, Any]]
 
     def __init__(self):
+        self._motion_commander = {}
         self._crazyflies = {}
         self._log_data = {}
 
@@ -56,6 +58,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         scf.open_link()
         scf.wait_for_params()
         self._crazyflies[url] = scf
+        self._motion_commander[url] = MotionCommander(scf)
 
     def close_link(self, url):
         if url not in self._crazyflies:
@@ -110,22 +113,61 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return self._log_data[url][name]
 
-    def takeoff(self, url, height, duration):
+    def takeoff(self, url):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
-        scf = self._crazyflies[url]
-        scf.cf.high_level_commander.takeoff(height, duration)
-        time.sleep(duration)
+        mc = self._motion_commander[url]
+        mc.take_off(height=1.0,velocity=0.5)
 
-    def land(self, url, height, duration):
+    def land(self, url):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
-        scf = self._crazyflies[url]
-        scf.cf.high_level_commander.land(height, duration)
-        time.sleep(duration)
+        mc = self._motion_commander[url]
+        mc.land(velocity=0.5)
 
+    def left(self, url, distance):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+
+        mc = self._motion_commander[url]
+        mc.left(distance, velocity=0.5)
+
+    def right(self, url, distance):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+            
+        mc = self._motion_commander[url]
+        mc.right(distance, velocity=0.5)
+
+    def up(self, url, distance):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+
+        mc = self._motion_commander[url]
+        mc.up(distance, velocity=0.5)
+
+    def down(self, url, distance):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+
+        mc = self._motion_commander[url]
+        mc.down(distance, velocity=0.5)
+
+    def forward(self, url, distance):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+
+        mc = self._motion_commander[url]
+        mc.forward(distance, velocity=0.5)
+
+    def backward(self, url, distance):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+
+        mc = self._motion_commander[url]
+        mc.back(distance)
 
 def main():
     cflib.crtp.init_drivers()
