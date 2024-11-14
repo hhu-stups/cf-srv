@@ -23,6 +23,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
     def close(self):
         for cf in self._crazyflies.values():
+            cf.cf.loc.send_emergency_stop()
             cf.close_link()
         self._crazyflies.clear()
         self._log_data.clear()
@@ -61,7 +62,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             raise ValueError(f"unknown url: {url}")
 
         scf = self._crazyflies[url]
-        scf.cf.loc.send_emergency_stop()
         scf.close_link()
         del self._crazyflies[url]
         self._log_data.pop(url, None)
