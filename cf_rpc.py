@@ -61,10 +61,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             raise ValueError(f"unknown url: {url}")
 
         scf = self._crazyflies[url]
-        scf.loc.send_emergency_stop()
+        scf.cf.loc.send_emergency_stop()
         scf.close_link()
         del self._crazyflies[url]
-        del self._log_data[url]
+        self._log_data.pop(url, None)
 
     def get_values(self, url):
         if url not in self._crazyflies:
