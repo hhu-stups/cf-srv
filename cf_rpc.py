@@ -1,4 +1,4 @@
-from drone_test.zmq_rpc import JsonRpcServer, JsonRpcRequest
+from zmq_rpc import JsonRpcServer, JsonRpcRequest
 from typing import Any
 import contextlib
 import logging
