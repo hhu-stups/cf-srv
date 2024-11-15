@@ -17,6 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     _crazyflies: dict[str, cflib.crazyflie.syncCrazyflie.SyncCrazyflie]
     _log_data: dict[str, dict[str, Any]]
+    _motion_commander: dict[str, MotionCommander]
 
     def __init__(self):
         self._motion_commander = {}
@@ -68,6 +69,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         scf.close_link()
         del self._crazyflies[url]
         self._log_data.pop(url, None)
+        del self._motion_commander[url]
 
     def get_values(self, url):
         if url not in self._crazyflies:
