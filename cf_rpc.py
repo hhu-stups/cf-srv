@@ -94,6 +94,9 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(name, str):
             raise ValueError(f"invalid name: {name}")
 
+        if isinstance(variables, str):
+            variables = [variables]
+
         log_config = cflib.crazyflie.log.LogConfig(name, period_in_ms=period)
         for variable in variables:
             log_config.add_variable(variable)
@@ -120,7 +123,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.take_off(height=1.0,velocity=0.5)
+        mc.take_off(height=1.0, velocity=0.5)
 
     def land(self, url):
         if url not in self._crazyflies:
@@ -139,7 +142,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     def right(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
-            
+
         mc = self._motion_commander[url]
         mc.right(distance, velocity=0.5)
 
@@ -170,6 +173,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         mc = self._motion_commander[url]
         mc.back(distance)
+
 
 def main():
     cflib.crtp.init_drivers()
