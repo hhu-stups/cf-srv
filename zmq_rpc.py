@@ -212,7 +212,8 @@ def main():
             print(f"result: {result}")
     else:
         with JsonRpcServer(
-            "ipc:///tmp/crazyflie", lambda req: req.make_success_response(42)
+            "ipc:///tmp/crazyflie",
+            lambda req: req.make_success_response([None, True, 42, 1.337, "foo"]),
         ) as server:
             server.run()
 
