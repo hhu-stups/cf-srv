@@ -9,6 +9,7 @@ import cflib.crazyflie.syncCrazyflie
 import cflib.crazyflie.syncLogger
 import cflib.crazyflie.log
 from cflib.positioning.motion_commander import MotionCommander
+from cflib.crazyflie.high_level_commander import HighLevelCommander
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -17,7 +18,7 @@ logging.basicConfig(level=logging.DEBUG)
 class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     _crazyflies: dict[str, cflib.crazyflie.syncCrazyflie.SyncCrazyflie]
     _log_data: dict[str, dict[str, Any]]
-    _motion_commander: dict[str, MotionCommander]
+    _motion_commander: dict[str, MotionCommander | HighLevelCommander]
 
     def __init__(self):
         self._motion_commander = {}
@@ -47,19 +48,26 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return req.make_error_response(-32601, f"Method not found: {req.method}")
 
-    def open_link(self, url):
+    def open_link(self, url, absolute_positioning=False):
         if not isinstance(url, str) or len(url) == 0:
             raise ValueError(f"invalid url: {url}")
         if url in self._crazyflies:
             raise ValueError(1, f"url {url} already in use")
+        if not isinstance(absolute_positioning, bool):
+            raise ValueError(
+                f"invalid parameter absolute_positioning: {absolute_positioning}"
+            )
 
-        scf = cflib.crazyflie.syncCrazyflie.SyncCrazyflie(
-            url
-        )  # TODO: what about the cache?
+        # TODO: what about the cache?
+        scf = cflib.crazyflie.syncCrazyflie.SyncCrazyflie(url)
         scf.open_link()
         scf.wait_for_params()
         self._crazyflies[url] = scf
-        self._motion_commander[url] = MotionCommander(scf)
+
+        if not absolute_positioning:
+            self._motion_commander[url] = MotionCommander(scf)
+        else:
+            self._motion_commander[url] = scf.cf.high_level_commander
 
     def close_link(self, url):
         if url not in self._crazyflies:
@@ -117,61 +125,133 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return self._log_data[url][name]
 
-    def takeoff(self, url):
+    def takeoff(self, url, height=1.0):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.take_off(height=1.0, velocity=0.5)
+        if isinstance(mc, MotionCommander):
+            mc.take_off(height=height, velocity=0.5)
+        else:
+            mc.takeoff(absolute_height_m=height, duration_s=height / 0.5)
 
-    def land(self, url):
+    def land(self, url, height=0.0):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.land(velocity=0.5)
+        if isinstance(mc, MotionCommander):
+            mc.land(velocity=0.5)
+        else:
+            mc.land(absolute_height_m=height, duration_s=height / 0.5)
 
     def left(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.left(distance, velocity=0.5)
+        if isinstance(mc, MotionCommander):
+            mc.left(distance, velocity=0.5)
+        else:
+            mc.go_to(
+                x=0,
+                y=distance,
+                z=0,
+                yaw=0,
+                duration_s=distance / 0.5,
+                relative=True,
+                linear=True,
+            )
 
     def right(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.right(distance, velocity=0.5)
+        if isinstance(mc, MotionCommander):
+            mc.right(distance, velocity=0.5)
+        else:
+            mc.go_to(
+                x=0,
+                y=-distance,
+                z=0,
+                yaw=0,
+                duration_s=distance / 0.5,
+                relative=True,
+                linear=True,
+            )
 
     def up(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.up(distance, velocity=0.5)
+        if isinstance(mc, MotionCommander):
+            mc.up(distance, velocity=0.5)
+        else:
+            mc.go_to(
+                x=0,
+                y=0,
+                z=distance,
+                yaw=0,
+                duration_s=distance / 0.5,
+                relative=True,
+                linear=True,
+            )
 
     def down(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.down(distance, velocity=0.5)
+        if isinstance(mc, MotionCommander):
+            mc.down(distance, velocity=0.5)
+        else:
+            mc.go_to(
+                x=0,
+                y=0,
+                z=-distance,
+                yaw=0,
+                duration_s=abs(distance) / 0.5,
+                relative=True,
+                linear=True,
+            )
 
     def forward(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.forward(distance, velocity=0.5)
+        if isinstance(mc, MotionCommander):
+            mc.forward(distance, velocity=0.5)
+        else:
+            mc.go_to(
+                x=distance,
+                y=0,
+                z=0,
+                yaw=0,
+                duration_s=abs(distance) / 0.5,
+                relative=True,
+                linear=True,
+            )
 
     def backward(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._motion_commander[url]
-        mc.back(distance)
+        if isinstance(mc, MotionCommander):
+            mc.back(distance, velocity=0.5)
+        else:
+            mc.go_to(
+                x=-distance,
+                y=0,
+                z=0,
+                yaw=0,
+                duration_s=abs(distance) / 0.5,
+                relative=True,
+                linear=True,
+            )
 
 
 def main():
