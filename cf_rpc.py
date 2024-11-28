@@ -21,16 +21,18 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     _motion_commander: dict[str, MotionCommander | HighLevelCommander]
 
     def __init__(self):
-        self._motion_commander = {}
         self._crazyflies = {}
         self._log_data = {}
+        self._motion_commander = {}
 
     def close(self):
+        print("Cleaning up crazyflie connector")
         for cf in self._crazyflies.values():
             cf.cf.loc.send_emergency_stop()
             cf.close_link()
-        self._crazyflies.clear()
         self._log_data.clear()
+        self._motion_commander.clear()
+        self._crazyflies.clear()
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
@@ -79,7 +81,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         self._log_data.pop(url, None)
         del self._motion_commander[url]
 
-    def get_values(self, url):
+    def get_all_values(self, url):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
@@ -91,9 +93,26 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
         if not isinstance(name, str):
-            raise ValueError(f"invalid name: {name}")
+            raise ValueError(f"invalid parameter name: {name}")
+
         scf = self._crazyflies[url]
         return scf.cf.param.get_value(name)
+
+    def get_values(self, url, names):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+
+        if isinstance(names, str):
+            names = [names]
+
+        scf = self._crazyflies[url]
+        data = {}
+        for name in names:
+            if not isinstance(name, str):
+                raise ValueError(f"invalid parameter name: {name}")
+            data[name] = scf.cf.param.get_value(name)
+
+        return data
 
     def register_log(self, url, name, variables, period=10):
         if url not in self._crazyflies:
@@ -106,6 +125,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         log_config = cflib.crazyflie.log.LogConfig(name, period_in_ms=period)
         for variable in variables:
+            if not isinstance(variable, str):
+                raise ValueError(f"invalid variable name: {variable}")
             log_config.add_variable(variable)
         self._crazyflies[url].cf.log.add_config(log_config)
         log_config.data_received_cb.add_callback(
@@ -118,12 +139,28 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         existing_data.update(data)
 
     def get_log_var(self, url, name):
-        if url not in self._crazyflies:
+        if url not in self._crazyflies or url not in self._log_data:
             raise ValueError(f"unknown url: {url}")
-        if url not in self._log_data or name not in self._log_data[url]:
-            raise ValueError(f"invalid name: {name}")
+        if not isinstance(name, str) or name not in self._log_data[url]:
+            raise ValueError(f"invalid variable name: {name}")
 
         return self._log_data[url][name]
+
+    def get_log_vars(self, url, names):
+        if url not in self._crazyflies or url not in self._log_data:
+            raise ValueError(f"unknown url: {url}")
+
+        if isinstance(names, str):
+            names = [names]
+
+        log_data = self._log_data[url]
+        data = {}
+        for name in names:
+            if name not in log_data:
+                raise ValueError(f"invalid name: {name}")
+            data[name] = log_data[name]
+
+        return data
 
     def takeoff(self, url, height=1.0):
         if url not in self._crazyflies:
@@ -273,7 +310,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 def main():
     cflib.crtp.init_drivers()
     with CrazyflieRpcConnector() as rpc:
-        with JsonRpcServer("tcp://localhost:22272", rpc._rpc_handler) as server:
+        with JsonRpcServer("tcp://*:22272", rpc._rpc_handler) as server:
             server.run()
 
 
