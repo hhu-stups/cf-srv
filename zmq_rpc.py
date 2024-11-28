@@ -87,19 +87,27 @@ class JsonRpcServer(contextlib.AbstractContextManager):
 
     def run(self):
         print("Running rpc server")
-        while True:
-            try:
-                data = self.socket.recv_json()
-            except Exception as e:
-                print(f"<error: {e}>")
-                self.socket.send_json(make_error_response(None, -32700, f"Error: {e}"))
-                continue
+        try:
+            while True:
+                try:
+                    data = self.socket.recv_json()
+                except Exception as e:
+                    print(f"<error: {e}>")
+                    self.socket.send_json(
+                        make_error_response(None, -32700, f"Error: {e}")
+                    )
+                    continue
 
-            print(data)
-            response = self.__handle_request(data)
-            if response:
-                print(response)
-                self.socket.send_json(response)
+                print(data)
+                response = self.__handle_request(data)
+                if response:
+                    print(response)
+                    self.socket.send_json(response)
+        except KeyboardInterrupt:
+            import sys
+
+            print("Keyboard interrupt, exiting...")
+            sys.exit(1)
 
     def __handle_request(self, request):
         if isinstance(request, list) and len(data) > 0:
@@ -212,7 +220,7 @@ def main():
             print(f"result: {result}")
     else:
         with JsonRpcServer(
-            "tcp://localhost:22272",
+            "tcp://*:22272",
             lambda req: req.make_success_response([None, True, 42, 1.337, "foo"]),
         ) as server:
             server.run()
