@@ -128,26 +128,32 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     def takeoff(self, url, height=1.0):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(height, (int, float)):
+            raise ValueError(f"invalid target height {height}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
             mc.take_off(height=height, velocity=0.5)
         else:
-            mc.takeoff(absolute_height_m=height, duration_s=height / 0.5)
+            mc.takeoff(absolute_height_m=height, duration_s=2.0)
 
     def land(self, url, height=0.0):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(height, (int, float)):
+            raise ValueError(f"invalid target height {height}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
             mc.land(velocity=0.5)
         else:
-            mc.land(absolute_height_m=height, duration_s=height / 0.5)
+            mc.land(absolute_height_m=height, duration_s=2.0)
 
     def left(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(distance, (int, float)) or distance <= 0:
+            raise ValueError(f"invalid distance {distance}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
@@ -166,6 +172,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     def right(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(distance, (int, float)) or distance <= 0:
+            raise ValueError(f"invalid distance {distance}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
@@ -184,6 +192,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     def up(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(distance, (int, float)) or distance <= 0:
+            raise ValueError(f"invalid distance {distance}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
@@ -202,6 +212,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     def down(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(distance, (int, float)) or distance <= 0:
+            raise ValueError(f"invalid distance {distance}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
@@ -212,7 +224,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 y=0,
                 z=-distance,
                 yaw=0,
-                duration_s=abs(distance) / 0.5,
+                duration_s=distance / 0.5,
                 relative=True,
                 linear=True,
             )
@@ -220,6 +232,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     def forward(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(distance, (int, float)) or distance <= 0:
+            raise ValueError(f"invalid distance {distance}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
@@ -230,7 +244,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 y=0,
                 z=0,
                 yaw=0,
-                duration_s=abs(distance) / 0.5,
+                duration_s=distance / 0.5,
                 relative=True,
                 linear=True,
             )
@@ -238,6 +252,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     def backward(self, url, distance):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(distance, (int, float)) or distance <= 0:
+            raise ValueError(f"invalid distance {distance}")
 
         mc = self._motion_commander[url]
         if isinstance(mc, MotionCommander):
@@ -248,7 +264,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 y=0,
                 z=0,
                 yaw=0,
-                duration_s=abs(distance) / 0.5,
+                duration_s=distance / 0.5,
                 relative=True,
                 linear=True,
             )
