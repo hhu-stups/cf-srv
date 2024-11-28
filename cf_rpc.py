@@ -84,7 +84,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             raise ValueError(f"unknown url: {url}")
         if not isinstance(name, str):
             raise ValueError(f"invalid name: {name}")
-
         scf = self._crazyflies[url]
         return scf.cf.param.get_value(name)
 
@@ -178,7 +177,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 def main():
     cflib.crtp.init_drivers()
     with CrazyflieRpcConnector() as rpc:
-        with JsonRpcServer("ipc:///tmp/crazyflie", rpc._rpc_handler) as server:
+        with JsonRpcServer("tcp://localhost:22272", rpc._rpc_handler) as server:
             server.run()
 
 

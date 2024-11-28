@@ -199,7 +199,7 @@ def main():
     import sys
 
     if len(sys.argv) > 1 and sys.argv[1] == "client":
-        with JsonRpcClient("ipc:///tmp/crazyflie") as client:
+        with JsonRpcClient("tcp://localhost:22272") as client:
             if len(sys.argv) >= 3:
                 method = sys.argv[2]
             else:
@@ -212,7 +212,7 @@ def main():
             print(f"result: {result}")
     else:
         with JsonRpcServer(
-            "ipc:///tmp/crazyflie",
+            "tcp://localhost:22272",
             lambda req: req.make_success_response([None, True, 42, 1.337, "foo"]),
         ) as server:
             server.run()
