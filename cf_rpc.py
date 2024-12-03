@@ -50,15 +50,20 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return req.make_error_response(-32601, f"Method not found: {req.method}")
 
-    def open_link(self, url, absolute_positioning=False):
+    def open_link(self, url, reinit=False, absolute_positioning=False):
         if not isinstance(url, str) or len(url) == 0:
             raise ValueError(f"invalid url: {url}")
-        if url in self._crazyflies:
-            raise ValueError(1, f"url {url} already in use")
+        if not isinstance(reinit, bool):
+            raise ValueError(f"invalid parameter reinit: {reinit}")
         if not isinstance(absolute_positioning, bool):
             raise ValueError(
                 f"invalid parameter absolute_positioning: {absolute_positioning}"
             )
+        if url in self._crazyflies:
+            if reinit:
+                self.close_link(url)
+            else:
+                raise ValueError(1, f"url {url} already in use")
 
         # TODO: what about the cache?
         scf = cflib.crazyflie.syncCrazyflie.SyncCrazyflie(url)
@@ -78,8 +83,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         scf = self._crazyflies[url]
         scf.close_link()
         del self._crazyflies[url]
-        self._log_data.pop(url, None)
         del self._motion_commander[url]
+        self._log_data.pop(url, None)
 
     def get_all_values(self, url):
         if url not in self._crazyflies:
