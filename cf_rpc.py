@@ -310,7 +310,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 def main():
     cflib.crtp.init_drivers()
     with CrazyflieRpcConnector() as rpc:
-        with JsonRpcServer("tcp://*:22272", rpc._rpc_handler) as server:
+        with JsonRpcServer("tcp://localhost:22272", rpc._rpc_handler) as server:
             server.run()
 
 

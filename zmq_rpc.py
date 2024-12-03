@@ -220,7 +220,7 @@ def main():
             print(f"result: {result}")
     else:
         with JsonRpcServer(
-            "tcp://*:22272",
+            "tcp://localhost:22272",
             lambda req: req.make_success_response(
                 [None, True, 42, 1.337, "foo", {"a": "b", "21": 21}]
             ),
