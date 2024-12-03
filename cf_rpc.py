@@ -61,7 +61,13 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             )
         if url in self._crazyflies:
             if reinit:
-                self.close_link(url)
+                try:
+                    self.close_link(url)
+                except Exception as e:
+                    # might happen when the existing drone has turned off?
+                    print(
+                        f"ignoring exception from close_link while re-opening the link: {e}"
+                    )
             else:
                 raise ValueError(1, f"url {url} already in use")
 
