@@ -10,20 +10,23 @@ import cflib.crazyflie.syncLogger
 import cflib.crazyflie.log
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.crazyflie.high_level_commander import HighLevelCommander
+from cflib.positioning.position_hl_commander import PositionHlCommander
 
 
 logging.basicConfig(level=logging.DEBUG)
+
+_COMMANDERS = ("motion", "high_level", "position_high_level")
 
 
 class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     _crazyflies: dict[str, cflib.crazyflie.syncCrazyflie.SyncCrazyflie]
     _log_data: dict[str, dict[str, Any]]
-    _motion_commander: dict[str, MotionCommander | HighLevelCommander]
+    _commander: dict[str, MotionCommander | HighLevelCommander | PositionHlCommander]
 
     def __init__(self):
         self._crazyflies = {}
         self._log_data = {}
-        self._motion_commander = {}
+        self._commander = {}
 
     def close(self):
         print("Cleaning up crazyflie connector")
@@ -31,7 +34,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             cf.cf.loc.send_emergency_stop()
             cf.close_link()
         self._log_data.clear()
-        self._motion_commander.clear()
+        self._commander.clear()
         self._crazyflies.clear()
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -50,14 +53,14 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return req.make_error_response(-32601, f"Method not found: {req.method}")
 
-    def open_link(self, url, reinit=False, absolute_positioning=False):
+    def open_link(self, url, reinit=False, commander="position_high_level"):
         if not isinstance(url, str) or len(url) == 0:
             raise ValueError(f"invalid url: {url}")
         if not isinstance(reinit, bool):
             raise ValueError(f"invalid parameter reinit: {reinit}")
-        if not isinstance(absolute_positioning, bool):
+        if not isinstance(commander, str) or commander not in _COMMANDERS:
             raise ValueError(
-                f"invalid parameter absolute_positioning: {absolute_positioning}"
+                f"invalid parameter commander: {commander}, expected one of {_COMMANDERS}"
             )
         if url in self._crazyflies:
             if reinit:
@@ -77,10 +80,12 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         scf.wait_for_params()
         self._crazyflies[url] = scf
 
-        if not absolute_positioning:
-            self._motion_commander[url] = MotionCommander(scf)
-        else:
-            self._motion_commander[url] = scf.cf.high_level_commander
+        if commander == "motion":
+            self._commander[url] = MotionCommander(scf.cf)
+        elif commander == "high_level":
+            self._commander[url] = scf.cf.high_level_commander
+        elif commander == "position_high_level":
+            self._commander[url] = PositionHlCommander(scf.cf)
 
     def close_link(self, url):
         if url not in self._crazyflies:
@@ -89,7 +94,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         scf = self._crazyflies[url]
         scf.close_link()
         del self._crazyflies[url]
-        del self._motion_commander[url]
+        del self._commander[url]
         self._log_data.pop(url, None)
 
     def get_all_values(self, url):
@@ -124,6 +129,27 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             data[name] = scf.cf.param.get_value(name)
 
         return data
+
+    def set_value(self, url, name, value):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+        if not isinstance(name, str):
+            raise ValueError(f"invalid parameter name: {name}")
+
+        scf = self._crazyflies[url]
+        scf.cf.param.set_value(name, value)
+
+    def set_values(self, url, values):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+        if not isinstance(values, dict):
+            raise ValueError(f"invalid parameter values: {values}")
+
+        scf = self._crazyflies[url]
+        for name, value in values.items():
+            if not isinstance(name, str):
+                raise ValueError(f"invalid parameter name: {name}")
+            scf.cf.param.set_value(name, value)
 
     def register_log(self, url, name, variables, period=10):
         if url not in self._crazyflies:
@@ -173,17 +199,36 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return data
 
+    def get_position_high_level_commander_pos(self, url):
+        if url not in self._crazyflies or url not in self._log_data:
+            raise ValueError(f"unknown url: {url}")
+
+        mc = self._commander[url]
+        if not isinstance(mc, PositionHlCommander):
+            raise ValueError(
+                f"crazyflie was configured with a different commander than 'position_high_level': {type(mc).__name__}"
+            )
+        x, y, z = mc.get_position()
+        return {"x": x, "y": y, "z": z}
+
     def takeoff(self, url, height=1.0):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
         if not isinstance(height, (int, float)):
             raise ValueError(f"invalid target height {height}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
+            # height is the relative height
+            mc.take_off(height=height, velocity=0.5)
+        elif isinstance(mc, HighLevelCommander):
+            # height is the absolute target height
+            mc.takeoff(absolute_height_m=height, duration_s=2.0)
+        elif isinstance(mc, PositionHlCommander):
+            # height is the absolute target height
             mc.take_off(height=height, velocity=0.5)
         else:
-            mc.takeoff(absolute_height_m=height, duration_s=2.0)
+            raise AssertionError("unknown commander")
 
     def land(self, url, height=0.0):
         if url not in self._crazyflies:
@@ -191,11 +236,18 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(height, (int, float)):
             raise ValueError(f"invalid target height {height}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
+            # no height parameter
             mc.land(velocity=0.5)
-        else:
+        elif isinstance(mc, HighLevelCommander):
+            # height is the absolute target height
             mc.land(absolute_height_m=height, duration_s=2.0)
+        elif isinstance(mc, PositionHlCommander):
+            # height is the absolute target height
+            mc.land(landing_height=height, velocity=0.5)
+        else:
+            raise AssertionError("unknown commander")
 
     def left(self, url, distance):
         if url not in self._crazyflies:
@@ -203,10 +255,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(distance, (int, float)) or distance <= 0:
             raise ValueError(f"invalid distance {distance}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
             mc.left(distance, velocity=0.5)
-        else:
+        elif isinstance(mc, HighLevelCommander):
             mc.go_to(
                 x=0,
                 y=distance,
@@ -216,6 +268,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
                 linear=True,
             )
+        elif isinstance(mc, PositionHlCommander):
+            mc.left(distance, velocity=0.5)
+        else:
+            raise AssertionError("unknown commander")
 
     def right(self, url, distance):
         if url not in self._crazyflies:
@@ -223,10 +279,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(distance, (int, float)) or distance <= 0:
             raise ValueError(f"invalid distance {distance}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
             mc.right(distance, velocity=0.5)
-        else:
+        elif isinstance(mc, HighLevelCommander):
             mc.go_to(
                 x=0,
                 y=-distance,
@@ -236,6 +292,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
                 linear=True,
             )
+        elif isinstance(mc, PositionHlCommander):
+            mc.right(distance, velocity=0.5)
+        else:
+            raise AssertionError("unknown commander")
 
     def up(self, url, distance):
         if url not in self._crazyflies:
@@ -243,10 +303,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(distance, (int, float)) or distance <= 0:
             raise ValueError(f"invalid distance {distance}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
             mc.up(distance, velocity=0.5)
-        else:
+        elif isinstance(mc, HighLevelCommander):
             mc.go_to(
                 x=0,
                 y=0,
@@ -256,6 +316,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
                 linear=True,
             )
+        elif isinstance(mc, PositionHlCommander):
+            mc.up(distance, velocity=0.5)
+        else:
+            raise AssertionError("unknown commander")
 
     def down(self, url, distance):
         if url not in self._crazyflies:
@@ -263,10 +327,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(distance, (int, float)) or distance <= 0:
             raise ValueError(f"invalid distance {distance}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
             mc.down(distance, velocity=0.5)
-        else:
+        elif isinstance(mc, HighLevelCommander):
             mc.go_to(
                 x=0,
                 y=0,
@@ -276,6 +340,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
                 linear=True,
             )
+        elif isinstance(mc, PositionHlCommander):
+            mc.down(distance, velocity=0.5)
+        else:
+            raise AssertionError("unknown commander")
 
     def forward(self, url, distance):
         if url not in self._crazyflies:
@@ -283,10 +351,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(distance, (int, float)) or distance <= 0:
             raise ValueError(f"invalid distance {distance}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
             mc.forward(distance, velocity=0.5)
-        else:
+        elif isinstance(mc, HighLevelCommander):
             mc.go_to(
                 x=distance,
                 y=0,
@@ -296,6 +364,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
                 linear=True,
             )
+        elif isinstance(mc, PositionHlCommander):
+            mc.forward(distance, velocity=0.5)
+        else:
+            raise AssertionError("unknown commander")
 
     def backward(self, url, distance):
         if url not in self._crazyflies:
@@ -303,10 +375,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if not isinstance(distance, (int, float)) or distance <= 0:
             raise ValueError(f"invalid distance {distance}")
 
-        mc = self._motion_commander[url]
+        mc = self._commander[url]
         if isinstance(mc, MotionCommander):
             mc.back(distance, velocity=0.5)
-        else:
+        elif isinstance(mc, HighLevelCommander):
             mc.go_to(
                 x=-distance,
                 y=0,
@@ -316,6 +388,10 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
                 linear=True,
             )
+        elif isinstance(mc, PositionHlCommander):
+            mc.back(distance, velocity=0.5)
+        else:
+            raise AssertionError("unknown commander")
 
 
 def main():
