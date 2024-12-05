@@ -31,7 +31,7 @@ OPERATIONS
   close_link(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     VAR res IN
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "close_link", {("url" |-> RpcString(DRONE_URL)), ("reinit" |-> RpcBoolean(TRUE))}));
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "close_link", {("url" |-> RpcString(DRONE_URL))}));
       cycle := cycle + 1 
     END
   END;
