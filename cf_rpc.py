@@ -86,6 +86,8 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             self._commander[url] = scf.cf.high_level_commander
         elif commander == "position_high_level":
             self._commander[url] = PositionHlCommander(scf.cf)
+        else:
+            raise AssertionError("unknown commander")
 
     def close_link(self, url):
         if url not in self._crazyflies:
