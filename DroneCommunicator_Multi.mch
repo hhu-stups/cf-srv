@@ -1,19 +1,25 @@
 MACHINE DroneCommunicator_Multi USES LibraryZMQ_RPC
 DEFINITIONS
   "LibraryZMQ_RPC.def";
-  "LibraryIO.def";
   "LibraryReals.def";
   SET_PREF_MAX_OPERATIONS == 0;
-VARIABLES init, socket, xx, cycle
+VARIABLES init, socket, cycle
 INVARIANT
   init:BOOL &
   socket:SOCKET &
-  xx:INTEGER &
-  cycle : INTEGER
-INITIALISATION init:=FALSE; socket:=0; xx:=0; cycle := 1
+  cycle:INTEGER
+INITIALISATION
+  init:=FALSE;
+  socket:=0;
+  cycle:=1
+
 OPERATIONS
-  Init = PRE init=FALSE THEN socket := ZMQ_RPC_INIT("tcp://localhost:22272"); init := TRUE END;
-  
+  Init = 
+  SELECT init = FALSE THEN
+    socket := ZMQ_RPC_INIT("tcp://localhost:22272");
+    init := TRUE
+  END;
+
   open_link(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     VAR res IN
@@ -33,24 +39,28 @@ OPERATIONS
   register_sensors(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     VAR res IN
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("stateEstimate.x"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("stateEstimate.y"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("stateEstimate.z"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("pm.batteryLevel"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("range.front"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("range.back"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("range.up"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("range.left"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("range.right"))}));
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("Position")), ("variables" |-> RpcString("range.zrange"))}));
-      cycle := cycle + 1
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {
+        ("url" |-> RpcString(DRONE_URL)),
+        ("name" |-> RpcString("Telemetry")),
+        ("variables" |-> RpcArray([
+          RpcString("stateEstimate.x"),
+          RpcString("stateEstimate.y"),
+          RpcString("stateEstimate.z"),
+          RpcString("pm.batteryLevel"),
+          RpcString("range.front"),
+          RpcString("range.back"),
+          RpcString("range.up"),
+          RpcString("range.left"),
+          RpcString("range.right"),
+          RpcString("range.zrange")
+        ]))}))
     END
   END;
 
   Drone_Takeoff(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     VAR res IN
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "takeoff", {"url" |-> RpcString(DRONE_URL)}));
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "takeoff", {("url" |-> RpcString(DRONE_URL))}));
       cycle := cycle + 1
     END
   END;
@@ -58,7 +68,7 @@ OPERATIONS
   Drone_Land(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     VAR res IN
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "land", {"url" |-> RpcString(DRONE_URL)}));
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "land", {("url" |-> RpcString(DRONE_URL))}));
       cycle := cycle + 1
     END
   END;
@@ -117,7 +127,6 @@ OPERATIONS
     & DRONE_URL : STRING
     & dist : 0..2000
   THEN
-    PRINT("B: send forward");
     VAR res IN
       res := RpcSuccess~(ZMQ_RPC_SEND(socket, "forward", {("url" |-> RpcString(DRONE_URL)), ("distance" |-> RpcFloat(RDIV(real(dist), real(1000))))}));
       cycle := cycle + 1
@@ -147,7 +156,6 @@ OPERATIONS
     out := floor(1000.0 *RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.y"))}))));
     cycle := cycle + 1
   END;
-
 
   out <-- Drone_GetZ(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
@@ -197,5 +205,9 @@ OPERATIONS
     cycle := cycle + 1
   END;
 
-  Destroy = PRE init=TRUE THEN ZMQ_RPC_DESTROY(socket); init := FALSE END
+  Destroy = 
+  SELECT init = TRUE THEN
+    ZMQ_RPC_DESTROY(socket);
+    init := FALSE
+  END
 END
