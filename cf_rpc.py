@@ -268,7 +268,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 yaw=0,
                 duration_s=distance / 0.5,
                 relative=True,
-                linear=True,
             )
         elif isinstance(mc, PositionHlCommander):
             mc.left(distance, velocity=0.5)
@@ -292,7 +291,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 yaw=0,
                 duration_s=distance / 0.5,
                 relative=True,
-                linear=True,
             )
         elif isinstance(mc, PositionHlCommander):
             mc.right(distance, velocity=0.5)
@@ -316,7 +314,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 yaw=0,
                 duration_s=distance / 0.5,
                 relative=True,
-                linear=True,
             )
         elif isinstance(mc, PositionHlCommander):
             mc.up(distance, velocity=0.5)
@@ -340,7 +337,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 yaw=0,
                 duration_s=distance / 0.5,
                 relative=True,
-                linear=True,
             )
         elif isinstance(mc, PositionHlCommander):
             mc.down(distance, velocity=0.5)
@@ -364,7 +360,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 yaw=0,
                 duration_s=distance / 0.5,
                 relative=True,
-                linear=True,
             )
         elif isinstance(mc, PositionHlCommander):
             mc.forward(distance, velocity=0.5)
@@ -388,7 +383,6 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 yaw=0,
                 duration_s=distance / 0.5,
                 relative=True,
-                linear=True,
             )
         elif isinstance(mc, PositionHlCommander):
             mc.back(distance, velocity=0.5)
