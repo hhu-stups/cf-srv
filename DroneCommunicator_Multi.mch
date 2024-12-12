@@ -38,15 +38,28 @@ OPERATIONS
 
   register_sensors(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
-    VAR res IN
-      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {
+    VAR res1, res2, res3 IN
+      res1 := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {
         ("url" |-> RpcString(DRONE_URL)),
         ("name" |-> RpcString("Telemetry")),
         ("variables" |-> RpcArray([
           RpcString("stateEstimate.x"),
           RpcString("stateEstimate.y"),
           RpcString("stateEstimate.z"),
-          RpcString("pm.batteryLevel"),
+          RpcString("stateEstimate.roll"),
+          RpcString("stateEstimate.pitch"),
+          RpcString("stateEstimate.yaw")
+        ]))}));
+        res2 := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {
+        ("url" |-> RpcString(DRONE_URL)),
+        ("name" |-> RpcString("Power")),
+        ("variables" |-> RpcArray([
+          RpcString("pm.batteryLevel")
+        ]))}));
+        res3 := RpcSuccess~(ZMQ_RPC_SEND(socket, "register_log", {
+        ("url" |-> RpcString(DRONE_URL)),
+        ("name" |-> RpcString("Ranging")),
+        ("variables" |-> RpcArray([
           RpcString("range.front"),
           RpcString("range.back"),
           RpcString("range.up"),
