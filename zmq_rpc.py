@@ -3,7 +3,7 @@ import contextlib
 import json
 import traceback
 from dataclasses import dataclass
-from typing import Any, Callable, Optional, Union
+from typing import Any, Callable, Optional, Union, List, Dict
 
 
 def make_error_response(
@@ -11,14 +11,16 @@ def make_error_response(
     error_code: int,
     error_message: str,
     error_data: Optional[Any] = None,
-) -> dict:
+) -> Dict[str, Any]:
     e = {"code": error_code, "message": error_message}
     if error_data is not None:
         e["data"] = error_data
     return {"jsonrpc": "2.0", "id": id, "error": e}
 
 
-def make_invalid_request_error(id: Union[int, float, str, None] = None) -> dict:
+def make_invalid_request_error(
+    id: Union[int, float, str, None] = None
+) -> Dict[str, Any]:
     return make_error_response(id, -32600, "Invalid request")
 
 
@@ -30,9 +32,9 @@ class JsonRpcRequest:
     id: Union[int, float, str, None]
     notification: bool
     method: str
-    params: Union[list[Any], dict[str, Any]]
+    params: Union[List[Any], Dict[str, Any]]
 
-    def to_json(self) -> dict:
+    def to_json(self) -> Dict[str, Any]:
         json = {"jsonrpc": "2.0", "method": self.method}
         if self.params:
             json["params"] = self.params
@@ -40,12 +42,12 @@ class JsonRpcRequest:
             json["id"] = self.id
         return json
 
-    def make_success_response(self, result: Any = None) -> dict:
+    def make_success_response(self, result: Any = None) -> Dict[str, Any]:
         return {"jsonrpc": "2.0", "id": self.id, "result": result}
 
     def make_error_response(
         self, error_code: int, error_message: str, error_data: Any = None
-    ) -> dict:
+    ) -> Dict[str, Any]:
         return make_error_response(self.id, error_code, error_message, error_data)
 
     def get_param(
@@ -70,9 +72,9 @@ class JsonRpcRequest:
 
 class JsonRpcServer(contextlib.AbstractContextManager):
     socket: zmq.Socket
-    handler: Callable[[JsonRpcRequest], dict]
+    handler: Callable[[JsonRpcRequest], Dict[str, Any]]
 
-    def __init__(self, addr: str, handler: Callable[[JsonRpcRequest], dict]):
+    def __init__(self, addr: str, handler: Callable[[JsonRpcRequest], Dict[str, Any]]):
         self.handler = handler
         context = zmq.Context()
         self.socket = context.socket(zmq.REP)
@@ -173,12 +175,12 @@ class JsonRpcClient(contextlib.AbstractContextManager):
     def close(self):
         self.socket.close()
 
-    def rpc_notify(self, method: str, params: Union[list[Any], dict[str, Any]]):
+    def rpc_notify(self, method: str, params: Union[List[Any], Dict[str, Any]]):
         # req = JsonRpcRequest(None, True, method, params)
         # self.socket.send_json(req.to_json())
         raise NotImplementedError
 
-    def rpc_call(self, method: str, params: Union[list[Any], dict[str, Any]]) -> Any:
+    def rpc_call(self, method: str, params: Union[List[Any], Dict[str, Any]]) -> Any:
         print(f"rpc_call: {method} {params}")
 
         req = JsonRpcRequest(self.counter, False, method, params)
@@ -190,7 +192,7 @@ class JsonRpcClient(contextlib.AbstractContextManager):
         print(res)
         return self.__handle_single_response(req, res)
 
-    def __handle_single_response(self, req: JsonRpcRequest, res: dict) -> Any:
+    def __handle_single_response(self, req: JsonRpcRequest, res: Dict[str, Any]) -> Any:
         protocol = res.get("jsonrpc")
         id = res.get("id")
 

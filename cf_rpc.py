@@ -1,5 +1,5 @@
 from zmq_rpc import JsonRpcServer, JsonRpcRequest
-from typing import Any, Union
+from typing import Any, Union, Dict
 import contextlib
 import logging
 import time
@@ -19,9 +19,11 @@ _COMMANDERS = ("motion", "high_level", "position_high_level")
 
 
 class CrazyflieRpcConnector(contextlib.AbstractContextManager):
-    _crazyflies: dict[str, cflib.crazyflie.syncCrazyflie.SyncCrazyflie]
-    _log_data: dict[str, dict[str, Any]]
-    _commander: dict[str, Union[MotionCommander, HighLevelCommander, PositionHlCommander]]
+    _crazyflies: Dict[str, cflib.crazyflie.syncCrazyflie.SyncCrazyflie]
+    _log_data: Dict[str, Dict[str, Any]]
+    _commander: Dict[
+        str, Union[MotionCommander, HighLevelCommander, PositionHlCommander]
+    ]
 
     def __init__(self):
         self._crazyflies = {}
@@ -41,7 +43,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         self.close()
         return False
 
-    def _rpc_handler(self, req: JsonRpcRequest) -> dict:
+    def _rpc_handler(self, req: JsonRpcRequest) -> Dict:
         if req.method not in {"close"} and not req.method.startswith("_"):
             attr = getattr(self, req.method, None)
             if attr:
