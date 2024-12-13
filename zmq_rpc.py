@@ -78,6 +78,7 @@ class JsonRpcServer(contextlib.AbstractContextManager):
         self.handler = handler
         context = zmq.Context()
         self.socket = context.socket(zmq.REP)
+        print(f"Binding rpc server to {addr}")
         self.socket.bind(addr)
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -100,10 +101,10 @@ class JsonRpcServer(contextlib.AbstractContextManager):
                     )
                     continue
 
-                print(data)
+                print(f"recv: {data}")
                 response = self.__handle_request(data)
                 if response:
-                    print(response)
+                    print(f"send: {response}")
                     self.socket.send_json(response)
         except KeyboardInterrupt:
             import sys
@@ -165,6 +166,7 @@ class JsonRpcClient(contextlib.AbstractContextManager):
     def __init__(self, addr: str):
         context = zmq.Context()
         self.socket = context.socket(zmq.REQ)
+        print(f"Connecting rpc client to {addr}")
         self.socket.connect(addr)
         self.counter = 1
 
@@ -185,11 +187,12 @@ class JsonRpcClient(contextlib.AbstractContextManager):
 
         req = JsonRpcRequest(self.counter, False, method, params)
         self.counter += 1
-        print(req)
-        self.socket.send_json(req.to_json())
+        req_json = req.to_json()
+        print(f"send: {req_json}")
+        self.socket.send_json(req_json)
 
         res = self.socket.recv_json()
-        print(res)
+        print(f"recv: {res}")
         return self.__handle_single_response(req, res)
 
     def __handle_single_response(self, req: JsonRpcRequest, res: Dict[str, Any]) -> Any:
@@ -206,23 +209,42 @@ class JsonRpcClient(contextlib.AbstractContextManager):
 
 
 def main():
+    """Usage:
+    python zmq_rpc.py ['server'|'client'] [endpoint] [method] [params]
+
+    server/client decides whether to start a rpc server or make a rpc call - optional, default is server
+    endpoint is the zmq endpoint to connect/bind to (must contain ://) - optional, default is tcp://localhost:22272
+    method is only used by the client - optional, default is test
+    params is only used by the client - optional, default is {"foo": "bar"}
+    """
     import sys
 
-    if len(sys.argv) > 1 and sys.argv[1] == "client":
-        with JsonRpcClient("tcp://localhost:22272") as client:
-            if len(sys.argv) >= 3:
-                method = sys.argv[2]
-            else:
-                method = "test"
-            if len(sys.argv) >= 4:
-                params = json.loads(sys.argv[3])
-            else:
-                params = {"foo": "bar"}
+    args = list(sys.argv)
+    args.pop(0)
+
+    if args and args[0] in ("client", "server"):
+        side = args.pop(0)
+    else:
+        side = "server"
+
+    if args and "://" in args[0]:
+        endpoint = args.pop(0)
+    else:
+        endpoint = "tcp://localhost:22272"
+
+    if side == "client":
+        method = args.pop(0) if args else "test"
+        params = json.loads(args.pop(0)) if args else {"foo": "bar"}
+        if args:
+            print(f"ignoring args '{' '.join(args)}'")
+        with JsonRpcClient(endpoint) as client:
             result = client.rpc_call(method, params)
             print(f"result: {result}")
     else:
+        if args:
+            print(f"ignoring args '{' '.join(args)}'")
         with JsonRpcServer(
-            "tcp://localhost:22272",
+            endpoint,
             lambda req: req.make_success_response(
                 [None, True, 42, 1.337, "foo", {"a": "b", "21": 21}]
             ),
