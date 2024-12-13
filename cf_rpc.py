@@ -1,5 +1,5 @@
 from zmq_rpc import JsonRpcServer, JsonRpcRequest
-from typing import Any
+from typing import Any, Union
 import contextlib
 import logging
 import time
@@ -21,7 +21,7 @@ _COMMANDERS = ("motion", "high_level", "position_high_level")
 class CrazyflieRpcConnector(contextlib.AbstractContextManager):
     _crazyflies: dict[str, cflib.crazyflie.syncCrazyflie.SyncCrazyflie]
     _log_data: dict[str, dict[str, Any]]
-    _commander: dict[str, MotionCommander | HighLevelCommander | PositionHlCommander]
+    _commander: dict[str, Union[MotionCommander, HighLevelCommander, PositionHlCommander]]
 
     def __init__(self):
         self._crazyflies = {}

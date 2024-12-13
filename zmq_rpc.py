@@ -3,11 +3,11 @@ import contextlib
 import json
 import traceback
 from dataclasses import dataclass
-from typing import Any, Optional, Callable
+from typing import Any, Callable, Optional, Union
 
 
 def make_error_response(
-    id: Optional[int | float | str],
+    id: Union[int, float, str, None],
     error_code: int,
     error_message: str,
     error_data: Optional[Any] = None,
@@ -18,7 +18,7 @@ def make_error_response(
     return {"jsonrpc": "2.0", "id": id, "error": e}
 
 
-def make_invalid_request_error(id: Optional[int | float | str] = None) -> dict:
+def make_invalid_request_error(id: Union[int, float, str, None] = None) -> dict:
     return make_error_response(id, -32600, "Invalid request")
 
 
@@ -27,10 +27,10 @@ THROW_MARKER = object()
 
 @dataclass(frozen=True)
 class JsonRpcRequest:
-    id: Optional[int | float | str]
+    id: Union[int, float, str, None]
     notification: bool
     method: str
-    params: list[Any] | dict[str, Any]
+    params: Union[list[Any], dict[str, Any]]
 
     def to_json(self) -> dict:
         json = {"jsonrpc": "2.0", "method": self.method}
@@ -173,12 +173,12 @@ class JsonRpcClient(contextlib.AbstractContextManager):
     def close(self):
         self.socket.close()
 
-    def rpc_notify(self, method: str, params: list[Any] | dict[str, Any]):
+    def rpc_notify(self, method: str, params: Union[list[Any], dict[str, Any]]):
         # req = JsonRpcRequest(None, True, method, params)
         # self.socket.send_json(req.to_json())
         raise NotImplementedError
 
-    def rpc_call(self, method: str, params: list[Any] | dict[str, Any]) -> Any:
+    def rpc_call(self, method: str, params: Union[list[Any], dict[str, Any]]) -> Any:
         print(f"rpc_call: {method} {params}")
 
         req = JsonRpcRequest(self.counter, False, method, params)
