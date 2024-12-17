@@ -158,6 +158,28 @@ OPERATIONS
     END
   END;
 
+  Drone_Turn_Left(DRONE_URL, degrees) = 
+  SELECT
+    init = TRUE &
+    degrees : -360..360
+  THEN
+    VAR res IN
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "turn_left", {("url" |-> RpcString(DRONE_URL)), ("degrees" |-> RpcFloat(real(degrees)))}));
+      cycle := cycle + 1
+    END
+  END;
+
+  Drone_Turn_Right(DRONE_URL, degrees) = 
+  SELECT
+    init = TRUE &
+    degrees : -360..360
+  THEN
+    VAR res IN
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "turn_right", {("url" |-> RpcString(DRONE_URL)), ("degrees" |-> RpcFloat(real(degrees)))}));
+      cycle := cycle + 1
+    END
+  END;
+
   out <-- Drone_GetX(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     out := floor(1000.0 * RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.x"))}))));

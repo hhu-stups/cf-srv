@@ -55,7 +55,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return req.make_error_response(-32601, f"Method not found: {req.method}")
 
-    def open_link(self, url, reinit=False, commander="position_high_level"):
+    def open_link(self, url, reinit=False, commander="high_level"):
         if not isinstance(url, str) or len(url) == 0:
             raise ValueError(f"invalid url: {url}")
         if not isinstance(reinit, bool):
@@ -391,6 +391,51 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         else:
             raise AssertionError("unknown commander")
 
+    def turn_left(self, url, degrees):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+        if not isinstance(degrees, (int, float)):
+            raise ValueError(f"invalid degrees {degrees}")
+
+        mc = self._commander[url]
+        if isinstance(mc, MotionCommander):
+            mc.turn_left(degrees, rate=72.0)
+        elif isinstance(mc, HighLevelCommander):
+            mc.go_to(
+                x=0,
+                y=0,
+                z=0,
+                yaw=-90,
+                duration_s=degrees / 72.0,
+                relative=True,
+            )
+        elif isinstance(mc, PositionHlCommander):
+            mc.turn_left(degrees, rate=72.0)
+        else:
+            raise AssertionError("unknown commander")
+
+    def turn_right(self, url, degrees):
+        if url not in self._crazyflies:
+            raise ValueError(f"unknown url: {url}")
+        if not isinstance(degrees, (int, float)):
+            raise ValueError(f"invalid degrees {degrees}")
+
+        mc = self._commander[url]
+        if isinstance(mc, MotionCommander):
+            mc.turn_right(degrees, rate=72.0)
+        elif isinstance(mc, HighLevelCommander):
+            mc.go_to(
+                x=0,
+                y=0,
+                z=0,
+                yaw=90,
+                duration_s=degrees / 72.0,
+                relative=True,
+            )
+        elif isinstance(mc, PositionHlCommander):
+            mc.turn_right(degrees, rate=72.0)
+        else:
+            raise AssertionError("unknown commander")
 
 def main():
     cflib.crtp.init_drivers()
