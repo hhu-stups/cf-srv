@@ -55,7 +55,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return req.make_error_response(-32601, f"Method not found: {req.method}")
 
-    def open_link(self, url, reinit=False, commander="high_level"):
+    def open_link(self, url, reinit=False, commander="motion"):
         if not isinstance(url, str) or len(url) == 0:
             raise ValueError(f"invalid url: {url}")
         if not isinstance(reinit, bool):
@@ -405,7 +405,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 x=0,
                 y=0,
                 z=0,
-                yaw=-90,
+                yaw=-degrees,
                 duration_s=degrees / 72.0,
                 relative=True,
             )
@@ -428,7 +428,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 x=0,
                 y=0,
                 z=0,
-                yaw=90,
+                yaw=degrees,
                 duration_s=degrees / 72.0,
                 relative=True,
             )
