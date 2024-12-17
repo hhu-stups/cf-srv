@@ -55,7 +55,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         return req.make_error_response(-32601, f"Method not found: {req.method}")
 
-    def open_link(self, url, reinit=False, commander="motion"):
+    def open_link(self, url, reinit=False, commander="position_high_level"):
         if not isinstance(url, str) or len(url) == 0:
             raise ValueError(f"invalid url: {url}")
         if not isinstance(reinit, bool):
@@ -410,7 +410,14 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
             )
         elif isinstance(mc, PositionHlCommander):
-            mc.turn_left(degrees, rate=72.0)
+            mc._hl_commander.go_to(
+                x=0,
+                y=0,
+                z=0,
+                yaw=-degrees,
+                duration_s=degrees / 72.0,
+                relative=True,
+            )
         else:
             raise AssertionError("unknown commander")
 
@@ -433,7 +440,14 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
                 relative=True,
             )
         elif isinstance(mc, PositionHlCommander):
-            mc.turn_right(degrees, rate=72.0)
+            mc._hl_commander.go_to(
+                x=0,
+                y=0,
+                z=0,
+                yaw=degrees,
+                duration_s=degrees / 72.0,
+                relative=True,
+            )
         else:
             raise AssertionError("unknown commander")
 
