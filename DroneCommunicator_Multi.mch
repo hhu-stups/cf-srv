@@ -218,6 +218,24 @@ OPERATIONS
     cycle := cycle + 1
   END;
 
+  out <-- Drone_GetRoll(DRONE_URL) = 
+  SELECT init = TRUE THEN
+    out := floor(1000.0 * RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.roll"))}))));
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetPitch(DRONE_URL) = 
+  SELECT init = TRUE THEN
+    out := floor(1000.0 * RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.pitch"))}))));
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetYaw(DRONE_URL) = 
+  SELECT init = TRUE THEN
+    out := floor(1000.0 * RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.yaw"))}))));
+    cycle := cycle + 1
+  END;
+
   Destroy = 
   SELECT init = TRUE THEN
     ZMQ_RPC_DESTROY(socket);

@@ -4,7 +4,7 @@ DEFINITIONS
   "LibraryReals.def";
   SET_PREF_MAX_OPERATIONS == 0;
 CONSTANTS DRONE_URL
-PROPERTIES DRONE_URL:STRING & DRONE_URL = "radio://0/80/2M/5700B500F4"
+PROPERTIES DRONE_URL:STRING & DRONE_URL = "radio://0/80/2M/5700B500F7"
 VARIABLES init, socket, cycle
 INVARIANT
   init:BOOL &
@@ -201,6 +201,24 @@ OPERATIONS
   out <-- Drone_GetRightDistance = 
   SELECT init = TRUE THEN
     out := RpcInteger~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("range.right"))})));
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetRoll = 
+  SELECT init = TRUE THEN
+    out := floor(1000.0 * RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.roll"))}))));
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetPitch = 
+  SELECT init = TRUE THEN
+    out := floor(1000.0 * RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.pitch"))}))));
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetYaw = 
+  SELECT init = TRUE THEN
+    out := floor(1000.0 * RpcFloat~(RpcSuccess~(ZMQ_RPC_SEND(socket, "get_log_var", {("url" |-> RpcString(DRONE_URL)), ("name" |-> RpcString("stateEstimate.yaw"))}))));
     cycle := cycle + 1
   END;
 
