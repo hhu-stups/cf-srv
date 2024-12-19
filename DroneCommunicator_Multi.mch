@@ -28,6 +28,24 @@ OPERATIONS
     END
   END;
 
+  /*
+  Available commanders:
+  "motion" - cflib.positioning.motion_commander.MotionCommander
+  "high_level" - cflib.crazyflie.high_level_commander.HighLevelCommander
+  "position_high_level" (the default) - cflib.positioning.position_hl_commander.PositionHlCommander
+  */
+  open_link_with_commander_type(DRONE_URL, commander) =
+  SELECT
+    init = TRUE
+    & DRONE_URL : STRING
+    & commander : STRING
+  THEN
+    VAR res IN
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "open_link", {("url" |-> RpcString(DRONE_URL)), ("reinit" |-> RpcBoolean(TRUE)), ("commander" |-> RpcString(commander))}));
+      cycle := cycle + 1
+    END
+  END;
+
   close_link(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     VAR res IN
