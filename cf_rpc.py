@@ -215,6 +215,12 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         x, y, z = mc.get_position()
         return {"x": x, "y": y, "z": z}
 
+    def _reset_state_estimator(self, url):
+        self.set_value(url, "kalman.resetEstimation", "1")
+        time.sleep(0.1)
+        self.set_value(url, "kalman.resetEstimation", "0")
+        time.sleep(2)
+
     def takeoff(self, url, height=1.0):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
@@ -223,12 +229,15 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
 
         mc = self._commander[url]
         if isinstance(mc, MotionCommander):
+            # motion commander resets the state estimator
             # height is the relative height
             mc.take_off(height=height, velocity=0.5)
         elif isinstance(mc, HighLevelCommander):
+            self._reset_state_estimator(url)
             # height is the absolute target height
             mc.takeoff(absolute_height_m=height, duration_s=2.0)
         elif isinstance(mc, PositionHlCommander):
+            self._reset_state_estimator(url)
             # height is the absolute target height
             mc.take_off(height=height, velocity=0.5)
         else:
@@ -450,6 +459,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
             )
         else:
             raise AssertionError("unknown commander")
+
 
 def main():
     cflib.crtp.init_drivers()
