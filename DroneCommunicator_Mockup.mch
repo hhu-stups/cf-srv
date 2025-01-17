@@ -1,18 +1,12 @@
-MACHINE DroneCommunicator_Mockup USES LibraryZMQ_RPC
+MACHINE DroneCommunicator_Mockup
 DEFINITIONS
-  "LibraryZMQ_RPC.def";
-  "LibraryReals.def";
   SET_PREF_MAX_OPERATIONS == 0;
-CONSTANTS DRONE_URL
-PROPERTIES DRONE_URL:STRING & DRONE_URL = "radio://0/80/2M/5700B500F4"
-VARIABLES init, socket, cycle
+VARIABLES init, cycle
 INVARIANT
   init:BOOL &
-  socket:SOCKET &
   cycle:INTEGER
 INITIALISATION
   init := FALSE;
-  socket := 0;
   cycle := 1
 
 OPERATIONS
