@@ -1,0 +1,175 @@
+MACHINE DroneCommunicator_Mockup USES LibraryZMQ_RPC
+DEFINITIONS
+  "LibraryZMQ_RPC.def";
+  "LibraryReals.def";
+  SET_PREF_MAX_OPERATIONS == 0;
+CONSTANTS DRONE_URL
+PROPERTIES DRONE_URL:STRING & DRONE_URL = "radio://0/80/2M/5700B500F4"
+VARIABLES init, socket, cycle
+INVARIANT
+  init:BOOL &
+  socket:SOCKET &
+  cycle:INTEGER
+INITIALISATION
+  init := FALSE;
+  socket := 0;
+  cycle := 1
+
+OPERATIONS
+  Init = 
+  SELECT init = FALSE THEN
+    init := TRUE
+  END;
+  
+  open_link = 
+  SELECT init = TRUE THEN
+    skip
+  END;
+
+  /*
+  Available commanders:
+  "motion" - cflib.positioning.motion_commander.MotionCommander
+  "high_level" - cflib.crazyflie.high_level_commander.HighLevelCommander
+  "position_high_level" (the default) - cflib.positioning.position_hl_commander.PositionHlCommander
+  */
+  open_link_with_commander_type(commander) = 
+  SELECT
+    init = TRUE
+    & commander : STRING
+  THEN
+    skip
+  END;
+
+  close_link = 
+  SELECT init = TRUE THEN
+    skip
+  END;
+
+  register_sensors = 
+  SELECT init = TRUE THEN
+    skip
+  END;
+
+  Drone_Takeoff = 
+  SELECT init = TRUE THEN
+    skip
+  END;
+
+  Drone_Land = 
+  SELECT init = TRUE THEN
+    skip
+  END;
+
+  Drone_Left(dist) = 
+  SELECT
+    init = TRUE &
+    dist : 0..2000
+  THEN
+    skip
+  END;
+
+  Drone_Right(dist) = 
+  SELECT
+    init = TRUE &
+    dist : 0..2000
+  THEN
+    skip
+  END;
+
+  Drone_Up(dist) = 
+  SELECT
+    init = TRUE &
+    dist : 0..2000
+  THEN
+    skip
+  END;
+
+  Drone_Down(dist) = 
+  SELECT
+    init = TRUE &
+    dist : 0..2000
+  THEN
+    skip
+  END;
+
+  Drone_Forward(dist) = 
+  SELECT
+    init = TRUE &
+    dist : 0..2000
+  THEN
+    skip
+  END;
+
+  Drone_Backward(dist) = 
+  SELECT
+    init = TRUE &
+    dist : 0..2000
+  THEN
+    skip
+  END;
+
+  out <-- Drone_GetX = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetY = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetZ = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetBattery = 
+  SELECT init = TRUE THEN
+    out := 100;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetFrontDistance = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetBackDistance = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetUpDistance = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetDownDistance = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetLeftDistance = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetRightDistance = 
+  SELECT init = TRUE THEN
+    out := 2000;
+    cycle := cycle + 1
+  END;
+
+  Destroy =
+  SELECT init = TRUE THEN
+    init := FALSE
+  END
+END
