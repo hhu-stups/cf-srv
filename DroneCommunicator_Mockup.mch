@@ -102,6 +102,22 @@ OPERATIONS
     skip
   END;
 
+  Drone_Turn_Left(degrees) = 
+  SELECT
+    init = TRUE &
+    degrees : -360..360
+  THEN
+    skip
+  END;
+
+  Drone_Turn_Right(degrees) = 
+  SELECT
+    init = TRUE &
+    degrees : -360..360
+  THEN
+    skip
+  END;
+
   out <-- Drone_GetX = 
   SELECT init = TRUE THEN
     out := 2000;
@@ -160,6 +176,21 @@ OPERATIONS
   SELECT init = TRUE THEN
     out := 2000;
     cycle := cycle + 1
+  END;
+
+  out <-- Drone_GetRoll = 
+  SELECT init = TRUE THEN
+    out := 0
+  END;
+
+  out <-- Drone_GetPitch = 
+  SELECT init = TRUE THEN
+    out := 0
+  END;
+
+  out <-- Drone_GetYaw = 
+  SELECT init = TRUE THEN
+    out := 0
   END;
 
   Drone_Beep(effect) =
