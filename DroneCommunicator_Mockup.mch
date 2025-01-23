@@ -162,6 +162,14 @@ OPERATIONS
     cycle := cycle + 1
   END;
 
+  Drone_Beep(effect) =
+  SELECT
+    init = TRUE &
+    effect : NATURAL
+  THEN
+    cycle := cycle + 1
+  END;
+
   Destroy =
   SELECT init = TRUE THEN
     init := FALSE
