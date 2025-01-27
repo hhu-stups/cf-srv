@@ -1,0 +1,59 @@
+{
+  "name": "DroneSwarm",
+  "description": "(this project was created automatically from file /Users/fabian/Documents/cf-srv/DroneSwarm.mch)",
+  "machines": [
+    {
+      "name": "DroneSwarm",
+      "description": "",
+      "location": "DroneSwarm.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [
+        {
+          "path": "MultiAgent2_small.py"
+        }
+      ],
+      "visBVisualisations": [
+        "AutonomousDroneSwarm.json"
+      ]
+    },
+    {
+      "name": "DroneSwarmMain",
+      "description": "",
+      "location": "DroneSwarmMain.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [
+        {
+          "path": "MultiAgent2_small.py"
+        }
+      ],
+      "visBVisualisations": [
+        "AutonomousDroneSwarm.json"
+      ]
+    },
+    {
+      "name": "DroneCommunicator_Multi_Mockup",
+      "description": "",
+      "location": "DroneCommunicator_Multi_Mockup.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    }
+  ],
+  "requirements": [],
+  "preferences": [],
+  "metadata": {
+    "fileType": "Project",
+    "formatVersion": 57,
+    "savedAt": "2025-01-27T13:04:28.354615Z",
+    "creator": "User",
+    "proB2KernelVersion": "4.13.2-SNAPSHOT",
+    "proBCliVersion": null,
+    "modelName": null
+  }
+}
