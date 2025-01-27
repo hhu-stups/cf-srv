@@ -460,7 +460,8 @@ if __name__ == '__main__':
 
                 model = joblib.load("q_class_multi_fixed_small_fov.txt")[-1]
                 while True:
-                    obs = env.reset()
+                    INITIAL_POS = [[1,1], [2,1]]
+                    obs = env.reset(initial_pos = INITIAL_POS)
                     agent_pos = env.agent_pos
                     rewards = 0.0
                     info = None
