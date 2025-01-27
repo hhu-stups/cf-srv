@@ -276,6 +276,18 @@ OPERATIONS
     cycle := cycle + 1
   END;
 
+  Drone_Beep(DRONE_URL, effect) =
+  SELECT
+    init = TRUE &
+    effect : NATURAL
+  THEN
+    VAR res IN
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "set_value", {("url" |-> JsonString(DRONE_URL)), ("name" |-> JsonString("sound.effect")), ("value" |-> JsonNumber(real(effect)))}));
+      cycle := cycle + 1
+    END
+  END;
+
+
   Destroy = 
   SELECT init = TRUE THEN
     ZMQ_RPC_DESTROY(socket);
