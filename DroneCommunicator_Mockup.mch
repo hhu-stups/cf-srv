@@ -46,12 +46,12 @@ OPERATIONS
 
   Drone_Takeoff = 
   SELECT init = TRUE THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Land = 
   SELECT init = TRUE THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Left(dist) = 
@@ -59,7 +59,7 @@ OPERATIONS
     init = TRUE &
     dist : 0..2000
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Right(dist) = 
@@ -67,7 +67,7 @@ OPERATIONS
     init = TRUE &
     dist : 0..2000
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Up(dist) = 
@@ -75,7 +75,7 @@ OPERATIONS
     init = TRUE &
     dist : 0..2000
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Down(dist) = 
@@ -83,7 +83,7 @@ OPERATIONS
     init = TRUE &
     dist : 0..2000
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Forward(dist) = 
@@ -91,7 +91,7 @@ OPERATIONS
     init = TRUE &
     dist : 0..2000
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Backward(dist) = 
@@ -99,7 +99,7 @@ OPERATIONS
     init = TRUE &
     dist : 0..2000
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Turn_Left(degrees) = 
@@ -107,7 +107,7 @@ OPERATIONS
     init = TRUE &
     degrees : -360..360
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   Drone_Turn_Right(degrees) = 
@@ -115,7 +115,7 @@ OPERATIONS
     init = TRUE &
     degrees : -360..360
   THEN
-    skip
+    cycle := cycle + 1
   END;
 
   out <-- Drone_GetX = 
