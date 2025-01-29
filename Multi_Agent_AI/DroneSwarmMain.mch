@@ -13,14 +13,16 @@ CONSTANTS DroneAddresses, DISTANCE_ONE_STEP
 PROPERTIES 
 	DroneAddresses = {1 |-> "radio://0/80/2M/5700B500F5", 2 |-> "radio://0/80/2M/5700B500FA"} &
 	DISTANCE_ONE_STEP = 200
-VARIABLES flying, observations
+VARIABLES flying, observations, current_drone
 INVARIANT 
 	flying : 1..n --> BOOL &
-	observations : POW((1..n) * POW(DIRECTIONS * INTEGER))
+	observations : POW((1..n) * POW(DIRECTIONS * INTEGER)) &
+	current_drone : 1..n
 
 INITIALISATION
 	flying := (1..n) * {FALSE} ||
-        observations := {}
+	observations := {} ||
+	current_drone := 1
 
 OPERATIONS
 
@@ -33,95 +35,92 @@ OPERATIONS
        register_sensors(DroneAddresses(2))
     END;
 
-    MAIN_TAKEOFF(current_drone) =
-    SELECT 
-      current_drone : 1..n & 
-      flying(current_drone) = FALSE & 
+    MAIN_TAKEOFF =
+    SELECT
+      flying(current_drone) = FALSE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(UP) < 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(UP) > 2 * DISTANCE_ONE_STEP
     THEN
       Drone_Takeoff(DroneAddresses(current_drone));
       flying(current_drone) := TRUE;
-      observations := {}
+      observations := {current_drone} <<| observations;
+      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
     END;
 
-    MAIN_LAND(current_drone) =
-    SELECT 
-      current_drone : 1..n & 
-      flying(current_drone) = FALSE & 
+    MAIN_LAND =
+    SELECT
+      flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS
     THEN
       Drone_Land(DroneAddresses(current_drone));
       flying(current_drone) := FALSE;
-      observations := {}
+      observations := {current_drone} <<| observations;
+      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
     END;
 
-    MAIN_LEFT(current_drone) =
-    SELECT 
-      current_drone : 1..n & 
-      flying(current_drone) = FALSE & 
+    MAIN_LEFT =
+    SELECT
+      flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(LEFT) < 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(LEFT) > 2 * DISTANCE_ONE_STEP
     THEN
       Move_Left(current_drone);
       Drone_Left(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {}
+      observations := {current_drone} <<| observations;
+      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
     END;
 
-    MAIN_RIGHT(current_drone) =
-    SELECT 
-      current_drone : 1..n & 
-      flying(current_drone) = FALSE & 
+    MAIN_RIGHT =
+    SELECT
+      flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(RIGHT) < 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(RIGHT) > 2 * DISTANCE_ONE_STEP
     THEN
       Move_Right(current_drone);
       Drone_Right(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {}
+      observations := {current_drone} <<| observations;
+      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
     END;
 
-    MAIN_FORWARD(current_drone) =
-    SELECT 
-      current_drone : 1..n & 
-      flying(current_drone) = FALSE & 
+    MAIN_FORWARD =
+    SELECT
+      flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(FORWARD) < 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(FORWARD) > 2 * DISTANCE_ONE_STEP
     THEN
       Move_Forward(current_drone);
       Drone_Forward(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {}
+      observations := {current_drone} <<| observations;
+      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
     END;
 
-    MAIN_BACKWARD(current_drone) =
-    SELECT 
-      current_drone : 1..n & 
-      flying(current_drone) = FALSE & 
+    MAIN_BACKWARD =
+    SELECT
+      flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(BACKWARD) < 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(BACKWARD) > 2 * DISTANCE_ONE_STEP
     THEN
       Move_Backward(current_drone);
       Drone_Backward(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {}
+      observations := {current_drone} <<| observations;
+      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
     END;
 
-    MAIN_OBSERVE(current_drone) =
-    SELECT 
-      current_drone : 1..n
-    THEN
-      VAR up_dist, left_dist, right_dist, forward_dist, backward_dist IN
-	up_dist <-- Drone_GetUpDistance(DroneAddresses(current_drone));
-	left_dist <-- Drone_GetLeftDistance(DroneAddresses(current_drone));
-	right_dist <-- Drone_GetRightDistance(DroneAddresses(current_drone));
-	forward_dist <-- Drone_GetFrontDistance(DroneAddresses(current_drone));
-	backward_dist <-- Drone_GetBackDistance(DroneAddresses(current_drone));
-        observations(current_drone) := {LEFT |-> left_dist, RIGHT |-> right_dist, FORWARD |-> forward_dist, BACKWARD |-> backward_dist}
-      END
+    MAIN_OBSERVE =
+    VAR up_dist, left_dist, right_dist, forward_dist, backward_dist IN
+      up_dist <-- Drone_GetUpDistance(DroneAddresses(current_drone));
+      left_dist <-- Drone_GetLeftDistance(DroneAddresses(current_drone));
+      right_dist <-- Drone_GetRightDistance(DroneAddresses(current_drone));
+      forward_dist <-- Drone_GetFrontDistance(DroneAddresses(current_drone));
+      backward_dist <-- Drone_GetBackDistance(DroneAddresses(current_drone));
+      observations(current_drone) := {UP |-> up_dist, LEFT |-> left_dist, RIGHT |-> right_dist, FORWARD |-> forward_dist, BACKWARD |-> backward_dist};
+      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
     END;
 
     MAIN_DESTORY =
