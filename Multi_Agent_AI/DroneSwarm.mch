@@ -20,43 +20,43 @@ INITIALISATION
   visited := drone_positions
 
 OPERATIONS
-  Move_Left(current_drone) =
+  Move_Left(drone) =
   SELECT
-    current_drone : 1..n &
-    prj1(drone_positions(current_drone)) > 0 & 
-    prj1(drone_positions(current_drone)) - 1 |-> prj2(drone_positions(current_drone)) /: ran(drone_positions)
+    drone : 1..n &
+    prj1(drone_positions(drone)) > 0 & 
+    prj1(drone_positions(drone)) - 1 |-> prj2(drone_positions(drone)) /: ran(drone_positions)
   THEN
-    drone_positions(current_drone) := prj1(drone_positions(current_drone)) - 1 |-> prj2(drone_positions(current_drone));
+    drone_positions(drone) := prj1(drone_positions(drone)) - 1 |-> prj2(drone_positions(drone));
     visited := visited \/ (drone_positions |>> ran(visited))
   END;
 
-  Move_Backward(current_drone) =
+  Move_Backward(drone) =
   SELECT
-    current_drone : 1..n &
-    prj2(drone_positions(current_drone)) < m-1 &
-    prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) + 1 /: ran(drone_positions)
+    drone : 1..n &
+    prj2(drone_positions(drone)) < m-1 &
+    prj1(drone_positions(drone)) |-> prj2(drone_positions(drone)) + 1 /: ran(drone_positions)
   THEN
-    drone_positions(current_drone) := prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) + 1;
+    drone_positions(drone) := prj1(drone_positions(drone)) |-> prj2(drone_positions(drone)) + 1;
     visited := visited \/ (drone_positions |>> ran(visited))
   END;
 
-  Move_Right(current_drone) =
+  Move_Right(drone) =
   SELECT
-    current_drone : 1..n &
-    prj1(drone_positions(current_drone)) < m-1 &
-    prj1(drone_positions(current_drone)) + 1 |-> prj2(drone_positions(current_drone)) /: ran(drone_positions)
+    drone : 1..n &
+    prj1(drone_positions(drone)) < m-1 &
+    prj1(drone_positions(drone)) + 1 |-> prj2(drone_positions(drone)) /: ran(drone_positions)
   THEN
-    drone_positions(current_drone) := prj1(drone_positions(current_drone)) + 1 |-> prj2(drone_positions(current_drone));
+    drone_positions(drone) := prj1(drone_positions(drone)) + 1 |-> prj2(drone_positions(drone));
     visited := visited \/ (drone_positions |>> ran(visited))
   END;
 
-  Move_Forward(current_drone) =
+  Move_Forward(drone) =
   SELECT
-    current_drone : 1..n &
-    prj2(drone_positions(current_drone)) > 0 &
-    prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) - 1 /: ran(drone_positions)
+    drone : 1..n &
+    prj2(drone_positions(drone)) > 0 &
+    prj1(drone_positions(drone)) |-> prj2(drone_positions(drone)) - 1 /: ran(drone_positions)
   THEN
-    drone_positions(current_drone) := prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) - 1;
+    drone_positions(drone) := prj1(drone_positions(drone)) |-> prj2(drone_positions(drone)) - 1;
     visited := visited \/ (drone_positions |>> ran(visited))
   END
 
