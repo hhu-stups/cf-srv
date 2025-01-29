@@ -35,6 +35,11 @@ OPERATIONS
        register_sensors(DroneAddresses(2))
     END;
 
+    MAIN_CONTROL_DRONE(drone) =
+    SELECT drone : 1..n THEN
+        current_drone := drone
+    END;
+
     MAIN_TAKEOFF =
     SELECT
       flying(current_drone) = FALSE &
@@ -44,8 +49,7 @@ OPERATIONS
     THEN
       Drone_Takeoff(DroneAddresses(current_drone));
       flying(current_drone) := TRUE;
-      observations := {current_drone} <<| observations;
-      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
+      observations := {current_drone} <<| observations
     END;
 
     MAIN_LAND =
@@ -56,8 +60,7 @@ OPERATIONS
     THEN
       Drone_Land(DroneAddresses(current_drone));
       flying(current_drone) := FALSE;
-      observations := {current_drone} <<| observations;
-      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
+      observations := {current_drone} <<| observations
     END;
 
     MAIN_LEFT =
@@ -69,8 +72,7 @@ OPERATIONS
     THEN
       Move_Left(current_drone);
       Drone_Left(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {current_drone} <<| observations;
-      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
+      observations := {current_drone} <<| observations
     END;
 
     MAIN_RIGHT =
@@ -82,8 +84,7 @@ OPERATIONS
     THEN
       Move_Right(current_drone);
       Drone_Right(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {current_drone} <<| observations;
-      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
+      observations := {current_drone} <<| observations
     END;
 
     MAIN_FORWARD =
@@ -95,8 +96,7 @@ OPERATIONS
     THEN
       Move_Forward(current_drone);
       Drone_Forward(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {current_drone} <<| observations;
-      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
+      observations := {current_drone} <<| observations
     END;
 
     MAIN_BACKWARD =
@@ -108,8 +108,7 @@ OPERATIONS
     THEN
       Move_Backward(current_drone);
       Drone_Backward(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
-      observations := {current_drone} <<| observations;
-      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
+      observations := {current_drone} <<| observations
     END;
 
     MAIN_OBSERVE =
@@ -119,8 +118,7 @@ OPERATIONS
       right_dist <-- Drone_GetRightDistance(DroneAddresses(current_drone));
       forward_dist <-- Drone_GetFrontDistance(DroneAddresses(current_drone));
       backward_dist <-- Drone_GetBackDistance(DroneAddresses(current_drone));
-      observations(current_drone) := {UP |-> up_dist, LEFT |-> left_dist, RIGHT |-> right_dist, FORWARD |-> forward_dist, BACKWARD |-> backward_dist};
-      current_drone := IF current_drone = n THEN 1 ELSE current_drone + 1 END
+      observations(current_drone) := {UP |-> up_dist, LEFT |-> left_dist, RIGHT |-> right_dist, FORWARD |-> forward_dist, BACKWARD |-> backward_dist}
     END;
 
     MAIN_DESTORY =

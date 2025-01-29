@@ -474,6 +474,19 @@ def takeoff(client_socket, after):
     }) + "\n"
     client_socket.sendall(response.encode('utf-8'))
 
+def control_drone(client_socket, drone, after):
+    request = json.loads(read_line(client_socket))
+    finished = (int(request['finished']) == 1)
+    enabled_operations = request['enabledOperations']
+
+    response = json.dumps({
+        'op': 'MAIN_CONTROL_DRONE',
+        'delta': after,
+        'predicate': "drone = {0}".format(drone),
+        'done': 'false'
+    }) + "\n"
+    client_socket.sendall(response.encode('utf-8'))
+
 if __name__ == '__main__':
     if len(sys.argv) == 2 and sys.argv[1] == 'train':
         train()
@@ -518,16 +531,27 @@ if __name__ == '__main__':
                     }) + "\n"
                     client_socket.sendall(response.encode('utf-8'))
 
-                    observe(client_socket, delta)
+                    control_drone(client_socket, 1, delta)
                     observe(client_socket, 100)
+
+                    control_drone(client_socket, 2, 100)
+                    observe(client_socket, 100)
+
+                    control_drone(client_socket, 1, 100)
                     takeoff(client_socket, 200)
+
+                    control_drone(client_socket, 2, 100)
                     takeoff(client_socket, 100)
 
 
                     while not done and not finished:
-                        observe(client_socket, delta)
+                        control_drone(client_socket, 1, delta)
+                        observe(client_socket, 100)
+
+                        control_drone(client_socket, 2, 100)
                         observe(client_socket, 100)
                         for i in range(n_agents):
+                            control_drone(client_socket, i+1, 100)
                             request = json.loads(read_line(client_socket))
                             finished = (int(request['finished']) == 1)
                             if finished:
