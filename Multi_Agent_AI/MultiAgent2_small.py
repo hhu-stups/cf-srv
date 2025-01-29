@@ -486,12 +486,28 @@ if __name__ == '__main__':
                     enabled_operations = request['enabledOperations']
 
                     response = json.dumps({
+                        'op': 'MAIN_INIT',
+                        'delta': 100,
+                        'predicate': "1=1",
+                        'done': 'false'
+                    }) + "\n"
+                    client_socket.sendall(response.encode('utf-8'))
+
+                    request = json.loads(read_line(client_socket))
+                    finished = (int(request['finished']) == 1)
+                    enabled_operations = request['enabledOperations']
+
+                    response = json.dumps({
                         'op': 'MAIN_TAKEOFF',
                         'delta': 1000,
                         'predicate': "current_drone = {0}".format(1),
                         'done': 'false'
                     }) + "\n"
                     client_socket.sendall(response.encode('utf-8'))
+
+                    request = json.loads(read_line(client_socket))
+                    finished = (int(request['finished']) == 1)
+                    enabled_operations = request['enabledOperations']
 
                     response = json.dumps({
                         'op': 'MAIN_TAKEOFF',
@@ -500,6 +516,7 @@ if __name__ == '__main__':
                         'done': 'false'
                     }) + "\n"
                     client_socket.sendall(response.encode('utf-8'))
+
 
 
                     while not done and not finished:

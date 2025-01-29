@@ -2,7 +2,7 @@ MACHINE DroneCommunicator_Multi USES LibraryJSON, LibraryZMQ_RPC
 DEFINITIONS
   "LibraryZMQ_RPC.def";
   "LibraryReals.def";
-  SET_PREF_MAX_OPERATIONS == 0;
+  SET_PREF_MAX_OPERATIONS == 0
 VARIABLES init, socket, cycle
 INVARIANT
   init:BOOL &

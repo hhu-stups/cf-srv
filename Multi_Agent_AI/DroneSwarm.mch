@@ -12,11 +12,11 @@ PROPERTIES m = 4 & n = 2
 
 INVARIANT
   visited : POW((1..n) * ((0..m-1) * (0..m-1))) &
-  drone_positions : 1..n --> (0..m-1) * (0..m-1)
+  drone_positions : 1..n >-> (0..m-1) * (0..m-1)
 
 
 INITIALISATION
-  drone_positions :: 1..n --> (0..m-1) * (0..m-1);
+  drone_positions :: 1..n >-> (0..m-1) * (0..m-1);
   visited := drone_positions
 
 OPERATIONS

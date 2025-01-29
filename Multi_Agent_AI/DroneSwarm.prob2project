@@ -43,6 +43,16 @@
       "ltlPatterns": [],
       "simulations": [],
       "visBVisualisations": []
+    },
+    {
+      "name": "DroneCommunicator_Multi",
+      "description": "",
+      "location": "DroneCommunicator_Multi.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
     }
   ],
   "requirements": [],
@@ -50,7 +60,7 @@
   "metadata": {
     "fileType": "Project",
     "formatVersion": 57,
-    "savedAt": "2025-01-27T13:04:28.354615Z",
+    "savedAt": "2025-01-28T10:13:48.199748Z",
     "creator": "User",
     "proB2KernelVersion": "4.13.2-SNAPSHOT",
     "proBCliVersion": null,
