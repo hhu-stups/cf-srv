@@ -435,7 +435,7 @@ action_names = {
     0: "MAIN_LEFT",
     1: "MAIN_RIGHT",
     2: "MAIN_FORWARD",
-    3: "MAIN_DOWN"
+    3: "MAIN_BACKWARD"
 }
 
 action_names_inv = {val: key for key, val in action_names.items()}
@@ -448,6 +448,31 @@ def read_line(socket):
             break
         result.append(data)
     return ''.join(result)
+
+def observe(client_socket, after):
+    request = json.loads(read_line(client_socket))
+    finished = (int(request['finished']) == 1)
+    enabled_operations = request['enabledOperations']
+
+    response = json.dumps({
+        'op': 'MAIN_OBSERVE',
+        'delta': after,
+        'predicate': "1=1",
+        'done': 'false'
+    }) + "\n"
+    client_socket.sendall(response.encode('utf-8'))
+def takeoff(client_socket, after):
+    request = json.loads(read_line(client_socket))
+    finished = (int(request['finished']) == 1)
+    enabled_operations = request['enabledOperations']
+
+    response = json.dumps({
+        'op': 'MAIN_TAKEOFF',
+        'delta': after,
+        'predicate': "1=1",
+        'done': 'false'
+    }) + "\n"
+    client_socket.sendall(response.encode('utf-8'))
 
 if __name__ == '__main__':
     if len(sys.argv) == 2 and sys.argv[1] == 'train':
@@ -487,39 +512,21 @@ if __name__ == '__main__':
 
                     response = json.dumps({
                         'op': 'MAIN_INIT',
-                        'delta': 100,
+                        'delta': 1000,
                         'predicate': "1=1",
                         'done': 'false'
                     }) + "\n"
                     client_socket.sendall(response.encode('utf-8'))
 
-                    request = json.loads(read_line(client_socket))
-                    finished = (int(request['finished']) == 1)
-                    enabled_operations = request['enabledOperations']
-
-                    response = json.dumps({
-                        'op': 'MAIN_TAKEOFF',
-                        'delta': 1000,
-                        'predicate': "current_drone = {0}".format(1),
-                        'done': 'false'
-                    }) + "\n"
-                    client_socket.sendall(response.encode('utf-8'))
-
-                    request = json.loads(read_line(client_socket))
-                    finished = (int(request['finished']) == 1)
-                    enabled_operations = request['enabledOperations']
-
-                    response = json.dumps({
-                        'op': 'MAIN_TAKEOFF',
-                        'delta': 1000,
-                        'predicate': "current_drone = {0}".format(2),
-                        'done': 'false'
-                    }) + "\n"
-                    client_socket.sendall(response.encode('utf-8'))
-
+                    observe(client_socket, delta)
+                    observe(client_socket, 100)
+                    takeoff(client_socket, 200)
+                    takeoff(client_socket, 100)
 
 
                     while not done and not finished:
+                        observe(client_socket, delta)
+                        observe(client_socket, 100)
                         for i in range(n_agents):
                             request = json.loads(read_line(client_socket))
                             finished = (int(request['finished']) == 1)
@@ -546,8 +553,8 @@ if __name__ == '__main__':
 
                             response = json.dumps({
                                 'op': actionName,
-                                'delta': delta if i == n_agents - 1 else 0,
-                                'predicate': "drone_positions = {0} & current_drone = {1}".format(get_drone_positions(obs, agent_pos), i+1),
+                                'delta': 200 if i == 0 else 100,
+                                'predicate': "drone_positions = {0}".format(get_drone_positions(obs, agent_pos)),
                                 'done': "true" if done else "false"
                             }) + "\n"
                             client_socket.sendall(response.encode('utf-8'))
@@ -560,7 +567,7 @@ if __name__ == '__main__':
                                 response = json.dumps({
                                     'op': 'MAIN_LAND',
                                     'delta': 0,
-                                    'predicate': "current_drone = {0}".format(1),
+                                    'predicate': "1=1",
                                     'done': 'false'
                                 }) + "\n"
                                 client_socket.sendall(response.encode('utf-8'))
@@ -568,7 +575,7 @@ if __name__ == '__main__':
                                 response = json.dumps({
                                     'op': 'MAIN_LAND',
                                     'delta': 0,
-                                    'predicate': "current_drone = {0}".format(2),
+                                    'predicate': "1=1",
                                     'done': 'false'
                                 }) + "\n"
                                 client_socket.sendall(response.encode('utf-8'))
