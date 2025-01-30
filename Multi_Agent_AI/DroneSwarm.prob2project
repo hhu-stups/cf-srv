@@ -14,9 +14,7 @@
           "path": "MultiAgent2_small.py"
         }
       ],
-      "visBVisualisations": [
-        "AutonomousDroneSwarm.json"
-      ]
+      "visBVisualisations": []
     },
     {
       "name": "DroneSwarmMain",
@@ -60,7 +58,7 @@
   "metadata": {
     "fileType": "Project",
     "formatVersion": 57,
-    "savedAt": "2025-01-28T10:13:48.199748Z",
+    "savedAt": "2025-01-30T10:05:10.375521Z",
     "creator": "User",
     "proB2KernelVersion": "4.13.2-SNAPSHOT",
     "proBCliVersion": null,
