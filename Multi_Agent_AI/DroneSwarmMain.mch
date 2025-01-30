@@ -56,9 +56,7 @@ OPERATIONS
 
     MAIN_LAND =
     SELECT
-      flying(current_drone) = TRUE &
-      current_drone : dom(observations) &
-      dom(observations(current_drone)) = DIRECTIONS
+      flying(current_drone) = TRUE
     THEN
       Drone_Land(DroneAddresses(current_drone));
       flying(current_drone) := FALSE;
