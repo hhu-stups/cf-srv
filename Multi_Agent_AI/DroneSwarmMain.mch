@@ -9,10 +9,11 @@ DEFINITIONS
   "LibraryReals.def";
   SET_PREF_MAX_OPERATIONS == 0
 INCLUDES DroneSwarm, DroneCommunicator_Multi
-CONSTANTS DroneAddresses, DISTANCE_ONE_STEP
+CONSTANTS DroneAddresses, DISTANCE_ONE_STEP, SAFETY_DISTANCE
 PROPERTIES 
 	DroneAddresses = {1 |-> "radio://0/80/2M/5700B500F5", 2 |-> "radio://0/80/2M/5700B500FA"} &
-	DISTANCE_ONE_STEP = 200
+	DISTANCE_ONE_STEP = 200 &
+	SAFETY_DISTANCE = 400
 VARIABLES flying, observations, current_drone, maybe_obstacles
 INVARIANT 
 	flying : 1..n --> BOOL &
@@ -47,7 +48,7 @@ OPERATIONS
       flying(current_drone) = FALSE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(UP) > 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(UP) > SAFETY_DISTANCE + DISTANCE_ONE_STEP
     THEN
       Drone_Takeoff(DroneAddresses(current_drone));
       flying(current_drone) := TRUE;
@@ -68,7 +69,7 @@ OPERATIONS
       flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(LEFT) > 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(LEFT) > SAFETY_DISTANCE + DISTANCE_ONE_STEP
     THEN
       Move_Left(current_drone);
       Drone_Left(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
@@ -81,7 +82,7 @@ OPERATIONS
       flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(RIGHT) > 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(RIGHT) > SAFETY_DISTANCE + DISTANCE_ONE_STEP
     THEN
       Move_Right(current_drone);
       Drone_Right(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
@@ -94,7 +95,7 @@ OPERATIONS
       flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(FORWARD) > 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(FORWARD) > SAFETY_DISTANCE + DISTANCE_ONE_STEP
     THEN
       Move_Forward(current_drone);
       Drone_Forward(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
@@ -107,7 +108,7 @@ OPERATIONS
       flying(current_drone) = TRUE &
       current_drone : dom(observations) &
       dom(observations(current_drone)) = DIRECTIONS &
-      observations(current_drone)(BACKWARD) > 2 * DISTANCE_ONE_STEP
+      observations(current_drone)(BACKWARD) > SAFETY_DISTANCE + DISTANCE_ONE_STEP
     THEN
       Move_Backward(current_drone);
       Drone_Backward(DroneAddresses(current_drone), DISTANCE_ONE_STEP);
@@ -129,16 +130,16 @@ OPERATIONS
         maybe_obstacle_pos_forward = prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) - 1 &
 	maybe_obstacle_pos_backward = prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) + 1
       IN
-        IF prj1(drone_positions(current_drone)) > 0 & left_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_left /: ran(visited) THEN
+        IF prj1(drone_positions(current_drone)) > 0 & left_dist <= SAFETY_DISTANCE + DISTANCE_ONE_STEP & maybe_obstacle_pos_left /: ran(visited) THEN
           maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_left}
         END;
-        IF prj1(drone_positions(current_drone)) < m-1 & right_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_right /: ran(visited) THEN
+        IF prj1(drone_positions(current_drone)) < m-1 & right_dist <= SAFETY_DISTANCE + DISTANCE_ONE_STEP & maybe_obstacle_pos_right /: ran(visited) THEN
           maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_right}
         END;
-        IF prj2(drone_positions(current_drone)) > 0 & forward_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_forward /: ran(visited) THEN
+        IF prj2(drone_positions(current_drone)) > 0 & forward_dist <= SAFETY_DISTANCE + DISTANCE_ONE_STEP & maybe_obstacle_pos_forward /: ran(visited) THEN
           maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_forward}
         END;
-        IF prj2(drone_positions(current_drone)) < m-1 & backward_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_backward /: ran(visited) THEN
+        IF prj2(drone_positions(current_drone)) < m-1 & backward_dist <= SAFETY_DISTANCE + DISTANCE_ONE_STEP & maybe_obstacle_pos_backward /: ran(visited) THEN
           maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_backward}
         END
       END
