@@ -126,8 +126,8 @@ OPERATIONS
       LET maybe_obstacle_pos_left, maybe_obstacle_pos_right, maybe_obstacle_pos_forward, maybe_obstacle_pos_backward BE 
         maybe_obstacle_pos_left = prj1(drone_positions(current_drone)) - 1 |-> prj2(drone_positions(current_drone)) &
 	maybe_obstacle_pos_right = prj1(drone_positions(current_drone)) + 1 |-> prj2(drone_positions(current_drone)) &
-        maybe_obstacle_pos_forward = prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) + 1 &
-	maybe_obstacle_pos_backward = prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) - 1
+        maybe_obstacle_pos_forward = prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) - 1 &
+	maybe_obstacle_pos_backward = prj1(drone_positions(current_drone)) |-> prj2(drone_positions(current_drone)) + 1
       IN
         IF prj1(drone_positions(current_drone)) > 0 & left_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_left /: ran(visited) THEN
           maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_left}
@@ -135,11 +135,11 @@ OPERATIONS
         IF prj1(drone_positions(current_drone)) < m-1 & right_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_right /: ran(visited) THEN
           maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_right}
         END;
-        IF prj2(drone_positions(current_drone)) > 0 & backward_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_backward /: ran(visited) THEN
-          maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_backward}
-        END;
-        IF prj2(drone_positions(current_drone)) < m-1 & forward_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_forward /: ran(visited) THEN
+        IF prj2(drone_positions(current_drone)) > 0 & forward_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_forward /: ran(visited) THEN
           maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_forward}
+        END;
+        IF prj2(drone_positions(current_drone)) < m-1 & backward_dist < 2 * DISTANCE_ONE_STEP & maybe_obstacle_pos_backward /: ran(visited) THEN
+          maybe_obstacles := maybe_obstacles \/ {maybe_obstacle_pos_backward}
         END
       END
     END;
