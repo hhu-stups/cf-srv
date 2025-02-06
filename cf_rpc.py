@@ -91,11 +91,15 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         else:
             raise AssertionError("unknown commander")
 
-    def close_link(self, url):
+    def close_link(self, url, emergency_stop=False):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
+        if not isinstance(emergency_stop, bool):
+            raise ValueError(f"invalid parameter emergency_stop: {reinit}")
 
         scf = self._crazyflies[url]
+        if emergency_stop:
+            scf.cf.loc.send_emergency_stop()
         scf.close_link()
         del self._crazyflies[url]
         del self._commander[url]
@@ -204,7 +208,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         return data
 
     def get_position_high_level_commander_pos(self, url):
-        if url not in self._crazyflies or url not in self._log_data:
+        if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
 
         mc = self._commander[url]
