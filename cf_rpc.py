@@ -95,7 +95,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
         if not isinstance(emergency_stop, bool):
-            raise ValueError(f"invalid parameter emergency_stop: {reinit}")
+            raise ValueError(f"invalid parameter emergency_stop: {emergency_stop}")
 
         scf = self._crazyflies[url]
         if emergency_stop:
