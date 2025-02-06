@@ -54,6 +54,14 @@ OPERATIONS
     END
   END;
 
+  close_link_emergency_stop(DRONE_URL) =
+  SELECT init = TRUE & DRONE_URL : STRING THEN
+    VAR res IN
+      res := RpcSuccess~(ZMQ_RPC_SEND(socket, "close_link", {("url" |-> JsonString(DRONE_URL)), ("emergency_stop" |-> JsonBoolean(TRUE))}));
+      cycle := cycle + 1 
+    END
+  END;
+
   register_sensors(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     VAR res1, res2, res3 IN

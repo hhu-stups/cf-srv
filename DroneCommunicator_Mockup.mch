@@ -39,6 +39,11 @@ OPERATIONS
     skip
   END;
 
+  close_link_emergency_stop = 
+  SELECT init = TRUE THEN
+    skip
+  END;
+
   register_sensors = 
   SELECT init = TRUE THEN
     skip

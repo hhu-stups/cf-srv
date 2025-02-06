@@ -44,6 +44,11 @@ OPERATIONS
     skip
   END;
 
+  close_link_emergency_stop(DRONE_URL) =
+  SELECT init = TRUE & DRONE_URL : STRING THEN
+    skip
+  END;
+
   register_sensors(DRONE_URL) =
   SELECT init = TRUE & DRONE_URL : STRING THEN
     skip
