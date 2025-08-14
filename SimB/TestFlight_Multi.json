@@ -1,0 +1,109 @@
+{
+  "activations": [
+    {
+      "id": "$setup_constants",
+      "execute": "$setup_constants"
+    },
+    {
+      "id": "$initialise_machine",
+      "execute": "$initialise_machine",
+      "activating" : ["Init"]
+    },
+    {
+      "id": "Init",
+      "execute": "Init",
+      "after": 500,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["open_link_1", "open_link_2"]
+    },
+    {
+      "id": "open_link_1",
+      "execute": "open_link",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F4\""},
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["register_sensors_1"]
+    },
+    {
+      "id": "register_sensors_1",
+      "execute": "register_sensors",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F4\""},
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["takeoff_1"]
+    },
+    {
+      "id": "takeoff_1",
+      "execute": "Drone_Takeoff",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F4\""},
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single:max",
+      "activating" : ["land_1"]
+    },
+    {
+      "id": "land_1",
+      "execute": "Drone_Land",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F4\""},
+      "after": 2000,
+      "priority": 1,
+      "activationKind": "single:max",
+      "activating" : ["close_link_1"]
+    },
+    {
+      "id": "close_link_1",
+      "execute": "close_link",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F4\""},
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single"
+    },
+    {
+      "id": "open_link_2",
+      "execute": "open_link",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F7\""},
+      "after": 999,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["register_sensors_2"]
+    },
+    {
+      "id": "register_sensors_2",
+      "execute": "register_sensors",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F7\""},
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["takeoff_2"]
+    },
+    {
+      "id": "takeoff_2",
+      "execute": "Drone_Takeoff",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F7\""},
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single:max",
+      "activating" : ["land_2"]
+    },
+    {
+      "id": "land_2",
+      "execute": "Drone_Land",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F7\""},
+      "after": 2000,
+      "priority": 1,
+      "activationKind": "single:max",
+      "activating" : ["close_link_2"]
+    },
+    {
+      "id": "close_link_2",
+      "execute": "close_link",
+      "fixedVariables": {"DRONE_URL" : "\"radio://0/80/2M/5700B500F7\""},
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single"
+    }
+  ]
+}

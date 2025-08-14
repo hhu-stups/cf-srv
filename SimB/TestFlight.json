@@ -1,0 +1,68 @@
+{
+  "activations": [
+    {
+      "id": "$setup_constants",
+      "execute": "$setup_constants"
+    },
+    {
+      "id": "$initialise_machine",
+      "execute": "$initialise_machine",
+      "activating" : ["Init"]
+    },
+    {
+      "id": "Init",
+      "execute": "Init",
+      "after": 500,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["open_link"]
+    },
+    {
+      "id": "open_link",
+      "execute": "open_link",
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["register_sensors"]
+    },
+    {
+      "id": "register_sensors",
+      "execute": "register_sensors",
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["takeoff", "sensors_loop"]
+    },
+    {
+      "id": "sensors_loop",
+      "execute": "Drone_GetFrontDistance",
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single:max",
+      "activating" : ["sensors_loop"]
+    },
+    {
+      "id": "takeoff",
+      "execute": "Drone_Takeoff",
+      "after": 1000,
+      "priority": 2,
+      "activationKind": "single:max",
+      "activating" : ["land"]
+    },
+    {
+      "id": "land",
+      "execute": "Drone_Land",
+      "after": 2000,
+      "priority": 2,
+      "activationKind": "single:max",
+      "activating" : ["close_link"]
+    },
+    {
+      "id": "close_link",
+      "execute": "close_link",
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single"
+    }
+  ]
+}

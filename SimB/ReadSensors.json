@@ -1,0 +1,87 @@
+{
+  "activations": [
+    {
+      "id": "$setup_constants",
+      "execute": "$setup_constants"
+    },
+    {
+      "id": "$initialise_machine",
+      "execute": "$initialise_machine",
+      "activating" : ["Init"]
+    },
+    {
+      "id": "Init",
+      "execute": "Init",
+      "after": 500,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["open_link"]
+    },
+    {
+      "id": "open_link",
+      "execute": "open_link",
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["register_sensors"]
+    },
+    {
+      "id": "register_sensors",
+      "execute": "register_sensors",
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single",
+      "activating" : ["sensors_loop"]
+    },
+    {
+      "id": "sensors_loop",
+      "execute": "Drone_GetFrontDistance",
+      "after": 1000,
+      "priority": 1,
+      "activationKind": "single:max",
+      "activating" : ["sensors_loop"]
+    }
+  ],
+  "listeners": [
+    {
+      "id": "flight1",
+      "event": "Drone_Takeoff",
+      "activating": ["sensors_loop"]
+    },
+    {
+      "id": "flight2",
+      "event": "Drone_Land",
+      "activating": ["sensors_loop"]
+    },
+    {
+      "id": "flight3",
+      "event": "Drone_Left",
+      "activating": ["sensors_loop"]
+    },
+    {
+      "id": "flight4",
+      "event": "Drone_Right",
+      "activating": ["sensors_loop"]
+    },
+    {
+      "id": "flight5",
+      "event": "Drone_Forward",
+      "activating": ["sensors_loop"]
+    },
+    {
+      "id": "flight6",
+      "event": "Drone_Backward",
+      "activating": ["sensors_loop"]
+    },
+    {
+      "id": "flight7",
+      "event": "Drone_Up",
+      "activating": ["sensors_loop"]
+    },
+    {
+      "id": "flight8",
+      "event": "Drone_Down",
+      "activating": ["sensors_loop"]
+    }
+  ]
+}
