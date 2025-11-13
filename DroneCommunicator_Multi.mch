@@ -3,6 +3,7 @@ DEFINITIONS
   "LibraryZMQ_RPC.def";
   "LibraryReals.def";
   SET_PREF_MAX_OPERATIONS == 0;
+  SET_PREF_OPERATION_REUSE == FALSE;
 VARIABLES init, socket, cycle
 INVARIANT
   init:BOOL &
