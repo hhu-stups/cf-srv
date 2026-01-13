@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.psFile>
+    <org.eventb.core.psStatus name="INITIALISATION/glueing_inv_1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="25" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/glueing_inv_2/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="25" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="INITIALISATION/init_concrete_pos/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="25" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_RIGHT/glueing_inv_1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="MOVE_RIGHT/glueing_inv_2/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_RIGHT/act_concrete_pos/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_LEFT/glueing_inv_1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="MOVE_LEFT/glueing_inv_2/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_LEFT/act_concrete_pos/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_BACKWARD/glueing_inv_1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_BACKWARD/glueing_inv_2/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="MOVE_BACKWARD/act_concrete_pos/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_FORWARD/glueing_inv_1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="MOVE_FORWARD/glueing_inv_2/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="MOVE_FORWARD/act_concrete_pos/FIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/right_sensor/WWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/right_sensor/WFIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/left_sensor/WWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/left_sensor/WFIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/backward_sensor/WWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/backward_sensor/WFIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/forward_sensor/WWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/forward_sensor/WFIS" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="OBSERVE/grd_left/GRD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="OBSERVE/grd_right/GRD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="OBSERVE/grd_forward/GRD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="OBSERVE/grd_backward/GRD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="OBSERVE/act_field/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="53" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="OBSERVE/act_field/SIM" org.eventb.core.confidence="-99" org.eventb.core.poStamp="52" org.eventb.core.psBroken="true" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/x/WWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/y/WWD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/glueing_inv_1/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/glueing_inv_2/INV" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/act_pos/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/act_visited/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/act_emergency_mode/WD" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="true"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/act_pos/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/act_visited/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+    <org.eventb.core.psStatus name="UPDATE_POSITION/act_emergency_mode/SIM" org.eventb.core.confidence="1000" org.eventb.core.poStamp="29" org.eventb.core.psManual="false"/>
+</org.eventb.core.psFile>

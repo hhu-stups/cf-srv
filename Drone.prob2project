@@ -1,0 +1,507 @@
+{
+  "name": "Drone",
+  "description": "",
+  "machines": [
+    {
+      "name": "Drone",
+      "description": "",
+      "location": "Drone.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [
+        {
+          "path": "DroneEnv.py"
+        }
+      ],
+      "visBVisualisations": [
+        "visualization/DroneEnv.json"
+      ]
+    },
+    {
+      "name": "DroneMainController",
+      "description": "",
+      "location": "DroneMainController.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "DroneEnv.py",
+          "type": "MONTE_CARLO_SIMULATION",
+          "information": {
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "EXECUTIONS": 10,
+            "STEPS_PER_EXECUTION": 100
+          }
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "RL_Trace.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "RL_Trace2.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "RL_Trace3.prob2trace",
+          "selected": true
+        }
+      ],
+      "ltlPatterns": [],
+      "simulations": [
+        {
+          "path": "DroneEnv.py"
+        }
+      ],
+      "visBVisualisations": [
+        "visualization/Drone_VisB_MAIN.def"
+      ]
+    },
+    {
+      "name": "DroneMainController_Mockup",
+      "description": "",
+      "location": "DroneMainController_Mockup.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [
+        {
+          "path": "DroneEnv_Mock.py"
+        }
+      ],
+      "visBVisualisations": [
+        "visualization/Drone_VisB_MAIN.def"
+      ]
+    },
+    {
+      "name": "DroneCommunicator_Param_mock",
+      "description": "",
+      "location": "DroneCommunicator_Param_mock.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "DroneMovement",
+      "description": "",
+      "location": "DroneMovement.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [
+        {
+          "taskType": "MODEL_CHECKING",
+          "searchStrategy": "MIXED_BF_DF",
+          "options": [
+            "FIND_DEADLOCKS",
+            "FIND_INVARIANT_VIOLATIONS"
+          ],
+          "selected": true
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "DroneEnv_Sim.py",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "EXECUTIONS": 1000,
+            "PREDICATE": "mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "DroneMovement_Scenario1.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "DroneEnv_Sim.py",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mission_failed = TRUE or mode = FINISHED",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "EXECUTIONS": 1000,
+            "PREDICATE": "mode = FINISHED & 0 /: ran(field) & current_position = BASE_POSITION & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Shielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "EXECUTIONS": 1000,
+            "PREDICATE": "mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Shielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & 0 /: ran(field) & current_position = BASE_POSITION & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & 0 /: ran(field) & current_position = BASE_POSITION & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & current_position = BASE_POSITION & 0 : ran(field) & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Shielded_Timed_Traces",
+          "type": "ESTIMATION",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "ESTIMATION_TYPE": "MEAN",
+            "EXPRESSION": "reward",
+            "DESIRED_VALUE": 200.0,
+            "CHECKING_TYPE": "SUM",
+            "EPSILON": 50.0
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Shielded_Timed_Traces",
+          "type": "ESTIMATION",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "ESTIMATION_TYPE": "MEAN",
+            "EXPRESSION": "1.0 - real(card(field~[{0}])) / real(card(field))",
+            "DESIRED_VALUE": 0.0,
+            "CHECKING_TYPE": "MAXIMUM",
+            "EPSILON": 0.04
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Shielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & current_position = BASE_POSITION & 0 : ran(field) & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Shielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & current_position /= BASE_POSITION & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        }
+      ],
+      "ltlPatterns": [],
+      "simulations": [
+        {
+          "path": "DroneEnv_Sim.py"
+        },
+        {
+          "path": "Shielded_Timed_Traces"
+        }
+      ],
+      "visBVisualisations": [
+        "visualization/Drone_VisB.def"
+      ]
+    },
+    {
+      "name": "DroneMovement_Real",
+      "description": "",
+      "location": "DroneMovement_Real.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "DroneMovement_Real_Mockup",
+      "description": "",
+      "location": "DroneMovement_Real_Mockup.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "DroneMovement_Unsafe",
+      "description": "",
+      "location": "DroneMovement_Unsafe.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "DroneEnv_Sim.py",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "EXECUTIONS": 1000,
+            "PREDICATE": "mission_failed = TRUE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "EXECUTIONS": 1000,
+            "PREDICATE": "mission_failed = TRUE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "ESTIMATION",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "ESTIMATION_TYPE": "MEAN",
+            "EXPRESSION": "reward",
+            "DESIRED_VALUE": 500.0,
+            "CHECKING_TYPE": "SUM",
+            "EPSILON": 20.0
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "ESTIMATION",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "ESTIMATION_TYPE": "MEAN",
+            "EXPRESSION": "1.0 - real(card(field~[{0}])) / real(card(field))",
+            "DESIRED_VALUE": 0.9,
+            "CHECKING_TYPE": "MAXIMUM",
+            "EPSILON": 0.1
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & 0 /: ran(field) & current_position = BASE_POSITION & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & current_position = BASE_POSITION & 0 : ran(field) & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        },
+        {
+          "taskType": "SIMULATION",
+          "simulationPath": "Unshielded_Timed_Traces",
+          "type": "HYPOTHESIS_TEST",
+          "information": {
+            "ENDING_PREDICATE": "mode = FINISHED or mission_failed = TRUE",
+            "SIGNIFICANCE": 0.01,
+            "PROBABILITY": 0.99,
+            "MAX_STEPS_BEFORE_PROPERTY": 0,
+            "PREDICATE": "mode = FINISHED & current_position /= BASE_POSITION & mission_failed = FALSE",
+            "HYPOTHESIS_CHECKING_TYPE": "LEFT_TAILED",
+            "CHECKING_TYPE": "PREDICATE_FINAL"
+          }
+        }
+      ],
+      "ltlPatterns": [],
+      "simulations": [
+        {
+          "path": "DroneEnv_Sim.py"
+        },
+        {
+          "path": "Unshielded_Timed_Traces"
+        }
+      ],
+      "visBVisualisations": [
+        "visualization/DroneEnv.json"
+      ]
+    },
+    {
+      "name": "DroneCommunicator_Param",
+      "description": "",
+      "location": "DroneCommunicator_Param.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "DroneCommunicator",
+      "description": "",
+      "location": "DroneCommunicator.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "M5_Quadcopter_Mission_Status_inst",
+      "description": "",
+      "location": "DroneSafetyController_EventB/DroneSafetyController/M5_Quadcopter_Mission_Status_inst.bum",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "M6_Quadcopter_Concrete_Movement",
+      "description": "",
+      "location": "DroneSafetyController_EventB/DroneSafetyController/M6_Quadcopter_Concrete_Movement.bum",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [
+        {
+          "taskType": "MODEL_CHECKING",
+          "searchStrategy": "MIXED_BF_DF",
+          "options": [
+            "FIND_INVARIANT_VIOLATIONS",
+            "IGNORE_OTHER_ERRORS"
+          ],
+          "selected": true
+        },
+        {
+          "taskType": "MODEL_CHECKING",
+          "searchStrategy": "MIXED_BF_DF",
+          "options": [
+            "FIND_DEADLOCKS",
+            "IGNORE_OTHER_ERRORS"
+          ],
+          "selected": true
+        }
+      ],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "M6_Quadcopter_Concrete_Movement_inst",
+      "description": "",
+      "location": "DroneSafetyController_EventB/DroneSafetyController/M6_Quadcopter_Concrete_Movement_inst.bum",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [
+        {
+          "taskType": "MODEL_CHECKING",
+          "searchStrategy": "MIXED_BF_DF",
+          "options": [
+            "FIND_DEADLOCKS",
+            "FIND_INVARIANT_VIOLATIONS"
+          ],
+          "selected": true
+        }
+      ],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "M6_Quadcopter_Concrete_Movement_inst2",
+      "description": "",
+      "location": "DroneSafetyController_EventB/DroneSafetyController/M6_Quadcopter_Concrete_Movement_inst2.bum",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    }
+  ],
+  "requirements": [],
+  "preferences": [],
+  "metadata": {
+    "fileType": "Project",
+    "formatVersion": 57,
+    "savedAt": "2026-01-09T13:39:49.119208Z",
+    "creator": "User",
+    "proB2KernelVersion": "4.15.1-SNAPSHOT",
+    "proBCliVersion": null,
+    "modelName": null
+  }
+}

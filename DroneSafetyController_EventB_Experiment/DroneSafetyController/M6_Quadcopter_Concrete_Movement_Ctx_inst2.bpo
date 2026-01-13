@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        <org.eventb.core.poIdentifier name="FLYING" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="FINISHED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="LANDED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poPredicate name="FINISHEE" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes_Ctx.buc|org.eventb.core.contextFile#M0_Quadcopter_Modes_Ctx|org.eventb.core.axiom#_zD-5EOACEfC8NKsWk45csw"/>
+        <org.eventb.core.poIdentifier name="BATTERY_STEP" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poPredicate name="BATTERY_STEQ" org.eventb.core.predicate="BATTERY_STEP∈1 ‥ 100" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery_Ctx.buc|org.eventb.core.contextFile#M3_Quadcopter_Battery_Ctx|org.eventb.core.axiom#_PlUd4OK8EfCj-a92mZtixQ"/>
+        <org.eventb.core.poIdentifier name="WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="BASE_POSITION" org.eventb.core.type="ℤ×ℤ"/>
+        <org.eventb.core.poPredicate name="BASE_POSITIOO" org.eventb.core.predicate="DEPTH∈ℕ1" org.eventb.core.source="/DroneSafetyController/M4_Quadcopter_Movement_Ctx.buc|org.eventb.core.contextFile#M4_Quadcopter_Movement_Ctx|org.eventb.core.axiom#_D0EOQOAHEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="BASE_POSITIOP" org.eventb.core.predicate="WIDTH∈ℕ1" org.eventb.core.source="/DroneSafetyController/M4_Quadcopter_Movement_Ctx.buc|org.eventb.core.contextFile#M4_Quadcopter_Movement_Ctx|org.eventb.core.axiom#_D0EOQeAHEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="BASE_POSITIOQ" org.eventb.core.predicate="BASE_POSITION∈1 ‥ WIDTH × 1 ‥ DEPTH" org.eventb.core.source="/DroneSafetyController/M4_Quadcopter_Movement_Ctx.buc|org.eventb.core.contextFile#M4_Quadcopter_Movement_Ctx|org.eventb.core.axiom#_D0EOQuAHEfC8NKsWk45csw"/>
+        <org.eventb.core.poIdentifier name="CONCRETE_DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="MAP_TO_ABSTRACT_POS" org.eventb.core.type="ℙ(ℤ×ℤ)"/>
+        <org.eventb.core.poIdentifier name="SAFETY_DISTANCE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="CONCRETE_WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poPredicate name="MAP_TO_ABSTRACT_POT" org.eventb.core.predicate="GRID_SIZE∈ℕ1" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx|org.eventb.core.axiom#_1Nt7seGBEfCu9c2s4XMQ6Q"/>
+        <org.eventb.core.poPredicate name="MAP_TO_ABSTRACT_POU" org.eventb.core.predicate="GRID_SIZE≥2" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx|org.eventb.core.axiom#_CtlbsOHmEfC0NdyoK1GV1g"/>
+        <org.eventb.core.poPredicate name="MAP_TO_ABSTRACT_POV" org.eventb.core.predicate="CONCRETE_WIDTH=WIDTH∗GRID_SIZE" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx|org.eventb.core.axiom#_pvx_oOK8EfCj-a92mZtixQ"/>
+        <org.eventb.core.poPredicate name="MAP_TO_ABSTRACT_POW" org.eventb.core.predicate="CONCRETE_DEPTH=DEPTH∗GRID_SIZE" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx|org.eventb.core.axiom#_pvymsOK8EfCj-a92mZtixQ"/>
+        <org.eventb.core.poPredicate name="MAP_TO_ABSTRACT_POX" org.eventb.core.predicate="SAFETY_DISTANCE∈ℕ" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx|org.eventb.core.axiom#_1Nt7suGBEfCu9c2s4XMQ6Q"/>
+        <org.eventb.core.poPredicate name="MAP_TO_ABSTRACT_POY" org.eventb.core.predicate="MAP_TO_ABSTRACT_POS=(λp⦂ℤ·p≥0 ∣ p ÷ GRID_SIZE+1)∪(λp⦂ℤ·p&lt;0 ∣ p ÷ GRID_SIZE)" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx|org.eventb.core.axiom#_FOW1gOHJEfC0NdyoK1GV1g"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="inst_BASE/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Axiom" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.bpo|org.eventb.core.poFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.poPredicateSet#HYPM6_Quadcopter_Concrete_Movement_Ctz"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="2≠0" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.axiom#_ou_5gOSoEfC6i_rpc8tupQ"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.axiom#_ou_5gOSoEfC6i_rpc8tupQ"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.bpo|org.eventb.core.poFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.bpo|org.eventb.core.poFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.poPredicateSet#HYPM6_Quadcopter_Concrete_Movement_Ctz"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="HYPM6_Quadcopter_Concrete_Movement_Ctz" org.eventb.core.parentSet="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.bpo|org.eventb.core.poFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="DEPTH=5" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.axiom#_ou-rYOSoEfC6i_rpc8tupQ"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="WIDTH=5" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.axiom#_ou_ScOSoEfC6i_rpc8tupQ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.bpo|org.eventb.core.poFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.poPredicateSet#HYPM6_Quadcopter_Concrete_Movement_Ctz" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="BASE_POSITION=WIDTH ÷ 2 ↦ DEPTH ÷ 2" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.axiom#_ou_5gOSoEfC6i_rpc8tupQ"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="GRID_SIZE=500" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.axiom#_ou_5geSoEfC6i_rpc8tupQ"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="SAFETY_DISTANCE=0" org.eventb.core.source="/DroneSafetyController/M6_Quadcopter_Concrete_Movement_Ctx_inst2.buc|org.eventb.core.contextFile#M6_Quadcopter_Concrete_Movement_Ctx_inst2|org.eventb.core.axiom#_ou_5guSoEfC6i_rpc8tupQ"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

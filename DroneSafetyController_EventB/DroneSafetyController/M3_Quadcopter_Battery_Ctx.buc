@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1766795857470" org.eventb.texttools.text_representation="context M3_Quadcopter_Battery_Ctx extends M0_Quadcopter_Modes_Ctx&#10;constants BATTERY_STEP&#10;axioms&#10;&#9;@axm_battery_step BATTERY_STEP ∈ 1‥100&#10;end&#10;" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="M0_Quadcopter_Modes_Ctx"/>
+    <org.eventb.core.constant name="_PlT20OK8EfCj-a92mZtixQ" org.eventb.core.generated="false" org.eventb.core.identifier="BATTERY_STEP"/>
+    <org.eventb.core.axiom name="_PlUd4OK8EfCj-a92mZtixQ" org.eventb.core.generated="false" org.eventb.core.label="axm_battery_step" org.eventb.core.predicate="BATTERY_STEP ∈ 1‥100"/>
+</org.eventb.core.contextFile>

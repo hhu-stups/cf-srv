@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1767007864568" org.eventb.texttools.text_representation="context M6_Quadcopter_Concrete_Movement_Ctx_inst extends M6_Quadcopter_Concrete_Movement_Ctx&#10;&#10;axioms&#10;  @inst_DEPTH DEPTH = 5&#10;  @inst_WIDTH WIDTH = 5&#10;  @inst_grid_size GRID_SIZE = 500&#10;  @inst_safety_distance SAFETY_DISTANCE = 0&#10;end&#10;" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="M6_Quadcopter_Concrete_Movement_Ctx"/>
+    <org.eventb.core.axiom name="_xOGY8OHYEfC0NdyoK1GV1g" org.eventb.core.generated="false" org.eventb.core.label="inst_DEPTH" org.eventb.core.predicate="DEPTH = 5"/>
+    <org.eventb.core.axiom name="_xOHAAOHYEfC0NdyoK1GV1g" org.eventb.core.generated="false" org.eventb.core.label="inst_WIDTH" org.eventb.core.predicate="WIDTH = 5"/>
+    <org.eventb.core.axiom name="_xOHAAeHYEfC0NdyoK1GV1g" org.eventb.core.generated="false" org.eventb.core.label="inst_grid_size" org.eventb.core.predicate="GRID_SIZE = 500"/>
+    <org.eventb.core.axiom name="_xOHAAuHYEfC0NdyoK1GV1g" org.eventb.core.generated="false" org.eventb.core.label="inst_safety_distance" org.eventb.core.predicate="SAFETY_DISTANCE = 0"/>
+</org.eventb.core.contextFile>

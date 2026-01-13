@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        <org.eventb.core.poIdentifier name="FLYING" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="FINISHED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="LANDED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poPredicate name="FINISHEE" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes_Ctx.buc|org.eventb.core.contextFile#M0_Quadcopter_Modes_Ctx|org.eventb.core.axiom#_zD-5EOACEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode" org.eventb.core.type="MODES"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM0_Quadcopter_Modes_Ctz" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="MODES"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM0_Quadcopter_Modes_Ctz" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#EVTIDENTM0_Quadcopter_Modes_Ctz" org.eventb.core.poStamp="0"/>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM0_Quadcopter_Modes_Ct{" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="MODES"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM0_Quadcopter_Modes_Ct{" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#EVTIDENTM0_Quadcopter_Modes_Ct{" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=LANDED" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_Nile0OADEfC8NKsWk45csw|org.eventb.core.guard#_Je8DMeADEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM0_Quadcopter_Modes_Ct|" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=FLYING" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_NimF4eADEfC8NKsWk45csw|org.eventb.core.guard#_NimF4uADEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM0_Quadcopter_Modes_Ct}" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="MODES"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM0_Quadcopter_Modes_Ct}" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#EVTIDENTM0_Quadcopter_Modes_Ct}" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=FLYING" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_RxM0UOADEfC8NKsWk45csw|org.eventb.core.guard#_RxNbYOADEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM0_Quadcopter_Modes_Ct~" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=FLYING" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_UsXk8OADEfC8NKsWk45csw|org.eventb.core.guard#_UsXk8eADEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode∈MODES" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.invariant#_B2wJ0OADEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

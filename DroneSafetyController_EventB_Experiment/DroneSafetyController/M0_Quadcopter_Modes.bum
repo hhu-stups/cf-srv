@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1766496532646" org.eventb.texttools.text_representation="machine M0_Quadcopter_Modes sees M0_Quadcopter_Modes_Ctx&#10;&#10;variables mode&#10;&#10;invariants&#10;&#9;@mode_typing mode ∈ MODES&#10;&#10;events&#10;  event INITIALISATION&#10;  then&#10;  &#9;@init_mode mode ≔ LANDED&#10;  end&#10;&#10;  event TAKEOFF&#10;  when&#10;  &#9;@grd_mode mode = LANDED&#10;  then&#10;  &#9;@act_mode mode ≔ FLYING&#10;  end&#10;&#10;  event MOVE&#10;  when&#10;  &#9;@grd_mode mode = FLYING&#10;  end&#10;&#10;  event LAND&#10;  when&#10;  &#9;@grd_mode mode = FLYING&#10;  then&#10;  &#9;@act_mode mode ≔ FINISHED&#10;  end&#10;&#10;  event OBSERVE&#10;  when&#10;  &#9;@grd_mode mode = FLYING&#10;  end&#10;&#10;end&#10;" version="5">
+    <org.eventb.core.seesContext name="_B2u7sOADEfC8NKsWk45csw" org.eventb.core.target="M0_Quadcopter_Modes_Ctx"/>
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.generated="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="_D3EbwOADEfC8NKsWk45csw" org.eventb.core.assignment="mode ≔ LANDED" org.eventb.core.generated="false" org.eventb.core.label="init_mode"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="_B2viwOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="mode"/>
+    <org.eventb.core.invariant name="_B2wJ0OADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="mode_typing" org.eventb.core.predicate="mode ∈ MODES"/>
+    <org.eventb.core.event name="_Nile0OADEfC8NKsWk45csw" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.generated="false" org.eventb.core.label="TAKEOFF">
+        <org.eventb.core.guard name="_Je8DMeADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="grd_mode" org.eventb.core.predicate="mode = LANDED"/>
+        <org.eventb.core.action name="_NimF4OADEfC8NKsWk45csw" org.eventb.core.assignment="mode ≔ FLYING" org.eventb.core.generated="false" org.eventb.core.label="act_mode"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_NimF4eADEfC8NKsWk45csw" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.generated="false" org.eventb.core.label="MOVE">
+        <org.eventb.core.guard name="_NimF4uADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="grd_mode" org.eventb.core.predicate="mode = FLYING"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_RxM0UOADEfC8NKsWk45csw" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.generated="false" org.eventb.core.label="LAND">
+        <org.eventb.core.guard name="_RxNbYOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="grd_mode" org.eventb.core.predicate="mode = FLYING"/>
+        <org.eventb.core.action name="_RxNbYeADEfC8NKsWk45csw" org.eventb.core.assignment="mode ≔ FINISHED" org.eventb.core.generated="false" org.eventb.core.label="act_mode"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_UsXk8OADEfC8NKsWk45csw" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.generated="false" org.eventb.core.label="OBSERVE">
+        <org.eventb.core.guard name="_UsXk8eADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="grd_mode" org.eventb.core.predicate="mode = FLYING"/>
+    </org.eventb.core.event>
+</org.eventb.core.machineFile>

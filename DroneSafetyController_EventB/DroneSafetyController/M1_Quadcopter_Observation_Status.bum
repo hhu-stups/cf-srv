@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1766497985768" org.eventb.texttools.text_representation="machine M1_Quadcopter_Observation_Status refines M0_Quadcopter_Modes  sees M0_Quadcopter_Modes_Ctx&#10;&#10;variables mode sensor_data_actual&#10;&#10;invariants&#10;&#9;@sensor_data_actual_type sensor_data_actual ∈ BOOL&#10;&#10;events&#10;  event INITIALISATION extends INITIALISATION&#10;  then&#10;  &#9;@act_sensor_data_actual sensor_data_actual ≔ FALSE&#10;  end&#10;&#10;  event TAKEOFF extends TAKEOFF&#10;  end&#10;&#10;  event MOVE extends MOVE&#10;  when&#10;  &#9;@grd_sensor_data_actual sensor_data_actual = TRUE&#10;  then&#10;  &#9;@act_sensor_data_actual sensor_data_actual ≔ FALSE&#10;  end&#10;&#10;  event LAND extends LAND&#10;  end&#10;&#10;  event OBSERVE extends OBSERVE&#10;  then&#10;  &#9;@act_sensor_data_actual sensor_data_actual ≔ TRUE&#10;  end&#10;end&#10;" version="5">
+    <org.eventb.core.refinesMachine name="'" org.eventb.core.target="M0_Quadcopter_Modes"/>
+    <org.eventb.core.seesContext name="_B2u7sOADEfC8NKsWk45csw" org.eventb.core.target="M0_Quadcopter_Modes_Ctx"/>
+    <org.eventb.core.variable name="_B2viwOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="mode"/>
+    <org.eventb.core.event name="_B2viwOADEfC8NKsWk45csx" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="_gkm-QOADEfC8NKsWk45csw" org.eventb.core.assignment="sensor_data_actual ≔ FALSE" org.eventb.core.generated="false" org.eventb.core.label="act_sensor_data_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_B2viwOADEfC8NKsWk45csy" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="TAKEOFF">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="TAKEOFF"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_B2viwOADEfC8NKsWk45csz" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="MOVE">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="MOVE"/>
+        <org.eventb.core.guard name="_oZdaoOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="grd_sensor_data_actual" org.eventb.core.predicate="sensor_data_actual = TRUE"/>
+        <org.eventb.core.action name="_jC-eIOADEfC8NKsWk45csw" org.eventb.core.assignment="sensor_data_actual ≔ FALSE" org.eventb.core.generated="false" org.eventb.core.label="act_sensor_data_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_B2viwOADEfC8NKsWk45cs{" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="LAND">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="LAND"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_B2viwOADEfC8NKsWk45cs|" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="OBSERVE">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="OBSERVE"/>
+        <org.eventb.core.action name="_oZeBsOADEfC8NKsWk45csw" org.eventb.core.assignment="sensor_data_actual ≔ TRUE" org.eventb.core.generated="false" org.eventb.core.label="act_sensor_data_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="_gkpagOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="sensor_data_actual"/>
+    <org.eventb.core.invariant name="_gkpageADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="sensor_data_actual_type" org.eventb.core.predicate="sensor_data_actual ∈ BOOL"/>
+</org.eventb.core.machineFile>

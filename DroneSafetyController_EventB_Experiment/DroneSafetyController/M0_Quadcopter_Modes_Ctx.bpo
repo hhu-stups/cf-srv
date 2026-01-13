@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        <org.eventb.core.poIdentifier name="FLYING" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="FINISHED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="LANDED" org.eventb.core.type="MODES"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/DroneSafetyController/M0_Quadcopter_Modes_Ctx.bpo|org.eventb.core.poFile#M0_Quadcopter_Modes_Ctx|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes_Ctx.buc|org.eventb.core.contextFile#M0_Quadcopter_Modes_Ctx|org.eventb.core.axiom#_zD-5EOACEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

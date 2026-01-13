@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1767879161998" org.eventb.texttools.text_representation="machine M5_Quadcopter_Mission_Status_inst refines M5_Quadcopter_Mission_Status  sees M5_Quadcopter_Mission_Status_Ctx_inst&#10;&#10;variables mode sensor_data_actual position_actual battery battery_actual current_position visited field emergency_mode mission_failed&#10;&#10;events&#10;  event INITIALISATION extends INITIALISATION&#10;  end&#10;&#10;  event TAKEOFF extends TAKEOFF&#10;  end&#10;&#10;  event MOVE_LEFT extends MOVE_LEFT&#10;  end&#10;&#10;  event MOVE_RIGHT extends MOVE_RIGHT&#10;  end&#10;&#10;  event MOVE_FORWARD extends MOVE_FORWARD&#10;  end&#10;&#10;  event MOVE_BACKWARD extends MOVE_BACKWARD&#10;  end&#10;&#10;  event LAND extends LAND&#10;  end&#10;&#10;  event OBSERVE extends OBSERVE&#10;  end&#10;&#10;  event SYNCHRONIZE_BATTERY extends SYNCHRONIZE_BATTERY&#10;  end&#10;&#10;  event UPDATE_POSITION extends UPDATE_POSITION&#10;  end&#10;end&#10;" version="5">
+    <org.eventb.core.refinesMachine name="'" org.eventb.core.target="M5_Quadcopter_Mission_Status"/>
+    <org.eventb.core.seesContext name="_8Vkx4OBSEfC8NKsWk45csw" org.eventb.core.target="M5_Quadcopter_Mission_Status_Ctx_inst"/>
+    <org.eventb.core.variable name="_B2viwOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="mode"/>
+    <org.eventb.core.variable name="_gkpagOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="sensor_data_actual"/>
+    <org.eventb.core.variable name="_h-WWEOF8EfCu9c2s4XMQ6Q" org.eventb.core.generated="false" org.eventb.core.identifier="position_actual"/>
+    <org.eventb.core.variable name="_HZui0OAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="battery"/>
+    <org.eventb.core.variable name="_pOy9cOJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.identifier="battery_actual"/>
+    <org.eventb.core.variable name="_PnAQ0OAHEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="current_position"/>
+    <org.eventb.core.variable name="_PnAQ0eAHEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="visited"/>
+    <org.eventb.core.variable name="_PnAQ0uAHEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="field"/>
+    <org.eventb.core.variable name="_j-j6UOF8EfCu9c2s4XMQ6Q" org.eventb.core.generated="false" org.eventb.core.identifier="emergency_mode"/>
+    <org.eventb.core.variable name="_S23BkOATEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="mission_failed"/>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45csx" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="INITIALISATION"/>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45csy" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="TAKEOFF">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="TAKEOFF"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45csz" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="MOVE_LEFT">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="MOVE_LEFT"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45cs{" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="MOVE_RIGHT">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="MOVE_RIGHT"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45cs|" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="MOVE_FORWARD">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="MOVE_FORWARD"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45cs}" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="MOVE_BACKWARD">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="MOVE_BACKWARD"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45cs~" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="LAND">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="LAND"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45ct'" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="OBSERVE">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="OBSERVE"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45ct(" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="SYNCHRONIZE_BATTERY">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="SYNCHRONIZE_BATTERY"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_xLHlwOF9EfCu9c2s4XMQ6Q" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="UPDATE_POSITION">
+        <org.eventb.core.refinesEvent name="_xLIM0OF9EfCu9c2s4XMQ6Q" org.eventb.core.target="UPDATE_POSITION"/>
+    </org.eventb.core.event>
+</org.eventb.core.machineFile>

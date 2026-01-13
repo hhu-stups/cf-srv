@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        <org.eventb.core.poIdentifier name="FLYING" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="FINISHED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="LANDED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poPredicate name="FINISHEE" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes_Ctx.buc|org.eventb.core.contextFile#M0_Quadcopter_Modes_Ctx|org.eventb.core.axiom#_zD-5EOACEfC8NKsWk45csw"/>
+        <org.eventb.core.poIdentifier name="BATTERY_STEP" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poPredicate name="BATTERY_STEQ" org.eventb.core.predicate="BATTERY_STEP∈1 ‥ 100" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery_Ctx.buc|org.eventb.core.contextFile#M3_Quadcopter_Battery_Ctx|org.eventb.core.axiom#_PlUd4OK8EfCj-a92mZtixQ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="battery_actual" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="mode" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="battery" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="sensor_data_actual" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="position_actual" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poPredicate name="sensor_data_actuam" org.eventb.core.predicate="mode∈MODES" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.invariant#_B2wJ0OADEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="sensor_data_actuan" org.eventb.core.predicate="sensor_data_actual∈BOOL" org.eventb.core.source="/DroneSafetyController/M1_Quadcopter_Observation_Status.bum|org.eventb.core.machineFile#M1_Quadcopter_Observation_Status|org.eventb.core.invariant#_gkpageADEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="sensor_data_actuao" org.eventb.core.predicate="position_actual∈BOOL" org.eventb.core.source="/DroneSafetyController/M2_Quadcopter_Position_Update.bum|org.eventb.core.machineFile#M2_Quadcopter_Position_Update|org.eventb.core.invariant#_LH7_AeF8EfCu9c2s4XMQ6Q"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="INITIALISATION/battery/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTALLHYPM3_Quadcopter_Battery_Ct{"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100∈ℕ" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_HZui0eAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/DroneSafetyController/M2_Quadcopter_Position_Update.bum|org.eventb.core.machineFile#M2_Quadcopter_Position_Update|org.eventb.core.event#_gkpagOADEfC8NKsWk45csx"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45csx"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_HZui0eAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poSequent#INITIALISATION\/battery\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM3_Quadcopter_Battery_Ct{" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="position_actual'" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="battery'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="battery_actual'" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="sensor_data_actual'" org.eventb.core.type="BOOL"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM3_Quadcopter_Battery_Ct{" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTIDENTM3_Quadcopter_Battery_Ct{" org.eventb.core.poStamp="0"/>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM3_Quadcopter_Battery_Ct|" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="MODES"/>
+        <org.eventb.core.poIdentifier name="battery_actual'" org.eventb.core.type="BOOL"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM3_Quadcopter_Battery_Ct|" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTIDENTM3_Quadcopter_Battery_Ct\|" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=LANDED" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_Nile0OADEfC8NKsWk45csw|org.eventb.core.guard#_Je8DMeADEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="battery&gt;BATTERY_STEP" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45csy|org.eventb.core.guard#_NH_tMOAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="battery_actual=TRUE" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45csy|org.eventb.core.guard#_K0U_EOJDEfCN5cCo6lgIJA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="MOVE/battery/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTALLHYPM3_Quadcopter_Battery_Ct}"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="battery − BATTERY_STEP∈ℕ" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_HZui0eAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/DroneSafetyController/M2_Quadcopter_Position_Update.bum|org.eventb.core.machineFile#M2_Quadcopter_Position_Update|org.eventb.core.event#_gkpagOADEfC8NKsWk45csz"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45csz"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_HZui0eAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poSequent#MOVE\/battery\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM3_Quadcopter_Battery_Ct}" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="position_actual'" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="battery'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="battery_actual'" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="sensor_data_actual'" org.eventb.core.type="BOOL"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM3_Quadcopter_Battery_Ct}" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTIDENTM3_Quadcopter_Battery_Ct}" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=FLYING" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_NimF4eADEfC8NKsWk45csw|org.eventb.core.guard#_NimF4uADEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="sensor_data_actual=TRUE" org.eventb.core.source="/DroneSafetyController/M1_Quadcopter_Observation_Status.bum|org.eventb.core.machineFile#M1_Quadcopter_Observation_Status|org.eventb.core.event#_B2viwOADEfC8NKsWk45csz|org.eventb.core.guard#_oZdaoOADEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="position_actual=TRUE" org.eventb.core.source="/DroneSafetyController/M2_Quadcopter_Position_Update.bum|org.eventb.core.machineFile#M2_Quadcopter_Position_Update|org.eventb.core.event#_gkpagOADEfC8NKsWk45csz|org.eventb.core.guard#_RPmg0OF8EfCu9c2s4XMQ6Q"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="battery&gt;BATTERY_STEP" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45csz|org.eventb.core.guard#_r-MscOCiEfC-rPwep5_a6Q"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="battery_actual=TRUE" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45csz|org.eventb.core.guard#_K0VmIOJDEfCN5cCo6lgIJA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM3_Quadcopter_Battery_Ct~" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="mode'" org.eventb.core.type="MODES"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM3_Quadcopter_Battery_Ct~" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTIDENTM3_Quadcopter_Battery_Ct~" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=FLYING" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_RxM0UOADEfC8NKsWk45csw|org.eventb.core.guard#_RxNbYOADEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM3_Quadcopter_Battery_Cu'" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="battery_actual'" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="sensor_data_actual'" org.eventb.core.type="BOOL"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM3_Quadcopter_Battery_Cu'" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTIDENTM3_Quadcopter_Battery_Cu'" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="mode=FLYING" org.eventb.core.source="/DroneSafetyController/M0_Quadcopter_Modes.bum|org.eventb.core.machineFile#M0_Quadcopter_Modes|org.eventb.core.event#_UsXk8OADEfC8NKsWk45csw|org.eventb.core.guard#_UsXk8eADEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="position_actual=TRUE" org.eventb.core.source="/DroneSafetyController/M2_Quadcopter_Position_Update.bum|org.eventb.core.machineFile#M2_Quadcopter_Position_Update|org.eventb.core.event#_gkpagOADEfC8NKsWk45cs\||org.eventb.core.guard#_UFnrsOF8EfCu9c2s4XMQ6Q"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="battery&gt;BATTERY_STEP" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45cs\||org.eventb.core.guard#_K0W0QOJDEfCN5cCo6lgIJA"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="battery_actual=TRUE" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_gkpagOADEfC8NKsWk45cs\||org.eventb.core.guard#_K0W0QeJDEfCN5cCo6lgIJA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="SYNCHRONIZE_BATTERY/battery/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTALLHYPM3_Quadcopter_Battery_Cu("/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="pbattery∈ℕ" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_HZui0eAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_YMeHQOAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_HZui0eAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poSequent#SYNCHRONIZE_BATTERY\/battery\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM3_Quadcopter_Battery_Cu(" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="battery'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="battery_actual'" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="pbattery" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM3_Quadcopter_Battery_Cu(" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTIDENTM3_Quadcopter_Battery_Cu(" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="pbattery∈ℕ" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_YMeHQOAGEfC8NKsWk45csw|org.eventb.core.guard#_PE7T8OAGEfC8NKsWk45csw"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTM3_Quadcopter_Battery_Cu)" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="position_actual'" org.eventb.core.type="BOOL"/>
+        <org.eventb.core.poIdentifier name="battery_actual'" org.eventb.core.type="BOOL"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPM3_Quadcopter_Battery_Cu)" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#EVTIDENTM3_Quadcopter_Battery_Cu)" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="battery&gt;BATTERY_STEP" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_W1DtcOF8EfCu9c2s4XMQ6Q|org.eventb.core.guard#_K0YpcOJDEfCN5cCo6lgIJA"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="battery_actual=TRUE" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.event#_W1DtcOF8EfCu9c2s4XMQ6Q|org.eventb.core.guard#_K0YpceJDEfCN5cCo6lgIJA"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/DroneSafetyController/M3_Quadcopter_Battery.bpo|org.eventb.core.poFile#M3_Quadcopter_Battery|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="battery∈ℕ" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_HZui0eAGEfC8NKsWk45csw"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="battery_actual∈BOOL" org.eventb.core.source="/DroneSafetyController/M3_Quadcopter_Battery.bum|org.eventb.core.machineFile#M3_Quadcopter_Battery|org.eventb.core.invariant#_EEwvwOJDEfCN5cCo6lgIJA"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

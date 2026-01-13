@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1767007858877" org.eventb.texttools.text_representation="context M6_Quadcopter_Concrete_Movement_Ctx extends M4_Quadcopter_Movement_Ctx&#10;&#10;constants GRID_SIZE CONCRETE_WIDTH CONCRETE_DEPTH SAFETY_DISTANCE MAP_TO_ABSTRACT_POS&#10;&#10;axioms&#10;  @axm_grid_size GRID_SIZE ∈ ℕ1&#10;  @axm_grid_size_minimum GRID_SIZE ≥ 2&#10;  @axm_concrete_width CONCRETE_WIDTH = WIDTH ∗ GRID_SIZE&#10;  @axm_concrete_depth CONCRETE_DEPTH = DEPTH ∗ GRID_SIZE&#10;  @axm_safety_distance SAFETY_DISTANCE ∈ ℕ&#10;  @axm_map_abstract_pos MAP_TO_ABSTRACT_POS = (λp· p ≥ 0 ∣ (p ÷ GRID_SIZE) + 1) ∪ (λp· p &lt; 0 ∣ p ÷ GRID_SIZE)&#10;end&#10;" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="M4_Quadcopter_Movement_Ctx"/>
+    <org.eventb.core.constant name="_1NtUoOGBEfCu9c2s4XMQ6Q" org.eventb.core.generated="false" org.eventb.core.identifier="GRID_SIZE"/>
+    <org.eventb.core.constant name="_iOQu8OK8EfCj-a92mZtixQ" org.eventb.core.generated="false" org.eventb.core.identifier="CONCRETE_WIDTH"/>
+    <org.eventb.core.constant name="_iOQu8eK8EfCj-a92mZtixQ" org.eventb.core.generated="false" org.eventb.core.identifier="CONCRETE_DEPTH"/>
+    <org.eventb.core.constant name="_1Nt7sOGBEfCu9c2s4XMQ6Q" org.eventb.core.generated="false" org.eventb.core.identifier="SAFETY_DISTANCE"/>
+    <org.eventb.core.axiom name="_1Nt7seGBEfCu9c2s4XMQ6Q" org.eventb.core.generated="false" org.eventb.core.label="axm_grid_size" org.eventb.core.predicate="GRID_SIZE ∈ ℕ1"/>
+    <org.eventb.core.axiom name="_CtlbsOHmEfC0NdyoK1GV1g" org.eventb.core.generated="false" org.eventb.core.label="axm_grid_size_minimum" org.eventb.core.predicate="GRID_SIZE ≥ 2"/>
+    <org.eventb.core.axiom name="_pvx_oOK8EfCj-a92mZtixQ" org.eventb.core.generated="false" org.eventb.core.label="axm_concrete_width" org.eventb.core.predicate="CONCRETE_WIDTH = WIDTH ∗ GRID_SIZE"/>
+    <org.eventb.core.axiom name="_pvymsOK8EfCj-a92mZtixQ" org.eventb.core.generated="false" org.eventb.core.label="axm_concrete_depth" org.eventb.core.predicate="CONCRETE_DEPTH = DEPTH ∗ GRID_SIZE"/>
+    <org.eventb.core.axiom name="_1Nt7suGBEfCu9c2s4XMQ6Q" org.eventb.core.generated="false" org.eventb.core.label="axm_safety_distance" org.eventb.core.predicate="SAFETY_DISTANCE ∈ ℕ"/>
+    <org.eventb.core.axiom name="_FOW1gOHJEfC0NdyoK1GV1g" org.eventb.core.generated="false" org.eventb.core.label="axm_map_abstract_pos" org.eventb.core.predicate="MAP_TO_ABSTRACT_POS = (λp· p ≥ 0 ∣ (p ÷ GRID_SIZE) + 1) ∪ (λp· p &lt; 0 ∣ p ÷ GRID_SIZE)"/>
+    <org.eventb.core.constant name="_3be7gOHIEfC0NdyoK1GV1g" org.eventb.core.generated="false" org.eventb.core.identifier="MAP_TO_ABSTRACT_POS"/>
+</org.eventb.core.contextFile>

@@ -1,0 +1,27 @@
+{
+  "name": "DroneCommunicator",
+  "description": "",
+  "machines": [
+    {
+      "name": "DroneCommunicator",
+      "description": "",
+      "location": "DroneCommunicator.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    }
+  ],
+  "requirements": [],
+  "preferences": [],
+  "metadata": {
+    "fileType": "Project",
+    "formatVersion": 57,
+    "savedAt": "2025-06-05T12:12:02.334408Z",
+    "creator": "User",
+    "proB2KernelVersion": "4.13.2-SNAPSHOT",
+    "proBCliVersion": null,
+    "modelName": null
+  }
+}

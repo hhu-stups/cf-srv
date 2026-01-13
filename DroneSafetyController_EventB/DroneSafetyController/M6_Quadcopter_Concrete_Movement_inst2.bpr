@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.prFile version="1">
+    <org.eventb.core.prProof name="MOVE_LEFT/grd_does_not_collide/WD"/>
+    <org.eventb.core.prProof name="MOVE_LEFT/grd_does_not_move_outside/GRD"/>
+    <org.eventb.core.prProof name="MOVE_LEFT/grd_does_not_collide/GRD"/>
+    <org.eventb.core.prProof name="MOVE_LEFT/act_movement/SIM"/>
+    <org.eventb.core.prProof name="MOVE_LEFT/act_visited/SIM"/>
+    <org.eventb.core.prProof name="MOVE_RIGHT/grd_does_not_collide/WD"/>
+    <org.eventb.core.prProof name="MOVE_RIGHT/grd_does_not_move_outside/GRD"/>
+    <org.eventb.core.prProof name="MOVE_RIGHT/grd_does_not_collide/GRD"/>
+    <org.eventb.core.prProof name="MOVE_RIGHT/act_movement/SIM"/>
+    <org.eventb.core.prProof name="MOVE_RIGHT/act_visited/SIM"/>
+</org.eventb.core.prFile>

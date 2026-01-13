@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.prFile version="1">
+    <org.eventb.core.prProof name="axm_map_to_concrete_pos_center/WD" org.eventb.core.confidence="1000" org.eventb.core.prFresh="" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="">
+        <org.eventb.core.lang name="L"/>
+        <org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="Partition rewrites in hyp (partition(MODES,{LANDED},{FLYING},{FINISHED}))" org.eventb.core.prHyps="">
+            <org.eventb.core.prAnte name="'">
+                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p1" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p2,p3,p4,p5"/>
+                <org.eventb.core.prHypAction name="SELECT1" org.eventb.core.prHyps="p2,p3,p4,p5"/>
+                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="">
+                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p10">
+                        <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p6" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p7"/>
+                        <org.eventb.core.prHypAction name="REWRITE1" org.eventb.core.prHidden="p8" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p9"/>
+                        <org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⊤ goal" org.eventb.core.prGoal="p10" org.eventb.core.prHyps=""/>
+                    </org.eventb.core.prAnte>
+                </org.eventb.core.prRule>
+            </org.eventb.core.prAnte>
+            <org.eventb.core.prString name=".pos" org.eventb.core.prSValue=""/>
+        </org.eventb.core.prRule>
+        <org.eventb.core.prPred name="p2" org.eventb.core.predicate="MODES={LANDED,FLYING,FINISHED}">
+            <org.eventb.core.prIdent name="FINISHED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="FLYING" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="LANDED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p10" org.eventb.core.predicate="⊤"/>
+        <org.eventb.core.prPred name="p7" org.eventb.core.predicate="∀p⦂ℤ·p≥0⇒¬GRID_SIZE=0">
+            <org.eventb.core.prIdent name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p8" org.eventb.core.predicate="∀p⦂ℤ·p&lt;0⇒GRID_SIZE≠0">
+            <org.eventb.core.prIdent name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p6" org.eventb.core.predicate="∀p⦂ℤ·p≥0⇒GRID_SIZE≠0">
+            <org.eventb.core.prIdent name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p4" org.eventb.core.predicate="¬LANDED=FINISHED">
+            <org.eventb.core.prIdent name="FINISHED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="LANDED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p0" org.eventb.core.predicate="∀p⦂ℤ·p∈ℤ⇒2≠0"/>
+        <org.eventb.core.prPred name="p3" org.eventb.core.predicate="¬LANDED=FLYING">
+            <org.eventb.core.prIdent name="FLYING" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="LANDED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p1" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})">
+            <org.eventb.core.prIdent name="FINISHED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="FLYING" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="LANDED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p5" org.eventb.core.predicate="¬FLYING=FINISHED">
+            <org.eventb.core.prIdent name="FINISHED" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="FLYING" org.eventb.core.type="MODES"/>
+            <org.eventb.core.prIdent name="MODES" org.eventb.core.type="ℙ(MODES)"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p9" org.eventb.core.predicate="∀p⦂ℤ·p&lt;0⇒¬GRID_SIZE=0">
+            <org.eventb.core.prIdent name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.partitionRewrites"/>
+        <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.trueGoal"/>
+        <org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+    </org.eventb.core.prProof>
+    <org.eventb.core.prProof name="axm_map_abstract_pos/WD" org.eventb.core.confidence="1000" org.eventb.core.prFresh="p" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2,p3,p4,p5,p6,p7,p8,p9" org.eventb.core.prSets="MODES">
+        <org.eventb.core.lang name="L"/>
+        <org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="Partition rewrites in hyp (partition(MODES,{LANDED},{FLYING},{FINISHED}))" org.eventb.core.prHyps="">
+            <org.eventb.core.prAnte name="'">
+                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p5" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p10,p11,p12,p13"/>
+                <org.eventb.core.prHypAction name="SELECT1" org.eventb.core.prHyps="p10,p11,p12,p13"/>
+                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="">
+                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p14">
+                        <org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∧ goal" org.eventb.core.prGoal="p14" org.eventb.core.prHyps="">
+                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p15">
+                                <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∀ goal (frees p)" org.eventb.core.prGoal="p15" org.eventb.core.prHyps="">
+                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p16">
+                                        <org.eventb.core.prIdent name="p" org.eventb.core.type="ℤ"/>
+                                        <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⇒ goal" org.eventb.core.prGoal="p16" org.eventb.core.prHyps="">
+                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p18" org.eventb.core.prHyps="p17">
+                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p18" org.eventb.core.prHyps="p6,p2,p1,p9,p8,p4,p7,p3,p10,p11,p12,p13,p17">
+                                                    <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
+                                                </org.eventb.core.prRule>
+                                            </org.eventb.core.prAnte>
+                                        </org.eventb.core.prRule>
+                                    </org.eventb.core.prAnte>
+                                </org.eventb.core.prRule>
+                            </org.eventb.core.prAnte>
+                            <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p19">
+                                <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∀ goal (frees p)" org.eventb.core.prGoal="p19" org.eventb.core.prHyps="">
+                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p20">
+                                        <org.eventb.core.prIdent name="p" org.eventb.core.type="ℤ"/>
+                                        <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⇒ goal" org.eventb.core.prGoal="p20" org.eventb.core.prHyps="">
+                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p18" org.eventb.core.prHyps="p21">
+                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p18" org.eventb.core.prHyps="p6,p2,p1,p9,p8,p4,p7,p3,p10,p11,p12,p13,p21">
+                                                    <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
+                                                </org.eventb.core.prRule>
+                                            </org.eventb.core.prAnte>
+                                        </org.eventb.core.prRule>
+                                    </org.eventb.core.prAnte>
+                                </org.eventb.core.prRule>
+                            </org.eventb.core.prAnte>
+                        </org.eventb.core.prRule>
+                    </org.eventb.core.prAnte>
+                </org.eventb.core.prRule>
+            </org.eventb.core.prAnte>
+            <org.eventb.core.prString name=".pos" org.eventb.core.prSValue=""/>
+        </org.eventb.core.prRule>
+        <org.eventb.core.prIdent name="BASE_POSITION" org.eventb.core.type="ℤ×ℤ"/>
+        <org.eventb.core.prIdent name="CONCRETE_DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="CONCRETE_WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="FINISHED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="FLYING" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="LANDED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="SAFETY_DISTANCE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prPred name="p10" org.eventb.core.predicate="MODES={LANDED,FLYING,FINISHED}"/>
+        <org.eventb.core.prPred name="p14" org.eventb.core.predicate="(∀p⦂ℤ·p≥0⇒¬GRID_SIZE=0)∧(∀p⦂ℤ·p&lt;0⇒¬GRID_SIZE=0)"/>
+        <org.eventb.core.prPred name="p18" org.eventb.core.predicate="¬GRID_SIZE=0"/>
+        <org.eventb.core.prPred name="p2" org.eventb.core.predicate="WIDTH∈ℕ1"/>
+        <org.eventb.core.prPred name="p12" org.eventb.core.predicate="¬LANDED=FINISHED"/>
+        <org.eventb.core.prPred name="p11" org.eventb.core.predicate="¬LANDED=FLYING"/>
+        <org.eventb.core.prPred name="p20" org.eventb.core.predicate="p&lt;0⇒¬GRID_SIZE=0">
+            <org.eventb.core.prIdent name="p" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p0" org.eventb.core.predicate="(∀p⦂ℤ·p≥0⇒GRID_SIZE≠0)∧(∀p⦂ℤ·p&lt;0⇒GRID_SIZE≠0)"/>
+        <org.eventb.core.prPred name="p5" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})"/>
+        <org.eventb.core.prPred name="p6" org.eventb.core.predicate="DEPTH∈ℕ1"/>
+        <org.eventb.core.prPred name="p13" org.eventb.core.predicate="¬FLYING=FINISHED"/>
+        <org.eventb.core.prPred name="p7" org.eventb.core.predicate="CONCRETE_WIDTH=WIDTH∗GRID_SIZE"/>
+        <org.eventb.core.prPred name="p16" org.eventb.core.predicate="p≥0⇒¬GRID_SIZE=0">
+            <org.eventb.core.prIdent name="p" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p1" org.eventb.core.predicate="BASE_POSITION∈1 ‥ WIDTH × 1 ‥ DEPTH"/>
+        <org.eventb.core.prPred name="p15" org.eventb.core.predicate="∀p⦂ℤ·p≥0⇒¬GRID_SIZE=0"/>
+        <org.eventb.core.prPred name="p21" org.eventb.core.predicate="p&lt;0">
+            <org.eventb.core.prIdent name="p" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p3" org.eventb.core.predicate="CONCRETE_DEPTH=DEPTH∗GRID_SIZE"/>
+        <org.eventb.core.prPred name="p17" org.eventb.core.predicate="p≥0">
+            <org.eventb.core.prIdent name="p" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p4" org.eventb.core.predicate="SAFETY_DISTANCE∈ℕ"/>
+        <org.eventb.core.prPred name="p19" org.eventb.core.predicate="∀p⦂ℤ·p&lt;0⇒¬GRID_SIZE=0"/>
+        <org.eventb.core.prPred name="p8" org.eventb.core.predicate="GRID_SIZE≥2"/>
+        <org.eventb.core.prPred name="p9" org.eventb.core.predicate="GRID_SIZE∈ℕ1"/>
+        <org.eventb.core.prReas name="r5" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
+        <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.partitionRewrites"/>
+        <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.conj:0"/>
+        <org.eventb.core.prReas name="r4" org.eventb.core.prRID="org.eventb.core.seqprover.impI"/>
+        <org.eventb.core.prReas name="r3" org.eventb.core.prRID="org.eventb.core.seqprover.allI"/>
+        <org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+    </org.eventb.core.prProof>
+    <org.eventb.core.prProof name="axm_consistency/WD" org.eventb.core.confidence="0" org.eventb.core.prFresh="x,y" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13" org.eventb.core.prSets="MODES">
+        <org.eventb.core.lang name="L"/>
+        <org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="Partition rewrites in hyp (partition(MODES,{LANDED},{FLYING},{FINISHED}))" org.eventb.core.prHyps="">
+            <org.eventb.core.prAnte name="'">
+                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p4" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p14,p15,p16,p17"/>
+                <org.eventb.core.prHypAction name="SELECT1" org.eventb.core.prHyps="p14,p15,p16,p17"/>
+                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="">
+                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p20">
+                        <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p9" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p18"/>
+                        <org.eventb.core.prHypAction name="REWRITE1" org.eventb.core.prHidden="p1" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p19"/>
+                        <org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="type rewrites" org.eventb.core.prGoal="p20" org.eventb.core.prHyps="">
+                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p22">
+                                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p6" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p21"/>
+                                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p22" org.eventb.core.prHyps="">
+                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p23">
+                                        <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∧ goal" org.eventb.core.prGoal="p23" org.eventb.core.prHyps="">
+                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p24">
+                                                <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∀ goal (frees x)" org.eventb.core.prGoal="p24" org.eventb.core.prHyps="">
+                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p25">
+                                                        <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+                                                        <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_CONCRETE_POS=(λp·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)" org.eventb.core.prGoal="p25" org.eventb.core.prHyps="p21">
+                                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p26">
+                                                                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p26" org.eventb.core.prHyps="">
+                                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p27">
+                                                                        <org.eventb.core.prRule name="r6" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⊤ goal" org.eventb.core.prGoal="p27" org.eventb.core.prHyps=""/>
+                                                                    </org.eventb.core.prAnte>
+                                                                </org.eventb.core.prRule>
+                                                            </org.eventb.core.prAnte>
+                                                        </org.eventb.core.prRule>
+                                                    </org.eventb.core.prAnte>
+                                                </org.eventb.core.prRule>
+                                            </org.eventb.core.prAnte>
+                                            <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p28">
+                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_CONCRETE_POS=(λp·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)" org.eventb.core.prGoal="p28" org.eventb.core.prHyps="p21">
+                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p29">
+                                                        <org.eventb.core.prRule name="r7" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p29" org.eventb.core.prHyps="p5,p2,p8,p13,p12,p11,p7,p10,p3,p14,p15,p16,p17,p18,p19,p21">
+                                                            <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
+                                                        </org.eventb.core.prRule>
+                                                    </org.eventb.core.prAnte>
+                                                </org.eventb.core.prRule>
+                                            </org.eventb.core.prAnte>
+                                            <org.eventb.core.prAnte name=")" org.eventb.core.prGoal="p30">
+                                                <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∀ goal (frees x,y)" org.eventb.core.prGoal="p30" org.eventb.core.prHyps="">
+                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p31">
+                                                        <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+                                                        <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+                                                        <org.eventb.core.prRule name="r8" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⇒ goal" org.eventb.core.prGoal="p31" org.eventb.core.prHyps="">
+                                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p33" org.eventb.core.prHyps="p32">
+                                                                <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∧ goal" org.eventb.core.prGoal="p33" org.eventb.core.prHyps="">
+                                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p34">
+                                                                        <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_ABSTRACT_POS=(λp·p≥0 ∣ p ÷ GRID_SIZE+1)∪(λp·p&lt;0 ∣ p ÷ GRID_SIZE)" org.eventb.core.prGoal="p34" org.eventb.core.prHyps="p3">
+                                                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p35">
+                                                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_CONCRETE_POS=(λp·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)" org.eventb.core.prHyps="p21">
+                                                                                    <org.eventb.core.prAnte name="'">
+                                                                                        <org.eventb.core.prHypAction name="FORWARD_INF0" org.eventb.core.prHyps="p32" org.eventb.core.prInfHyps="p36"/>
+                                                                                        <org.eventb.core.prHypAction name="DESELECT1" org.eventb.core.prHyps="p32"/>
+                                                                                        <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
+                                                                                            <org.eventb.core.prAnte name="'">
+                                                                                                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p36" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p37"/>
+                                                                                                <org.eventb.core.prRule name="r7" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p35" org.eventb.core.prHyps="p5,p2,p8,p13,p12,p11,p7,p10,p3,p14,p15,p16,p17,p18,p19,p21,p32,p37">
+                                                                                                    <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
+                                                                                                </org.eventb.core.prRule>
+                                                                                            </org.eventb.core.prAnte>
+                                                                                        </org.eventb.core.prRule>
+                                                                                    </org.eventb.core.prAnte>
+                                                                                </org.eventb.core.prRule>
+                                                                            </org.eventb.core.prAnte>
+                                                                        </org.eventb.core.prRule>
+                                                                    </org.eventb.core.prAnte>
+                                                                    <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p38">
+                                                                        <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_ABSTRACT_POS=(λp·p≥0 ∣ p ÷ GRID_SIZE+1)∪(λp·p&lt;0 ∣ p ÷ GRID_SIZE)" org.eventb.core.prGoal="p38" org.eventb.core.prHyps="p3">
+                                                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p39">
+                                                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_CONCRETE_POS=(λp·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)" org.eventb.core.prHyps="p21">
+                                                                                    <org.eventb.core.prAnte name="'">
+                                                                                        <org.eventb.core.prHypAction name="FORWARD_INF0" org.eventb.core.prHyps="p32" org.eventb.core.prInfHyps="p36"/>
+                                                                                        <org.eventb.core.prHypAction name="DESELECT1" org.eventb.core.prHyps="p32"/>
+                                                                                        <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
+                                                                                            <org.eventb.core.prAnte name="'">
+                                                                                                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p36" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p37"/>
+                                                                                            </org.eventb.core.prAnte>
+                                                                                        </org.eventb.core.prRule>
+                                                                                    </org.eventb.core.prAnte>
+                                                                                </org.eventb.core.prRule>
+                                                                            </org.eventb.core.prAnte>
+                                                                        </org.eventb.core.prRule>
+                                                                    </org.eventb.core.prAnte>
+                                                                </org.eventb.core.prRule>
+                                                            </org.eventb.core.prAnte>
+                                                        </org.eventb.core.prRule>
+                                                    </org.eventb.core.prAnte>
+                                                </org.eventb.core.prRule>
+                                            </org.eventb.core.prAnte>
+                                        </org.eventb.core.prRule>
+                                    </org.eventb.core.prAnte>
+                                </org.eventb.core.prRule>
+                            </org.eventb.core.prAnte>
+                        </org.eventb.core.prRule>
+                    </org.eventb.core.prAnte>
+                </org.eventb.core.prRule>
+            </org.eventb.core.prAnte>
+            <org.eventb.core.prString name=".pos" org.eventb.core.prSValue=""/>
+        </org.eventb.core.prRule>
+        <org.eventb.core.prIdent name="BASE_POSITION" org.eventb.core.type="ℤ×ℤ"/>
+        <org.eventb.core.prIdent name="CONCRETE_DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="CONCRETE_WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="FINISHED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="FLYING" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="LANDED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="MAP_TO_ABSTRACT_POS" org.eventb.core.type="ℙ(ℤ×ℤ)"/>
+        <org.eventb.core.prIdent name="MAP_TO_CONCRETE_POS" org.eventb.core.type="ℙ(ℤ×ℙ(ℤ))"/>
+        <org.eventb.core.prIdent name="SAFETY_DISTANCE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prPred name="p30" org.eventb.core.predicate="∀x⦂ℤ,y⦂ℤ·y∈MAP_TO_CONCRETE_POS(x)⇒y∈dom(MAP_TO_ABSTRACT_POS)∧MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ"/>
+        <org.eventb.core.prPred name="p1" org.eventb.core.predicate="∀p⦂ℤ·p&lt;0⇒GRID_SIZE≠0"/>
+        <org.eventb.core.prPred name="p0" org.eventb.core.predicate="∀x⦂ℤ,y⦂ℤ·(x∈ℤ∧y∈ℤ⇒x∈dom(MAP_TO_CONCRETE_POS)∧MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ))∧(x∈ℤ∧y∈ℤ∧y∈MAP_TO_CONCRETE_POS(x)⇒y∈dom(MAP_TO_ABSTRACT_POS)∧MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ)"/>
+        <org.eventb.core.prPred name="p3" org.eventb.core.predicate="MAP_TO_ABSTRACT_POS=(λp⦂ℤ·p≥0 ∣ p ÷ GRID_SIZE+1)∪(λp⦂ℤ·p&lt;0 ∣ p ÷ GRID_SIZE)"/>
+        <org.eventb.core.prPred name="p15" org.eventb.core.predicate="¬LANDED=FLYING"/>
+        <org.eventb.core.prPred name="p36" org.eventb.core.predicate="y∈(λp⦂ℤ·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)(x)">
+            <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p38" org.eventb.core.predicate="MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ"/>
+        <org.eventb.core.prPred name="p5" org.eventb.core.predicate="DEPTH∈ℕ1"/>
+        <org.eventb.core.prPred name="p17" org.eventb.core.predicate="¬FLYING=FINISHED"/>
+        <org.eventb.core.prPred name="p29" org.eventb.core.predicate="(λp⦂ℤ·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)∈ℤ ⇸ ℙ(ℤ)"/>
+        <org.eventb.core.prPred name="p20" org.eventb.core.predicate="(∀x⦂ℤ,y⦂ℤ·x∈ℤ∧y∈ℤ⇒x∈dom(MAP_TO_CONCRETE_POS)∧MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ))∧(∀x⦂ℤ,y⦂ℤ·x∈ℤ∧y∈ℤ∧y∈MAP_TO_CONCRETE_POS(x)⇒y∈dom(MAP_TO_ABSTRACT_POS)∧MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ)"/>
+        <org.eventb.core.prPred name="p34" org.eventb.core.predicate="y∈dom(MAP_TO_ABSTRACT_POS)">
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p35" org.eventb.core.predicate="y∈dom((λp⦂ℤ·p≥0 ∣ p ÷ GRID_SIZE+1)∪(λp⦂ℤ·p&lt;0 ∣ p ÷ GRID_SIZE))">
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p37" org.eventb.core.predicate="y∈(x − 1)∗GRID_SIZE ‥ x∗GRID_SIZE − 1">
+            <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p11" org.eventb.core.predicate="SAFETY_DISTANCE∈ℕ"/>
+        <org.eventb.core.prPred name="p19" org.eventb.core.predicate="∀p⦂ℤ·p&lt;0⇒¬GRID_SIZE=0"/>
+        <org.eventb.core.prPred name="p21" org.eventb.core.predicate="MAP_TO_CONCRETE_POS=(λp⦂ℤ·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)"/>
+        <org.eventb.core.prPred name="p26" org.eventb.core.predicate="x∈dom(λp⦂ℤ·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)">
+            <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p14" org.eventb.core.predicate="MODES={LANDED,FLYING,FINISHED}"/>
+        <org.eventb.core.prPred name="p27" org.eventb.core.predicate="⊤"/>
+        <org.eventb.core.prPred name="p2" org.eventb.core.predicate="WIDTH∈ℕ1"/>
+        <org.eventb.core.prPred name="p16" org.eventb.core.predicate="¬LANDED=FINISHED"/>
+        <org.eventb.core.prPred name="p4" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})"/>
+        <org.eventb.core.prPred name="p6" org.eventb.core.predicate="MAP_TO_CONCRETE_POS=(λp⦂ℤ·p∈ℤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)"/>
+        <org.eventb.core.prPred name="p22" org.eventb.core.predicate="(∀x⦂ℤ·⊤∧⊤⇒x∈dom(MAP_TO_CONCRETE_POS)∧MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ))∧(∀x⦂ℤ,y⦂ℤ·⊤∧⊤∧y∈MAP_TO_CONCRETE_POS(x)⇒y∈dom(MAP_TO_ABSTRACT_POS)∧MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ)"/>
+        <org.eventb.core.prPred name="p7" org.eventb.core.predicate="CONCRETE_WIDTH=WIDTH∗GRID_SIZE"/>
+        <org.eventb.core.prPred name="p25" org.eventb.core.predicate="x∈dom(MAP_TO_CONCRETE_POS)">
+            <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p39" org.eventb.core.predicate="(λp⦂ℤ·p≥0 ∣ p ÷ GRID_SIZE+1)∪(λp⦂ℤ·p&lt;0 ∣ p ÷ GRID_SIZE)∈ℤ ⇸ ℤ"/>
+        <org.eventb.core.prPred name="p28" org.eventb.core.predicate="MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ)"/>
+        <org.eventb.core.prPred name="p31" org.eventb.core.predicate="y∈MAP_TO_CONCRETE_POS(x)⇒y∈dom(MAP_TO_ABSTRACT_POS)∧MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ">
+            <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p33" org.eventb.core.predicate="y∈dom(MAP_TO_ABSTRACT_POS)∧MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ">
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p8" org.eventb.core.predicate="BASE_POSITION∈1 ‥ WIDTH × 1 ‥ DEPTH"/>
+        <org.eventb.core.prPred name="p18" org.eventb.core.predicate="∀p⦂ℤ·p≥0⇒¬GRID_SIZE=0"/>
+        <org.eventb.core.prPred name="p9" org.eventb.core.predicate="∀p⦂ℤ·p≥0⇒GRID_SIZE≠0"/>
+        <org.eventb.core.prPred name="p10" org.eventb.core.predicate="CONCRETE_DEPTH=DEPTH∗GRID_SIZE"/>
+        <org.eventb.core.prPred name="p24" org.eventb.core.predicate="∀x⦂ℤ·x∈dom(MAP_TO_CONCRETE_POS)"/>
+        <org.eventb.core.prPred name="p32" org.eventb.core.predicate="y∈MAP_TO_CONCRETE_POS(x)">
+            <org.eventb.core.prIdent name="x" org.eventb.core.type="ℤ"/>
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p12" org.eventb.core.predicate="GRID_SIZE≥2"/>
+        <org.eventb.core.prPred name="p23" org.eventb.core.predicate="(∀x⦂ℤ·x∈dom(MAP_TO_CONCRETE_POS))∧MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ)∧(∀x⦂ℤ,y⦂ℤ·y∈MAP_TO_CONCRETE_POS(x)⇒y∈dom(MAP_TO_ABSTRACT_POS)∧MAP_TO_ABSTRACT_POS∈ℤ ⇸ ℤ)"/>
+        <org.eventb.core.prPred name="p13" org.eventb.core.predicate="GRID_SIZE∈ℕ1"/>
+        <org.eventb.core.prReas name="r7" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
+        <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.partitionRewrites"/>
+        <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
+        <org.eventb.core.prReas name="r5" org.eventb.core.prRID="org.eventb.core.seqprover.eq:1"/>
+        <org.eventb.core.prReas name="r3" org.eventb.core.prRID="org.eventb.core.seqprover.conj:0"/>
+        <org.eventb.core.prReas name="r6" org.eventb.core.prRID="org.eventb.core.seqprover.trueGoal"/>
+        <org.eventb.core.prReas name="r8" org.eventb.core.prRID="org.eventb.core.seqprover.impI"/>
+        <org.eventb.core.prReas name="r4" org.eventb.core.prRID="org.eventb.core.seqprover.allI"/>
+        <org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+    </org.eventb.core.prProof>
+    <org.eventb.core.prProof name="axm_map_abstract_pos2/WD" org.eventb.core.confidence="1000" org.eventb.core.prFresh="y" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13" org.eventb.core.prSets="MODES">
+        <org.eventb.core.lang name="L"/>
+        <org.eventb.core.prRule name="r0" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="Partition rewrites in hyp (partition(MODES,{LANDED},{FLYING},{FINISHED}))" org.eventb.core.prHyps="">
+            <org.eventb.core.prAnte name="'">
+                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p4" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p14,p15,p16,p17"/>
+                <org.eventb.core.prHypAction name="SELECT1" org.eventb.core.prHyps="p14,p15,p16,p17"/>
+                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prHyps="">
+                    <org.eventb.core.prAnte name="'">
+                        <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p9" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p18"/>
+                        <org.eventb.core.prHypAction name="REWRITE1" org.eventb.core.prHidden="p1" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p19"/>
+                        <org.eventb.core.prRule name="r2" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="type rewrites" org.eventb.core.prGoal="p0" org.eventb.core.prHyps="">
+                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p21">
+                                <org.eventb.core.prHypAction name="REWRITE0" org.eventb.core.prHidden="p6" org.eventb.core.prHyps="" org.eventb.core.prInfHyps="p20"/>
+                                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p21" org.eventb.core.prHyps="">
+                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p22">
+                                        <org.eventb.core.prRule name="r3" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∧ goal" org.eventb.core.prGoal="p22" org.eventb.core.prHyps="">
+                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p23">
+                                                <org.eventb.core.prRule name="r4" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="∀ goal (frees y)" org.eventb.core.prGoal="p23" org.eventb.core.prHyps="">
+                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p24">
+                                                        <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+                                                        <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_CONCRETE_POS=(λp·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)" org.eventb.core.prGoal="p24" org.eventb.core.prHyps="p20">
+                                                            <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p25">
+                                                                <org.eventb.core.prRule name="r1" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="simplification rewrites" org.eventb.core.prGoal="p25" org.eventb.core.prHyps="">
+                                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p26">
+                                                                        <org.eventb.core.prRule name="r6" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="⊤ goal" org.eventb.core.prGoal="p26" org.eventb.core.prHyps=""/>
+                                                                    </org.eventb.core.prAnte>
+                                                                </org.eventb.core.prRule>
+                                                            </org.eventb.core.prAnte>
+                                                        </org.eventb.core.prRule>
+                                                    </org.eventb.core.prAnte>
+                                                </org.eventb.core.prRule>
+                                            </org.eventb.core.prAnte>
+                                            <org.eventb.core.prAnte name="(" org.eventb.core.prGoal="p27">
+                                                <org.eventb.core.prRule name="r5" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="eh with MAP_TO_CONCRETE_POS=(λp·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)" org.eventb.core.prGoal="p27" org.eventb.core.prHyps="p20">
+                                                    <org.eventb.core.prAnte name="'" org.eventb.core.prGoal="p28">
+                                                        <org.eventb.core.prRule name="r7" org.eventb.core.confidence="1000" org.eventb.core.prDisplay="ML" org.eventb.core.prGoal="p28" org.eventb.core.prHyps="p5,p2,p8,p13,p12,p11,p7,p10,p3,p14,p15,p16,p17,p18,p19,p20">
+                                                            <org.eventb.core.prString name=".arg" org.eventb.core.prSValue="0;1:500"/>
+                                                        </org.eventb.core.prRule>
+                                                    </org.eventb.core.prAnte>
+                                                </org.eventb.core.prRule>
+                                            </org.eventb.core.prAnte>
+                                        </org.eventb.core.prRule>
+                                    </org.eventb.core.prAnte>
+                                </org.eventb.core.prRule>
+                            </org.eventb.core.prAnte>
+                        </org.eventb.core.prRule>
+                    </org.eventb.core.prAnte>
+                </org.eventb.core.prRule>
+            </org.eventb.core.prAnte>
+            <org.eventb.core.prString name=".pos" org.eventb.core.prSValue=""/>
+        </org.eventb.core.prRule>
+        <org.eventb.core.prIdent name="BASE_POSITION" org.eventb.core.type="ℤ×ℤ"/>
+        <org.eventb.core.prIdent name="CONCRETE_DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="CONCRETE_WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="DEPTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="FINISHED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="FLYING" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="GRID_SIZE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="LANDED" org.eventb.core.type="MODES"/>
+        <org.eventb.core.prIdent name="MAP_TO_ABSTRACT_POS" org.eventb.core.type="ℙ(ℤ×ℤ)"/>
+        <org.eventb.core.prIdent name="MAP_TO_CONCRETE_POS" org.eventb.core.type="ℙ(ℤ×ℙ(ℤ))"/>
+        <org.eventb.core.prIdent name="SAFETY_DISTANCE" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prIdent name="WIDTH" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.prPred name="p1" org.eventb.core.predicate="∀p⦂ℤ·p&lt;0⇒GRID_SIZE≠0"/>
+        <org.eventb.core.prPred name="p3" org.eventb.core.predicate="MAP_TO_ABSTRACT_POS=(λp⦂ℤ·p≥0 ∣ p ÷ GRID_SIZE+1)∪(λp⦂ℤ·p&lt;0 ∣ p ÷ GRID_SIZE)"/>
+        <org.eventb.core.prPred name="p15" org.eventb.core.predicate="¬LANDED=FLYING"/>
+        <org.eventb.core.prPred name="p5" org.eventb.core.predicate="DEPTH∈ℕ1"/>
+        <org.eventb.core.prPred name="p17" org.eventb.core.predicate="¬FLYING=FINISHED"/>
+        <org.eventb.core.prPred name="p28" org.eventb.core.predicate="(λp⦂ℤ·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)∈ℤ ⇸ ℙ(ℤ)"/>
+        <org.eventb.core.prPred name="p25" org.eventb.core.predicate="y∈dom(λp⦂ℤ·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)">
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p11" org.eventb.core.predicate="SAFETY_DISTANCE∈ℕ"/>
+        <org.eventb.core.prPred name="p24" org.eventb.core.predicate="y∈dom(MAP_TO_CONCRETE_POS)">
+            <org.eventb.core.prIdent name="y" org.eventb.core.type="ℤ"/>
+        </org.eventb.core.prPred>
+        <org.eventb.core.prPred name="p19" org.eventb.core.predicate="∀p⦂ℤ·p&lt;0⇒¬GRID_SIZE=0"/>
+        <org.eventb.core.prPred name="p20" org.eventb.core.predicate="MAP_TO_CONCRETE_POS=(λp⦂ℤ·⊤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)"/>
+        <org.eventb.core.prPred name="p14" org.eventb.core.predicate="MODES={LANDED,FLYING,FINISHED}"/>
+        <org.eventb.core.prPred name="p26" org.eventb.core.predicate="⊤"/>
+        <org.eventb.core.prPred name="p2" org.eventb.core.predicate="WIDTH∈ℕ1"/>
+        <org.eventb.core.prPred name="p16" org.eventb.core.predicate="¬LANDED=FINISHED"/>
+        <org.eventb.core.prPred name="p4" org.eventb.core.predicate="partition(MODES,{LANDED},{FLYING},{FINISHED})"/>
+        <org.eventb.core.prPred name="p6" org.eventb.core.predicate="MAP_TO_CONCRETE_POS=(λp⦂ℤ·p∈ℤ ∣ (p − 1)∗GRID_SIZE ‥ p∗GRID_SIZE − 1)"/>
+        <org.eventb.core.prPred name="p7" org.eventb.core.predicate="CONCRETE_WIDTH=WIDTH∗GRID_SIZE"/>
+        <org.eventb.core.prPred name="p0" org.eventb.core.predicate="∀x⦂ℤ,y⦂ℤ·x∈ℤ∧y∈ℤ⇒y∈dom(MAP_TO_CONCRETE_POS)∧MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ)"/>
+        <org.eventb.core.prPred name="p27" org.eventb.core.predicate="MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ)"/>
+        <org.eventb.core.prPred name="p8" org.eventb.core.predicate="BASE_POSITION∈1 ‥ WIDTH × 1 ‥ DEPTH"/>
+        <org.eventb.core.prPred name="p18" org.eventb.core.predicate="∀p⦂ℤ·p≥0⇒¬GRID_SIZE=0"/>
+        <org.eventb.core.prPred name="p9" org.eventb.core.predicate="∀p⦂ℤ·p≥0⇒GRID_SIZE≠0"/>
+        <org.eventb.core.prPred name="p10" org.eventb.core.predicate="CONCRETE_DEPTH=DEPTH∗GRID_SIZE"/>
+        <org.eventb.core.prPred name="p22" org.eventb.core.predicate="(∀y⦂ℤ·y∈dom(MAP_TO_CONCRETE_POS))∧MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ)"/>
+        <org.eventb.core.prPred name="p23" org.eventb.core.predicate="∀y⦂ℤ·y∈dom(MAP_TO_CONCRETE_POS)"/>
+        <org.eventb.core.prPred name="p12" org.eventb.core.predicate="GRID_SIZE≥2"/>
+        <org.eventb.core.prPred name="p13" org.eventb.core.predicate="GRID_SIZE∈ℕ1"/>
+        <org.eventb.core.prPred name="p21" org.eventb.core.predicate="∀y⦂ℤ·⊤∧⊤⇒y∈dom(MAP_TO_CONCRETE_POS)∧MAP_TO_CONCRETE_POS∈ℤ ⇸ ℙ(ℤ)"/>
+        <org.eventb.core.prReas name="r7" org.eventb.core.prRID="com.clearsy.atelierb.provers.core.externalML:1"/>
+        <org.eventb.core.prReas name="r0" org.eventb.core.prRID="org.eventb.core.seqprover.partitionRewrites"/>
+        <org.eventb.core.prReas name="r2" org.eventb.core.prRID="org.eventb.core.seqprover.typeRewrites:1"/>
+        <org.eventb.core.prReas name="r5" org.eventb.core.prRID="org.eventb.core.seqprover.eq:1"/>
+        <org.eventb.core.prReas name="r3" org.eventb.core.prRID="org.eventb.core.seqprover.conj:0"/>
+        <org.eventb.core.prReas name="r6" org.eventb.core.prRID="org.eventb.core.seqprover.trueGoal"/>
+        <org.eventb.core.prReas name="r4" org.eventb.core.prRID="org.eventb.core.seqprover.allI"/>
+        <org.eventb.core.prReas name="r1" org.eventb.core.prRID="org.eventb.core.seqprover.autoRewritesL4:0"/>
+    </org.eventb.core.prProof>
+</org.eventb.core.prFile>

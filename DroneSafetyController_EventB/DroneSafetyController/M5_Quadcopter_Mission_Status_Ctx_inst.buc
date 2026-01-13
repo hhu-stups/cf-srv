@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1766796124381" org.eventb.texttools.text_representation="context M5_Quadcopter_Mission_Status_Ctx_inst extends M4_Quadcopter_Movement_Ctx&#10;&#10;axioms&#10;  @inst_DEPTH DEPTH = 5&#10;  @inst_WIDTH WIDTH = 5&#10;  @inst_BATTERY_STEP BATTERY_STEP = 2&#10;end&#10;" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="M4_Quadcopter_Movement_Ctx"/>
+    <org.eventb.core.axiom name="_zRilkOBSEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="inst_DEPTH" org.eventb.core.predicate="DEPTH = 5"/>
+    <org.eventb.core.axiom name="_zRjMoOBSEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="inst_WIDTH" org.eventb.core.predicate="WIDTH = 5"/>
+    <org.eventb.core.axiom name="_3V1loOK8EfCj-a92mZtixQ" org.eventb.core.generated="false" org.eventb.core.label="inst_BATTERY_STEP" org.eventb.core.predicate="BATTERY_STEP = 2"/>
+</org.eventb.core.contextFile>

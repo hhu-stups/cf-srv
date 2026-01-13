@@ -225,7 +225,7 @@ class CrazyflieRpcConnector(contextlib.AbstractContextManager):
         self.set_value(url, "kalman.resetEstimation", "0")
         time.sleep(2)
 
-    def takeoff(self, url, height=1.0):
+    def takeoff(self, url, height=0.45):
         if url not in self._crazyflies:
             raise ValueError(f"unknown url: {url}")
         if not isinstance(height, (int, float)):

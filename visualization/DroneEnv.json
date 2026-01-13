@@ -1,0 +1,38 @@
+{
+  "svg":"DroneEnv.svg",
+  "items":[
+    {
+      "for":{"from":1,"to":"WIDTH"},
+      "for":{"from":1,"to":"DEPTH"},
+      "id": "tile%0x%1",
+      "attr": "fill",
+      "value": "IF (WIDTH + 1 - %0) |-> (DEPTH + 1 - %1) = BASE_POSITION THEN \"gray\" ELSIF field((WIDTH + 1 - %0) |-> (DEPTH + 1 - %1)) = 0 THEN \"black\" ELSIF field((WIDTH + 1 - %0) |-> (DEPTH + 1 - %1)) = 1 THEN \"lime\" ELSIF field((WIDTH + 1 - %0) |-> (DEPTH + 1 - %1)) = 2 THEN \"brown\" ELSE \"lime\" END"
+    },
+    {
+      "for":{"from":1,"to":"10"},
+      "for":{"from":1,"to":"10"},
+      "id": "tile%0x%1",
+      "attr": "visibility",
+      "value": "IF %0 <= WIDTH & %1 <= DEPTH THEN \"visible\" ELSE \"hidden\" END"
+    },
+    {
+      "for":{"from":1,"to":"WIDTH"},
+      "for":{"from":1,"to":"DEPTH"},
+      "id": "visited%0x%1",
+      "attr": "text",
+      "value": "IF (WIDTH + 1 - %0) |-> (DEPTH + 1 - %1) : visited THEN \"V\" ELSE \"\" END"
+    },
+    {
+      "id": "drone",
+      "attr":"x",
+      "value":"(WIDTH - prj1(current_position)) * 45"
+    },
+    {
+      "id": "drone",
+      "attr":"y",
+      "value":"(DEPTH - prj2(current_position)) * 45"
+    }
+  ],
+  "events": []
+}
+

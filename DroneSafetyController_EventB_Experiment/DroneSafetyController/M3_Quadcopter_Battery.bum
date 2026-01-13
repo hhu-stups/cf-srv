@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1766836712141" org.eventb.texttools.text_representation="machine M3_Quadcopter_Battery refines M2_Quadcopter_Position_Update  sees M3_Quadcopter_Battery_Ctx&#10;&#10;variables mode sensor_data_actual position_actual battery battery_actual&#10;&#10;invariants&#10;  @battery battery ∈ ℕ&#10;  @battery_actual battery_actual ∈ BOOL&#10;&#10;events&#10;  event INITIALISATION extends INITIALISATION&#10;    then&#10;      @init_battery battery ≔ 100&#10;      @init_battery_actual battery_actual ≔ FALSE&#10;  end&#10;&#10;  event TAKEOFF extends TAKEOFF&#10;    where&#10;      @grd_battery battery &gt; BATTERY_STEP&#10;      @grd_battery_actual battery_actual = TRUE&#10;    then&#10;      @act_battery_actual battery_actual ≔ FALSE&#10;  end&#10;&#10;  event MOVE extends MOVE&#10;    where&#10;      @grd_Battery battery &gt; BATTERY_STEP&#10;      @grd_battery_actual battery_actual = TRUE&#10;    then&#10;      @act_battery_actual battery_actual ≔ FALSE&#10;      @act_battery battery ≔ battery − BATTERY_STEP&#10;  end&#10;&#10;  event LAND extends LAND&#10;  end&#10;&#10;  event OBSERVE extends OBSERVE&#10;    where&#10;      @grd_Battery battery &gt; BATTERY_STEP&#10;      @grd_battery_actual battery_actual = TRUE&#10;    then&#10;      @act_battery_actual battery_actual ≔ FALSE&#10;  end&#10;&#10;  event SYNCHRONIZE_BATTERY&#10;    any pbattery&#10;    where&#10;      @grd_battery pbattery ∈ ℕ&#10;    then&#10;      @act_battery battery ≔ pbattery&#10;      @act_battery_actual battery_actual ≔ TRUE&#10;  end&#10;&#10;  event UPDATE_POSITION extends UPDATE_POSITION&#10;    where&#10;      @grd_Battery battery &gt; BATTERY_STEP&#10;      @grd_battery_actual battery_actual = TRUE&#10;    then&#10;      @act_battery_actual battery_actual ≔ FALSE&#10;  end&#10;end&#10;" version="5">
+    <org.eventb.core.refinesMachine name="_ah8O4OF8EfCu9c2s4XMQ6Q" org.eventb.core.target="M2_Quadcopter_Position_Update"/>
+    <org.eventb.core.seesContext name="_TikWkOK8EfCj-a92mZtixQ" org.eventb.core.target="M3_Quadcopter_Battery_Ctx"/>
+    <org.eventb.core.variable name="_B2viwOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="mode"/>
+    <org.eventb.core.variable name="_gkpagOADEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="sensor_data_actual"/>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45csx" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="_JFh9UOAGEfC8NKsWk45csw" org.eventb.core.assignment="battery ≔ 100" org.eventb.core.generated="false" org.eventb.core.label="init_battery"/>
+        <org.eventb.core.action name="_MLRj4OJDEfCN5cCo6lgIJA" org.eventb.core.assignment="battery_actual ≔ FALSE" org.eventb.core.generated="false" org.eventb.core.label="init_battery_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45csy" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="TAKEOFF">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="TAKEOFF"/>
+        <org.eventb.core.guard name="_NH_tMOAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="grd_battery" org.eventb.core.predicate="battery &gt; BATTERY_STEP"/>
+        <org.eventb.core.guard name="_K0U_EOJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.label="grd_battery_actual" org.eventb.core.predicate="battery_actual = TRUE"/>
+        <org.eventb.core.action name="_fRHzYOJDEfCN5cCo6lgIJA" org.eventb.core.assignment="battery_actual ≔ FALSE" org.eventb.core.generated="false" org.eventb.core.label="act_battery_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45csz" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="MOVE">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="MOVE"/>
+        <org.eventb.core.guard name="_r-MscOCiEfC-rPwep5_a6Q" org.eventb.core.generated="false" org.eventb.core.label="grd_Battery" org.eventb.core.predicate="battery &gt; BATTERY_STEP"/>
+        <org.eventb.core.guard name="_K0VmIOJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.label="grd_battery_actual" org.eventb.core.predicate="battery_actual = TRUE"/>
+        <org.eventb.core.action name="_fRJokOJDEfCN5cCo6lgIJA" org.eventb.core.assignment="battery_actual ≔ FALSE" org.eventb.core.generated="false" org.eventb.core.label="act_battery_actual"/>
+        <org.eventb.core.action name="_YMfVYeAGEfC8NKsWk45csw" org.eventb.core.assignment="battery ≔ battery − BATTERY_STEP" org.eventb.core.generated="false" org.eventb.core.label="act_battery"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45cs{" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="LAND">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="LAND"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_gkpagOADEfC8NKsWk45cs|" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="OBSERVE">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="OBSERVE"/>
+        <org.eventb.core.guard name="_K0W0QOJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.label="grd_Battery" org.eventb.core.predicate="battery &gt; BATTERY_STEP"/>
+        <org.eventb.core.guard name="_K0W0QeJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.label="grd_battery_actual" org.eventb.core.predicate="battery_actual = TRUE"/>
+        <org.eventb.core.action name="_fRJokeJDEfCN5cCo6lgIJA" org.eventb.core.assignment="battery_actual ≔ FALSE" org.eventb.core.generated="false" org.eventb.core.label="act_battery_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="_gkJB4OF8EfCu9c2s4XMQ6Q" org.eventb.core.generated="false" org.eventb.core.identifier="position_actual"/>
+    <org.eventb.core.variable name="_HZui0OAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="battery"/>
+    <org.eventb.core.invariant name="_HZui0eAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="battery" org.eventb.core.predicate="battery ∈ ℕ"/>
+    <org.eventb.core.event name="_YMeHQOAGEfC8NKsWk45csw" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.generated="false" org.eventb.core.label="SYNCHRONIZE_BATTERY">
+        <org.eventb.core.parameter name="_YMeuUOAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="pbattery"/>
+        <org.eventb.core.guard name="_PE7T8OAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="grd_battery" org.eventb.core.predicate="pbattery ∈ ℕ"/>
+        <org.eventb.core.action name="_thDcYOK9EfCrzPBtTK8cxw" org.eventb.core.assignment="battery ≔ pbattery" org.eventb.core.generated="false" org.eventb.core.label="act_battery"/>
+        <org.eventb.core.action name="_fRK2sOJDEfCN5cCo6lgIJA" org.eventb.core.assignment="battery_actual ≔ TRUE" org.eventb.core.generated="false" org.eventb.core.label="act_battery_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="_W1DtcOF8EfCu9c2s4XMQ6Q" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.generated="false" org.eventb.core.label="UPDATE_POSITION">
+        <org.eventb.core.refinesEvent name="_W1DtceF8EfCu9c2s4XMQ6Q" org.eventb.core.target="UPDATE_POSITION"/>
+        <org.eventb.core.guard name="_K0YpcOJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.label="grd_Battery" org.eventb.core.predicate="battery &gt; BATTERY_STEP"/>
+        <org.eventb.core.guard name="_K0YpceJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.label="grd_battery_actual" org.eventb.core.predicate="battery_actual = TRUE"/>
+        <org.eventb.core.action name="_hAA-IOJDEfCN5cCo6lgIJA" org.eventb.core.assignment="battery_actual ≔ FALSE" org.eventb.core.generated="false" org.eventb.core.label="act_battery_actual"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="_EEwIsOJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.identifier="battery_actual"/>
+    <org.eventb.core.invariant name="_EEwvwOJDEfCN5cCo6lgIJA" org.eventb.core.generated="false" org.eventb.core.label="battery_actual" org.eventb.core.predicate="battery_actual ∈ BOOL"/>
+</org.eventb.core.machineFile>

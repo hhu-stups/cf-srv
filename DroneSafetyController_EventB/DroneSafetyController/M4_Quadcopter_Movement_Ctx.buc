@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" org.eventb.core.generated="false" org.eventb.texttools.text_lastmodified="1766795893240" org.eventb.texttools.text_representation="context M4_Quadcopter_Movement_Ctx extends M3_Quadcopter_Battery_Ctx&#10;&#10;constants DEPTH WIDTH BASE_POSITION&#10;&#10;axioms&#10;  @DEPTH DEPTH ∈ ℕ1&#10;  @WIDTH WIDTH ∈ ℕ1&#10;  @BASE_POSITION BASE_POSITION ∈ (1‥ WIDTH) × (1‥DEPTH)&#10;end&#10;" version="3">
+    <org.eventb.core.extendsContext name="_U5a0wOK8EfCj-a92mZtixQ" org.eventb.core.target="M3_Quadcopter_Battery_Ctx"/>
+    <org.eventb.core.constant name="_-9YzMOAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="DEPTH"/>
+    <org.eventb.core.constant name="_-9YzMeAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="WIDTH"/>
+    <org.eventb.core.constant name="_-9YzMuAGEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.identifier="BASE_POSITION"/>
+    <org.eventb.core.axiom name="_D0EOQOAHEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="DEPTH" org.eventb.core.predicate="DEPTH ∈ ℕ1"/>
+    <org.eventb.core.axiom name="_D0EOQeAHEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="WIDTH" org.eventb.core.predicate="WIDTH ∈ ℕ1"/>
+    <org.eventb.core.axiom name="_D0EOQuAHEfC8NKsWk45csw" org.eventb.core.generated="false" org.eventb.core.label="BASE_POSITION" org.eventb.core.predicate="BASE_POSITION ∈ (1‥ WIDTH) × (1‥DEPTH)"/>
+</org.eventb.core.contextFile>
