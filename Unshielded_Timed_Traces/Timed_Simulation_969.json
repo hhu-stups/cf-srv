@@ -1,0 +1,1378 @@
+{
+  "activations": [
+    {
+      "id": "$setup_constants",
+      "execute": "$setup_constants",
+      "fixedVariables": {
+        "DEPTH": "5",
+        "BATTERY_STEP": "2",
+        "WIDTH": "5",
+        "BASE_POSITION": "(2↦5)"
+      }
+    },
+    {
+      "id": "$initialise_machine",
+      "execute": "$initialise_machine",
+      "fixedVariables": {
+        "mission_failed": "FALSE",
+        "reward": "0.0",
+        "emergency_mode": "FALSE",
+        "battery_actual": "FALSE",
+        "current_position": "(2↦5)",
+        "visited": "{(2↦5)}",
+        "battery": "100",
+        "mode": "LANDED",
+        "field": "{(1↦1↦0),(1↦2↦0),(1↦3↦0),(1↦4↦0),(1↦5↦0),(2↦1↦0),(2↦2↦0),(2↦3↦0),(2↦4↦0),(2↦5↦1),(3↦1↦0),(3↦2↦0),(3↦3↦0),(3↦4↦0),(3↦5↦0),(4↦1↦0),(4↦2↦0),(4↦3↦0),(4↦4↦0),(4↦5↦0),(5↦1↦0),(5↦2↦0),(5↦3↦0),(5↦4↦0),(5↦5↦0)}",
+        "sensor_data_actual": "FALSE",
+        "position_actual": "FALSE"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_2"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_2",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "100"
+      },
+      "activating": [
+        "TAKEOFF_3"
+      ]
+    },
+    {
+      "id": "TAKEOFF_3",
+      "execute": "TAKEOFF",
+      "activating": [
+        "SYNCHRONIZE_BATTERY_4"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_4",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "100"
+      },
+      "activating": [
+        "UPDATE_POSITION_5"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_5",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "2",
+        "y": "5"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_6"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_6",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "100"
+      },
+      "activating": [
+        "OBSERVE_7"
+      ]
+    },
+    {
+      "id": "OBSERVE_7",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_8"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_8",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "100"
+      },
+      "activating": [
+        "MOVE_LEFT_9"
+      ]
+    },
+    {
+      "id": "MOVE_LEFT_9",
+      "execute": "MOVE_LEFT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "4.187755102040817"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_10"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_10",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "98"
+      },
+      "activating": [
+        "UPDATE_POSITION_11"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_11",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "3",
+        "y": "5"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_12"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_12",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "98"
+      },
+      "activating": [
+        "OBSERVE_13"
+      ]
+    },
+    {
+      "id": "OBSERVE_13",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_14"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_14",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "98"
+      },
+      "activating": [
+        "MOVE_LEFT_15"
+      ]
+    },
+    {
+      "id": "MOVE_LEFT_15",
+      "execute": "MOVE_LEFT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "6.418749999999999"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_16"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_16",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "96"
+      },
+      "activating": [
+        "UPDATE_POSITION_17"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_17",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "4",
+        "y": "5"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_18"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_18",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "96"
+      },
+      "activating": [
+        "OBSERVE_19"
+      ]
+    },
+    {
+      "id": "OBSERVE_19",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_20"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_20",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "96"
+      },
+      "activating": [
+        "MOVE_LEFT_21"
+      ]
+    },
+    {
+      "id": "MOVE_LEFT_21",
+      "execute": "MOVE_LEFT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "3.204255319148936"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_22"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_22",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "94"
+      },
+      "activating": [
+        "UPDATE_POSITION_23"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_23",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "5",
+        "y": "5"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_24"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_24",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "94"
+      },
+      "activating": [
+        "OBSERVE_25"
+      ]
+    },
+    {
+      "id": "OBSERVE_25",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_26"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_26",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "94"
+      },
+      "activating": [
+        "MOVE_RIGHT_27"
+      ]
+    },
+    {
+      "id": "MOVE_RIGHT_27",
+      "execute": "MOVE_RIGHT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-0.9782608695652174"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_28"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_28",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "92"
+      },
+      "activating": [
+        "UPDATE_POSITION_29"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_29",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "4",
+        "y": "5"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_30"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_30",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "92"
+      },
+      "activating": [
+        "OBSERVE_31"
+      ]
+    },
+    {
+      "id": "OBSERVE_31",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_32"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_32",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "92"
+      },
+      "activating": [
+        "MOVE_RIGHT_33"
+      ]
+    },
+    {
+      "id": "MOVE_RIGHT_33",
+      "execute": "MOVE_RIGHT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-0.6666666666666667"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_34"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_34",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "90"
+      },
+      "activating": [
+        "UPDATE_POSITION_35"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_35",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "3",
+        "y": "5"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_36"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_36",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "90"
+      },
+      "activating": [
+        "OBSERVE_37"
+      ]
+    },
+    {
+      "id": "OBSERVE_37",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_38"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_38",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "90"
+      },
+      "activating": [
+        "MOVE_BACKWARD_39"
+      ]
+    },
+    {
+      "id": "MOVE_BACKWARD_39",
+      "execute": "MOVE_BACKWARD",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "5.1477272727272725"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_40"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_40",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "88"
+      },
+      "activating": [
+        "UPDATE_POSITION_41"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_41",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "3",
+        "y": "4"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_42"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_42",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "88"
+      },
+      "activating": [
+        "OBSERVE_43"
+      ]
+    },
+    {
+      "id": "OBSERVE_43",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_44"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_44",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "88"
+      },
+      "activating": [
+        "MOVE_RIGHT_45"
+      ]
+    },
+    {
+      "id": "MOVE_RIGHT_45",
+      "execute": "MOVE_RIGHT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "13.702325581395346"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_46"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_46",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "86"
+      },
+      "activating": [
+        "UPDATE_POSITION_47"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_47",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "2",
+        "y": "4"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_48"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_48",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "86"
+      },
+      "activating": [
+        "OBSERVE_49"
+      ]
+    },
+    {
+      "id": "OBSERVE_49",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_50"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_50",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "86"
+      },
+      "activating": [
+        "MOVE_BACKWARD_51"
+      ]
+    },
+    {
+      "id": "MOVE_BACKWARD_51",
+      "execute": "MOVE_BACKWARD",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "15.907142857142858"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_52"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_52",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "84"
+      },
+      "activating": [
+        "UPDATE_POSITION_53"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_53",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "2",
+        "y": "3"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_54"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_54",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "84"
+      },
+      "activating": [
+        "OBSERVE_55"
+      ]
+    },
+    {
+      "id": "OBSERVE_55",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_56"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_56",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "84"
+      },
+      "activating": [
+        "MOVE_BACKWARD_57"
+      ]
+    },
+    {
+      "id": "MOVE_BACKWARD_57",
+      "execute": "MOVE_BACKWARD",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "27.70243902439024"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_58"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_58",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "82"
+      },
+      "activating": [
+        "UPDATE_POSITION_59"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_59",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "2",
+        "y": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_60"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_60",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "82"
+      },
+      "activating": [
+        "OBSERVE_61"
+      ]
+    },
+    {
+      "id": "OBSERVE_61",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_62"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_62",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "82"
+      },
+      "activating": [
+        "MOVE_LEFT_63"
+      ]
+    },
+    {
+      "id": "MOVE_LEFT_63",
+      "execute": "MOVE_LEFT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "20.287499999999998"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_64"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_64",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "80"
+      },
+      "activating": [
+        "UPDATE_POSITION_65"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_65",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "3",
+        "y": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_66"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_66",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "80"
+      },
+      "activating": [
+        "OBSERVE_67"
+      ]
+    },
+    {
+      "id": "OBSERVE_67",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_68"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_68",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "80"
+      },
+      "activating": [
+        "MOVE_LEFT_69"
+      ]
+    },
+    {
+      "id": "MOVE_LEFT_69",
+      "execute": "MOVE_LEFT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "34.46153846153846"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_70"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_70",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "78"
+      },
+      "activating": [
+        "UPDATE_POSITION_71"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_71",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "4",
+        "y": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_72"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_72",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "78"
+      },
+      "activating": [
+        "OBSERVE_73"
+      ]
+    },
+    {
+      "id": "OBSERVE_73",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_74"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_74",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "78"
+      },
+      "activating": [
+        "MOVE_FORWARD_75"
+      ]
+    },
+    {
+      "id": "MOVE_FORWARD_75",
+      "execute": "MOVE_FORWARD",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "11.226315789473684"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_76"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_76",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "76"
+      },
+      "activating": [
+        "UPDATE_POSITION_77"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_77",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "4",
+        "y": "3"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_78"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_78",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "76"
+      },
+      "activating": [
+        "OBSERVE_79"
+      ]
+    },
+    {
+      "id": "OBSERVE_79",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "2",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_80"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_80",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "76"
+      },
+      "activating": [
+        "MOVE_LEFT_81"
+      ]
+    },
+    {
+      "id": "MOVE_LEFT_81",
+      "execute": "MOVE_LEFT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-2.027027027027027"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_82"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_82",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "74"
+      },
+      "activating": [
+        "UPDATE_POSITION_83"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_83",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "5",
+        "y": "3"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_84"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_84",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "74"
+      },
+      "activating": [
+        "OBSERVE_85"
+      ]
+    },
+    {
+      "id": "OBSERVE_85",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "2",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_86"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_86",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "74"
+      },
+      "activating": [
+        "MOVE_BACKWARD_87"
+      ]
+    },
+    {
+      "id": "MOVE_BACKWARD_87",
+      "execute": "MOVE_BACKWARD",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "13.100000000000001"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_88"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_88",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "72"
+      },
+      "activating": [
+        "UPDATE_POSITION_89"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_89",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "5",
+        "y": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_90"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_90",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "72"
+      },
+      "activating": [
+        "OBSERVE_91"
+      ]
+    },
+    {
+      "id": "OBSERVE_91",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_92"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_92",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "72"
+      },
+      "activating": [
+        "MOVE_RIGHT_93"
+      ]
+    },
+    {
+      "id": "MOVE_RIGHT_93",
+      "execute": "MOVE_RIGHT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-2.142857142857143"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_94"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_94",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "70"
+      },
+      "activating": [
+        "UPDATE_POSITION_95"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_95",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "4",
+        "y": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_96"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_96",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "70"
+      },
+      "activating": [
+        "OBSERVE_97"
+      ]
+    },
+    {
+      "id": "OBSERVE_97",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "1",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_98"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_98",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "70"
+      },
+      "activating": [
+        "MOVE_BACKWARD_99"
+      ]
+    },
+    {
+      "id": "MOVE_BACKWARD_99",
+      "execute": "MOVE_BACKWARD",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-2.2058823529411766"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_100"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_100",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "68"
+      },
+      "activating": [
+        "UPDATE_POSITION_101"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_101",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "4",
+        "y": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_102"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_102",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "68"
+      },
+      "activating": [
+        "OBSERVE_103"
+      ]
+    },
+    {
+      "id": "OBSERVE_103",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "2"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_104"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_104",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "68"
+      },
+      "activating": [
+        "MOVE_RIGHT_105"
+      ]
+    },
+    {
+      "id": "MOVE_RIGHT_105",
+      "execute": "MOVE_RIGHT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-1.8181818181818183"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_106"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_106",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "66"
+      },
+      "activating": [
+        "UPDATE_POSITION_107"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_107",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "3",
+        "y": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_108"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_108",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "66"
+      },
+      "activating": [
+        "OBSERVE_109"
+      ]
+    },
+    {
+      "id": "OBSERVE_109",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_110"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_110",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "66"
+      },
+      "activating": [
+        "MOVE_RIGHT_111"
+      ]
+    },
+    {
+      "id": "MOVE_RIGHT_111",
+      "execute": "MOVE_RIGHT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "15.684375"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_112"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_112",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "64"
+      },
+      "activating": [
+        "UPDATE_POSITION_113"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_113",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "2",
+        "y": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_114"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_114",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "64"
+      },
+      "activating": [
+        "OBSERVE_115"
+      ]
+    },
+    {
+      "id": "OBSERVE_115",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "1",
+        "backward_sensor": "2",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_116"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_116",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "64"
+      },
+      "activating": [
+        "MOVE_RIGHT_117"
+      ]
+    },
+    {
+      "id": "MOVE_RIGHT_117",
+      "execute": "MOVE_RIGHT",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-3.870967741935484"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_118"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_118",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "after": "1000",
+      "fixedVariables": {
+        "pbattery": "62"
+      },
+      "activating": [
+        "UPDATE_POSITION_119"
+      ]
+    },
+    {
+      "id": "UPDATE_POSITION_119",
+      "execute": "UPDATE_POSITION",
+      "fixedVariables": {
+        "x": "1",
+        "y": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_120"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_120",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "62"
+      },
+      "activating": [
+        "OBSERVE_121"
+      ]
+    },
+    {
+      "id": "OBSERVE_121",
+      "execute": "OBSERVE",
+      "fixedVariables": {
+        "forward_sensor": "1",
+        "right_sensor": "2",
+        "backward_sensor": "2",
+        "left_sensor": "1"
+      },
+      "activating": [
+        "SYNCHRONIZE_BATTERY_122"
+      ]
+    },
+    {
+      "id": "SYNCHRONIZE_BATTERY_122",
+      "execute": "SYNCHRONIZE_BATTERY",
+      "fixedVariables": {
+        "pbattery": "62"
+      },
+      "activating": [
+        "LAND_123"
+      ]
+    },
+    {
+      "id": "LAND_123",
+      "execute": "LAND",
+      "after": "100",
+      "fixedVariables": {
+        "reward": "-4.0"
+      }
+    }
+  ],
+  "metadata": {
+    "fileType": "Simulation",
+    "formatVersion": 4,
+    "savedAt": "2026-01-07T16:52:32.644712Z",
+    "creator": "Simulation: HYPOTHESIS_TEST; ENDING_PREDICATE : mode = FINISHED or mission_failed = TRUE, SIGNIFICANCE : 0.01, PROBABILITY : 0.99, MAX_STEPS_BEFORE_PROPERTY : 0, EXECUTIONS : 1000, PREDICATE : mission_failed = TRUE, HYPOTHESIS_CHECKING_TYPE : LEFT_TAILED, CHECKING_TYPE : PREDICATE_FINAL",
+    "proB2KernelVersion": "4.15.1-SNAPSHOT",
+    "proBCliVersion": "1.15.2-nightly (b22e35dabe52b49db7c499df9b423f91264a64c0)",
+    "modelName": "DroneMovement"
+  }
+}
