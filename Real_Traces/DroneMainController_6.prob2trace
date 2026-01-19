@@ -1,0 +1,4350 @@
+{
+  "transitionList": [
+    {
+      "name": "$setup_constants",
+      "destState": {
+        "DroneCommunicator_Param.drone_url": "\"radio://0/80/2M/5700B500FA\"",
+        "BATTERY_STEP": "2",
+        "MAP_TO_ABSTRACT_POS": "/*@symbolic*/ λp.(p ∈ ℤ|(IF p ≥ 0 THEN p ÷ 600 + 1 ELSE p ÷ 600 END))",
+        "RpcSuccess": "/*@symbolic*/ λ`_constr_arg15`.(`_constr_arg15` ∈ /*@symbolic*/ {`_freetype_arg1`|(`_freetype_arg1` ∈ ran(JsonNumber) ⇒ (JsonNumber⁻¹)(`_freetype_arg1`) ∈ FLOAT) ∧ (`_freetype_arg1` ∈ ran(JsonArray) ⇒ (JsonArray⁻¹)(`_freetype_arg1`) ∈ seq(recursive.`2`)) ∧ (`_freetype_arg1` ∈ ran(JsonObject) ⇒ (JsonObject⁻¹)(`_freetype_arg1`) ∈ STRING ⇸ recursive.`2`)}|RpcSuccess(`_constr_arg15`))",
+        "BASE_POSITION": "(4↦1)",
+        "JsonValue": "/*@symbolic*/ {`_freetype_arg1`|(`_freetype_arg1` ∈ ran(JsonNumber) ⇒ (JsonNumber⁻¹)(`_freetype_arg1`) ∈ FLOAT) ∧ (`_freetype_arg1` ∈ ran(JsonArray) ⇒ (JsonArray⁻¹)(`_freetype_arg1`) ∈ seq(recursive.`2`)) ∧ (`_freetype_arg1` ∈ ran(JsonObject) ⇒ (JsonObject⁻¹)(`_freetype_arg1`) ∈ STRING ⇸ recursive.`2`)}",
+        "RpcResult": "/*@symbolic*/ {`_freetype_arg13`|`_freetype_arg13` ∈ ran(RpcSuccess) ⇒ (RpcSuccess⁻¹)(`_freetype_arg13`) ∈ /*@symbolic*/ {`_freetype_arg1`|(`_freetype_arg1` ∈ ran(JsonNumber) ⇒ (JsonNumber⁻¹)(`_freetype_arg1`) ∈ FLOAT) ∧ (`_freetype_arg1` ∈ ran(JsonArray) ⇒ (JsonArray⁻¹)(`_freetype_arg1`) ∈ seq(recursive.`2`)) ∧ (`_freetype_arg1` ∈ ran(JsonObject) ⇒ (JsonObject⁻¹)(`_freetype_arg1`) ∈ STRING ⇸ recursive.`2`)}}",
+        "RpcError": "/*@symbolic*/ {`_constr_arg17`,`_constr_res18`|`_constr_res18` = RpcError(`_constr_arg17`)}",
+        "JsonObject": "/*@symbolic*/ λ`_constr_arg11`.(`_constr_arg11` ∈ STRING ⇸ /*@symbolic*/ {`_freetype_arg1`|(`_freetype_arg1` ∈ ran(JsonNumber) ⇒ (JsonNumber⁻¹)(`_freetype_arg1`) ∈ FLOAT) ∧ (`_freetype_arg1` ∈ ran(JsonArray) ⇒ (JsonArray⁻¹)(`_freetype_arg1`) ∈ seq(recursive.`2`)) ∧ (`_freetype_arg1` ∈ ran(JsonObject) ⇒ (JsonObject⁻¹)(`_freetype_arg1`) ∈ STRING ⇸ recursive.`2`)}|JsonObject(`_constr_arg11`))",
+        "WIDTH": "5",
+        "CONCRETE_WIDTH": "3000",
+        "JsonNull": "JsonNull",
+        "JsonArray": "/*@symbolic*/ λ`_constr_arg9`.(`_constr_arg9` ∈ seq(/*@symbolic*/ {`_freetype_arg1`|(`_freetype_arg1` ∈ ran(JsonNumber) ⇒ (JsonNumber⁻¹)(`_freetype_arg1`) ∈ FLOAT) ∧ (`_freetype_arg1` ∈ ran(JsonArray) ⇒ (JsonArray⁻¹)(`_freetype_arg1`) ∈ seq(recursive.`2`)) ∧ (`_freetype_arg1` ∈ ran(JsonObject) ⇒ (JsonObject⁻¹)(`_freetype_arg1`) ∈ STRING ⇸ recursive.`2`)})|JsonArray(`_constr_arg9`))",
+        "CONCRETE_DEPTH": "3000",
+        "JsonNumber": "/*@symbolic*/ λ`_constr_arg5`.(`_constr_arg5` ∈ FLOAT|JsonNumber(`_constr_arg5`))",
+        "GRID_SIZE": "600",
+        "JsonBoolean": "/*@symbolic*/ {`_constr_arg3`,`_constr_res4`|`_constr_res4` = JsonBoolean(`_constr_arg3`)}",
+        "SAFETY_DISTANCE": "0",
+        "JsonString": "/*@symbolic*/ {`_constr_arg7`,`_constr_res8`|`_constr_res8` = JsonString(`_constr_arg7`)}",
+        "DEPTH": "5"
+      }
+    },
+    {
+      "name": "$initialise_machine",
+      "destState": {
+        "reward": "0.0",
+        "init": "TRUE",
+        "sensor_data_actual": "FALSE",
+        "emergency_mode": "FALSE",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "100",
+        "battery_actual": "FALSE",
+        "cycle": "1",
+        "mode": "LANDED",
+        "field": "{(1↦1↦0),(1↦2↦0),(1↦3↦0),(1↦4↦0),(1↦5↦0),(2↦1↦0),(2↦2↦0),(2↦3↦0),(2↦4↦0),(2↦5↦0),(3↦1↦0),(3↦2↦0),(3↦3↦0),(3↦4↦0),(3↦5↦0),(4↦1↦1),(4↦2↦0),(4↦3↦0),(4↦4↦0),(4↦5↦0),(5↦1↦0),(5↦2↦0),(5↦3↦0),(5↦4↦0),(5↦5↦0)}",
+        "last_time": "0",
+        "visited": "{(4↦1)}",
+        "mission_failed": "FALSE",
+        "socket": "105553140583744",
+        "concrete_position": "(1800↦0)",
+        "current_time": "0"
+      }
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "current_time": "9325"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "last_time",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_TAKEOFF",
+      "destState": {
+        "mode": "FLYING",
+        "battery_actual": "FALSE",
+        "last_time": "9325",
+        "current_time": "13083"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "13083",
+        "current_time": "13734"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "last_time": "13734",
+        "current_position": "(4↦2)",
+        "visited": "{(4↦1),(4↦2)}",
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "3",
+        "concrete_position": "(2232↦613)",
+        "current_time": "14281"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "14281",
+        "current_time": "15054"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "field": "{(1↦1↦0),(1↦2↦0),(1↦3↦0),(1↦4↦0),(1↦5↦0),(2↦1↦0),(2↦2↦0),(2↦3↦0),(2↦4↦0),(2↦5↦0),(3↦1↦0),(3↦2↦1),(3↦3↦0),(3↦4↦0),(3↦5↦0),(4↦1↦1),(4↦2↦0),(4↦3↦1),(4↦4↦0),(4↦5↦0),(5↦1↦0),(5↦2↦1),(5↦3↦0),(5↦4↦0),(5↦5↦0)}",
+        "battery_actual": "FALSE",
+        "cycle": "7",
+        "sensor_data_actual": "TRUE",
+        "last_time": "15054",
+        "current_time": "16227"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "16227",
+        "current_time": "16956"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_BACKWARD",
+      "destState": {
+        "reward": "4.2",
+        "sensor_data_actual": "FALSE",
+        "last_time": "16956",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "98",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2232↦0)",
+        "current_time": "19635"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "19635",
+        "current_time": "20427"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "9",
+        "concrete_position": "(2399↦387)",
+        "last_time": "20427",
+        "current_time": "21656"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "21656",
+        "current_time": "22005"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "field": "{(1↦1↦0),(1↦2↦0),(1↦3↦0),(1↦4↦0),(1↦5↦0),(2↦1↦0),(2↦2↦0),(2↦3↦0),(2↦4↦0),(2↦5↦0),(3↦1↦1),(3↦2↦1),(3↦3↦0),(3↦4↦0),(3↦5↦0),(4↦1↦1),(4↦2↦1),(4↦3↦1),(4↦4↦0),(4↦5↦0),(5↦1↦1),(5↦2↦1),(5↦3↦0),(5↦4↦0),(5↦5↦0)}",
+        "battery_actual": "FALSE",
+        "cycle": "13",
+        "sensor_data_actual": "TRUE",
+        "last_time": "22005",
+        "current_time": "22303"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "22303",
+        "current_time": "22524"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_LEFT",
+      "destState": {
+        "reward": "6.740816326530611",
+        "sensor_data_actual": "FALSE",
+        "last_time": "22524",
+        "current_position": "(5↦1)",
+        "visited": "{(4↦1),(4↦2),(5↦1)}",
+        "position_actual": "FALSE",
+        "battery": "96",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2400↦387)",
+        "current_time": "24229"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "24229",
+        "current_time": "25349"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "15",
+        "concrete_position": "(2905↦503)",
+        "last_time": "25349",
+        "current_time": "25853"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "25853",
+        "current_time": "26281"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "19",
+        "sensor_data_actual": "TRUE",
+        "last_time": "26281",
+        "current_time": "26808"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "26808",
+        "current_time": "27112"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_FORWARD",
+      "destState": {
+        "reward": "4.4875",
+        "sensor_data_actual": "FALSE",
+        "last_time": "27112",
+        "current_position": "(5↦2)",
+        "visited": "{(4↦1),(4↦2),(5↦1),(5↦2)}",
+        "position_actual": "FALSE",
+        "battery": "94",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2905↦600)",
+        "current_time": "28813"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "28813",
+        "current_time": "29432"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "21",
+        "concrete_position": "(2879↦786)",
+        "last_time": "29432",
+        "current_time": "30113"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "30113",
+        "current_time": "30346"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "field": "{(1↦1↦0),(1↦2↦0),(1↦3↦0),(1↦4↦0),(1↦5↦0),(2↦1↦0),(2↦2↦0),(2↦3↦0),(2↦4↦0),(2↦5↦0),(3↦1↦1),(3↦2↦1),(3↦3↦0),(3↦4↦0),(3↦5↦0),(4↦1↦1),(4↦2↦1),(4↦3↦1),(4↦4↦0),(4↦5↦0),(5↦1↦1),(5↦2↦1),(5↦3↦1),(5↦4↦0),(5↦5↦0)}",
+        "battery_actual": "FALSE",
+        "cycle": "25",
+        "sensor_data_actual": "TRUE",
+        "last_time": "30346",
+        "current_time": "30531"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "30531",
+        "current_time": "30717"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_BACKWARD",
+      "destState": {
+        "reward": "-0.4787234042553191",
+        "sensor_data_actual": "FALSE",
+        "last_time": "30717",
+        "current_position": "(5↦1)",
+        "position_actual": "FALSE",
+        "battery": "92",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2879↦0)",
+        "current_time": "32910"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "32910",
+        "current_time": "33820"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "27",
+        "concrete_position": "(2911↦387)",
+        "last_time": "33820",
+        "current_time": "34285"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "34285",
+        "current_time": "34667"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "31",
+        "sensor_data_actual": "TRUE",
+        "last_time": "34667",
+        "current_time": "35006"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "35006",
+        "current_time": "35297"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_FORWARD",
+      "destState": {
+        "reward": "-0.32608695652173914",
+        "sensor_data_actual": "FALSE",
+        "last_time": "35297",
+        "current_position": "(5↦2)",
+        "position_actual": "FALSE",
+        "battery": "90",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2911↦600)",
+        "current_time": "36953"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "36953",
+        "current_time": "37552"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "33",
+        "concrete_position": "(2856↦917)",
+        "last_time": "37552",
+        "current_time": "38196"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "38196",
+        "current_time": "38490"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "37",
+        "sensor_data_actual": "TRUE",
+        "last_time": "38490",
+        "current_time": "38681"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "38681",
+        "current_time": "38861"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_BACKWARD",
+      "destState": {
+        "reward": "-0.5",
+        "sensor_data_actual": "FALSE",
+        "last_time": "38861",
+        "current_position": "(5↦1)",
+        "position_actual": "FALSE",
+        "battery": "88",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2856↦0)",
+        "current_time": "40990"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "40990",
+        "current_time": "41874"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "39",
+        "concrete_position": "(2856↦446)",
+        "last_time": "41874",
+        "current_time": "42303"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "42303",
+        "current_time": "42618"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "43",
+        "sensor_data_actual": "TRUE",
+        "last_time": "42618",
+        "current_time": "42907"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "42907",
+        "current_time": "43156"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_RIGHT",
+      "destState": {
+        "reward": "-0.34090909090909094",
+        "sensor_data_actual": "FALSE",
+        "last_time": "43156",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "86",
+        "battery_actual": "FALSE",
+        "concrete_position": "(1800↦446)",
+        "current_time": "44729"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "44729",
+        "current_time": "45317"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "45",
+        "concrete_position": "(2378↦545)",
+        "last_time": "45317",
+        "current_time": "45790"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "45790",
+        "current_time": "45981"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "49",
+        "sensor_data_actual": "TRUE",
+        "last_time": "45981",
+        "current_time": "46155"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "46155",
+        "current_time": "46313"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_LEFT",
+      "destState": {
+        "reward": "-0.5232558139534884",
+        "sensor_data_actual": "FALSE",
+        "last_time": "46313",
+        "current_position": "(5↦1)",
+        "position_actual": "FALSE",
+        "battery": "84",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2400↦545)",
+        "current_time": "48029"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "48029",
+        "current_time": "48645"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "51",
+        "concrete_position": "(2786↦554)",
+        "last_time": "48645",
+        "current_time": "48995"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "48995",
+        "current_time": "49252"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "55",
+        "sensor_data_actual": "TRUE",
+        "last_time": "49252",
+        "current_time": "49501"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "49501",
+        "current_time": "49704"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_RIGHT",
+      "destState": {
+        "reward": "-0.3571428571428571",
+        "sensor_data_actual": "FALSE",
+        "last_time": "49704",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "82",
+        "battery_actual": "FALSE",
+        "concrete_position": "(1800↦554)",
+        "current_time": "51257"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "51257",
+        "current_time": "51829"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "57",
+        "concrete_position": "(2363↦579)",
+        "last_time": "51829",
+        "current_time": "52234"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "52234",
+        "current_time": "52435"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "61",
+        "sensor_data_actual": "TRUE",
+        "last_time": "52435",
+        "current_time": "52592"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "52592",
+        "current_time": "52755"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_LEFT",
+      "destState": {
+        "reward": "-0.548780487804878",
+        "sensor_data_actual": "FALSE",
+        "last_time": "52755",
+        "current_position": "(5↦1)",
+        "position_actual": "FALSE",
+        "battery": "80",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2400↦579)",
+        "current_time": "54434"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "54434",
+        "current_time": "54982"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "63",
+        "concrete_position": "(2686↦595)",
+        "last_time": "54982",
+        "current_time": "55334"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "55334",
+        "current_time": "55596"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "67",
+        "sensor_data_actual": "TRUE",
+        "last_time": "55596",
+        "current_time": "55842"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "55842",
+        "current_time": "56042"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_RIGHT",
+      "destState": {
+        "reward": "-0.375",
+        "sensor_data_actual": "FALSE",
+        "last_time": "56042",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "78",
+        "battery_actual": "FALSE",
+        "concrete_position": "(1800↦595)",
+        "current_time": "57570"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "57570",
+        "current_time": "58087"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "69",
+        "concrete_position": "(2302↦526)",
+        "last_time": "58087",
+        "current_time": "58668"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "58668",
+        "current_time": "58883"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "73",
+        "sensor_data_actual": "TRUE",
+        "last_time": "58883",
+        "current_time": "59031"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "59031",
+        "current_time": "59183"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_LEFT",
+      "destState": {
+        "reward": "-0.576923076923077",
+        "sensor_data_actual": "FALSE",
+        "last_time": "59183",
+        "current_position": "(5↦1)",
+        "position_actual": "FALSE",
+        "battery": "76",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2400↦526)",
+        "current_time": "60781"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "60781",
+        "current_time": "61363"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "75",
+        "concrete_position": "(2772↦531)",
+        "last_time": "61363",
+        "current_time": "61614"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "61614",
+        "current_time": "61826"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "79",
+        "sensor_data_actual": "TRUE",
+        "last_time": "61826",
+        "current_time": "62043"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "62043",
+        "current_time": "62235"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_RIGHT",
+      "destState": {
+        "reward": "-0.39473684210526316",
+        "sensor_data_actual": "FALSE",
+        "last_time": "62235",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "74",
+        "battery_actual": "FALSE",
+        "concrete_position": "(1800↦531)",
+        "current_time": "63772"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "63772",
+        "current_time": "64206"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "81",
+        "concrete_position": "(2356↦546)",
+        "last_time": "64206",
+        "current_time": "64382"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "64382",
+        "current_time": "64532"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "85",
+        "sensor_data_actual": "TRUE",
+        "last_time": "64532",
+        "current_time": "64683"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "64683",
+        "current_time": "64830"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_LEFT",
+      "destState": {
+        "reward": "-0.6081081081081081",
+        "sensor_data_actual": "FALSE",
+        "last_time": "64830",
+        "current_position": "(5↦1)",
+        "position_actual": "FALSE",
+        "battery": "72",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2400↦546)",
+        "current_time": "66452"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "66452",
+        "current_time": "67098"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "87",
+        "concrete_position": "(2723↦549)",
+        "last_time": "67098",
+        "current_time": "67655"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "67655",
+        "current_time": "67889"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "91",
+        "sensor_data_actual": "TRUE",
+        "last_time": "67889",
+        "current_time": "68097"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "68097",
+        "current_time": "68251"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_RIGHT",
+      "destState": {
+        "reward": "-0.41666666666666663",
+        "sensor_data_actual": "FALSE",
+        "last_time": "68251",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "70",
+        "battery_actual": "FALSE",
+        "concrete_position": "(1800↦549)",
+        "current_time": "69757"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "69757",
+        "current_time": "70235"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "93",
+        "concrete_position": "(2321↦574)",
+        "last_time": "70235",
+        "current_time": "70394"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "70394",
+        "current_time": "70558"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "97",
+        "sensor_data_actual": "TRUE",
+        "last_time": "70558",
+        "current_time": "70709"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "70709",
+        "current_time": "70857"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_LEFT",
+      "destState": {
+        "reward": "-0.6428571428571429",
+        "sensor_data_actual": "FALSE",
+        "last_time": "70857",
+        "current_position": "(5↦1)",
+        "position_actual": "FALSE",
+        "battery": "68",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2400↦574)",
+        "current_time": "72506"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "72506",
+        "current_time": "73207"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "99",
+        "concrete_position": "(2732↦569)",
+        "last_time": "73207",
+        "current_time": "73703"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "73703",
+        "current_time": "73883"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "103",
+        "sensor_data_actual": "TRUE",
+        "last_time": "73883",
+        "current_time": "74039"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "74039",
+        "current_time": "74188"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_RIGHT",
+      "destState": {
+        "reward": "-0.4411764705882353",
+        "sensor_data_actual": "FALSE",
+        "last_time": "74188",
+        "current_position": "(4↦1)",
+        "position_actual": "FALSE",
+        "battery": "66",
+        "battery_actual": "FALSE",
+        "concrete_position": "(1800↦569)",
+        "current_time": "75702"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "75702",
+        "current_time": "76171"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "105",
+        "concrete_position": "(2317↦546)",
+        "last_time": "76171",
+        "current_time": "76329"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "76329",
+        "current_time": "76478"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "109",
+        "sensor_data_actual": "TRUE",
+        "last_time": "76478",
+        "current_time": "76628"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "76628",
+        "current_time": "76773"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_FORWARD",
+      "destState": {
+        "reward": "-0.2272727272727273",
+        "sensor_data_actual": "FALSE",
+        "last_time": "76773",
+        "current_position": "(4↦2)",
+        "position_actual": "FALSE",
+        "battery": "64",
+        "battery_actual": "FALSE",
+        "concrete_position": "(2317↦600)",
+        "current_time": "78373"
+      },
+      "destStateNotChanged": [
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "78373",
+        "current_time": "78974"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_UPDATE_POSITION",
+      "destState": {
+        "position_actual": "TRUE",
+        "battery_actual": "FALSE",
+        "cycle": "111",
+        "concrete_position": "(2065↦852)",
+        "last_time": "78974",
+        "current_time": "79473"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "79473",
+        "current_time": "79692"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_OBSERVE",
+      "destState": {
+        "battery_actual": "FALSE",
+        "cycle": "115",
+        "sensor_data_actual": "TRUE",
+        "last_time": "79692",
+        "current_time": "79870"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_SYNCHRONIZE_BATTERY",
+      "destState": {
+        "battery_actual": "TRUE",
+        "last_time": "79870",
+        "current_time": "80020"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    },
+    {
+      "name": "MAIN_LAND",
+      "destState": {
+        "reward": "37.5",
+        "mode": "FINISHED",
+        "last_time": "80020",
+        "current_time": "81234"
+      },
+      "destStateNotChanged": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "position_actual",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ]
+    }
+  ],
+  "variableNames": [
+    "battery",
+    "battery_actual",
+    "concrete_position",
+    "current_position",
+    "current_time",
+    "cycle",
+    "emergency_mode",
+    "field",
+    "init",
+    "last_time",
+    "mission_failed",
+    "mode",
+    "position_actual",
+    "reward",
+    "sensor_data_actual",
+    "socket",
+    "visited"
+  ],
+  "constantNames": [
+    "JsonValue",
+    "JsonNull",
+    "JsonBoolean",
+    "JsonNumber",
+    "JsonString",
+    "JsonArray",
+    "JsonObject",
+    "RpcResult",
+    "RpcSuccess",
+    "RpcError",
+    "BATTERY_STEP",
+    "WIDTH",
+    "DEPTH",
+    "BASE_POSITION",
+    "CONCRETE_DEPTH",
+    "MAP_TO_ABSTRACT_POS",
+    "SAFETY_DISTANCE",
+    "GRID_SIZE",
+    "CONCRETE_WIDTH",
+    "DroneCommunicator_Param.drone_url"
+  ],
+  "setNames": [
+    "MODES"
+  ],
+  "machineOperationInfos": {
+    "DroneMainController.LAND": {
+      "operationName": "DroneMainController.LAND",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "mode"
+      ],
+      "writtenVariables": [
+        "mode",
+        "reward"
+      ],
+      "nonDetWrittenVariables": [
+        "reward"
+      ]
+    },
+    "DroneMainController.Drone_GetBattery": {
+      "operationName": "DroneMainController.Drone_GetBattery",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "MAIN_BACKWARD": {
+      "operationName": "MAIN_BACKWARD",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "DroneCommunicator_Param.drone_url",
+        "GRID_SIZE",
+        "JsonNumber",
+        "JsonString",
+        "MAP_TO_ABSTRACT_POS",
+        "RpcSuccess",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "last_time",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'GRID_SIZE'": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.Drone_Left": {
+      "operationName": "DroneMainController.Drone_Left",
+      "parameterNames": [
+        "dist"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "dist": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.MOVE_FORWARD": {
+      "operationName": "DroneMainController.MOVE_FORWARD",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "CONCRETE_DEPTH",
+        "DEPTH",
+        "GRID_SIZE",
+        "MAP_TO_ABSTRACT_POS",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'CONCRETE_DEPTH'": "integer",
+        "'GRID_SIZE'": "integer"
+      }
+    },
+    "DroneMainController.Drone_Right": {
+      "operationName": "DroneMainController.Drone_Right",
+      "parameterNames": [
+        "dist"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "dist": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.Drone_GetDownDistance": {
+      "operationName": "DroneMainController.Drone_GetDownDistance",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Drone_GetLeftDistance": {
+      "operationName": "DroneMainController.Drone_GetLeftDistance",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.register_time": {
+      "operationName": "DroneMainController.register_time",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "current_time"
+      ],
+      "writtenVariables": [
+        "current_time",
+        "last_time"
+      ]
+    },
+    "DroneMainController.MOVE_BACKWARD": {
+      "operationName": "DroneMainController.MOVE_BACKWARD",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "GRID_SIZE",
+        "MAP_TO_ABSTRACT_POS",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'GRID_SIZE'": "integer"
+      }
+    },
+    "DroneMainController.register_sensors": {
+      "operationName": "DroneMainController.register_sensors",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonArray",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonArray'": "set(couple(seq(freetype('JsonValue')),freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.Drone_GetYaw": {
+      "operationName": "DroneMainController.Drone_GetYaw",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.TAKEOFF": {
+      "operationName": "DroneMainController.TAKEOFF",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "battery",
+        "battery_actual",
+        "emergency_mode",
+        "mode"
+      ],
+      "writtenVariables": [
+        "battery_actual",
+        "mode"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer"
+      }
+    },
+    "DroneMainController.Drone_Forward": {
+      "operationName": "DroneMainController.Drone_Forward",
+      "parameterNames": [
+        "dist"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "dist": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.Drone_Turn_Right": {
+      "operationName": "DroneMainController.Drone_Turn_Right",
+      "parameterNames": [
+        "degrees"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "degrees": "integer"
+      }
+    },
+    "DroneMainController.Destroy": {
+      "operationName": "DroneMainController.Destroy",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "init"
+      ]
+    },
+    "DroneMainController.OBSERVE": {
+      "operationName": "DroneMainController.OBSERVE",
+      "parameterNames": [
+        "concrete_backward_sensor",
+        "concrete_forward_sensor",
+        "concrete_left_sensor",
+        "concrete_right_sensor"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "GRID_SIZE",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "mode",
+        "position_actual"
+      ],
+      "writtenVariables": [
+        "battery_actual",
+        "field",
+        "sensor_data_actual"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "concrete_left_sensor": "integer",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "concrete_backward_sensor": "integer",
+        "concrete_forward_sensor": "integer",
+        "'GRID_SIZE'": "integer",
+        "concrete_right_sensor": "integer"
+      }
+    },
+    "DroneMainController.Drone_Backward": {
+      "operationName": "DroneMainController.Drone_Backward",
+      "parameterNames": [
+        "dist"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "dist": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.Drone_Down": {
+      "operationName": "DroneMainController.Drone_Down",
+      "parameterNames": [
+        "dist"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "dist": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "MAIN_UPDATE_POSITION": {
+      "operationName": "MAIN_UPDATE_POSITION",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "MAP_TO_ABSTRACT_POS",
+        "RpcSuccess",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "current_time",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "socket",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "cycle",
+        "emergency_mode",
+        "last_time",
+        "position_actual",
+        "visited"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "MAIN_LEFT": {
+      "operationName": "MAIN_LEFT",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "CONCRETE_WIDTH",
+        "DEPTH",
+        "DroneCommunicator_Param.drone_url",
+        "GRID_SIZE",
+        "JsonNumber",
+        "JsonString",
+        "MAP_TO_ABSTRACT_POS",
+        "RpcSuccess",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "last_time",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'CONCRETE_WIDTH'": "integer",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'GRID_SIZE'": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.SYNCHRONIZE_BATTERY": {
+      "operationName": "DroneMainController.SYNCHRONIZE_BATTERY",
+      "parameterNames": [
+        "pbattery"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "emergency_mode"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual"
+      ],
+      "typeMap": {
+        "pbattery": "integer"
+      }
+    },
+    "DroneMainController.UPDATE_POSITION": {
+      "operationName": "DroneMainController.UPDATE_POSITION",
+      "parameterNames": [
+        "concrete_x",
+        "concrete_y"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "MAP_TO_ABSTRACT_POS",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "emergency_mode",
+        "field",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "position_actual",
+        "visited"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "concrete_y": "integer",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "concrete_x": "integer",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))"
+      }
+    },
+    "DroneMainController.Drone_Up": {
+      "operationName": "DroneMainController.Drone_Up",
+      "parameterNames": [
+        "dist"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "dist": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.Drone_GetRightDistance": {
+      "operationName": "DroneMainController.Drone_GetRightDistance",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Drone_Beep": {
+      "operationName": "DroneMainController.Drone_Beep",
+      "parameterNames": [
+        "effect"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "effect": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.open_link": {
+      "operationName": "DroneMainController.open_link",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonBoolean",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonBoolean'": "set(couple(boolean,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.close_link": {
+      "operationName": "DroneMainController.close_link",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))"
+      }
+    },
+    "DroneMainController.Drone_GetFrontDistance": {
+      "operationName": "DroneMainController.Drone_GetFrontDistance",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Drone_Turn_Left": {
+      "operationName": "DroneMainController.Drone_Turn_Left",
+      "parameterNames": [
+        "degrees"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "degrees": "integer"
+      }
+    },
+    "DroneMainController.Drone_GetZ": {
+      "operationName": "DroneMainController.Drone_GetZ",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Drone_GetUpDistance": {
+      "operationName": "DroneMainController.Drone_GetUpDistance",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Drone_GetX": {
+      "operationName": "DroneMainController.Drone_GetX",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Drone_GetY": {
+      "operationName": "DroneMainController.Drone_GetY",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "MAIN_OBSERVE": {
+      "operationName": "MAIN_OBSERVE",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "DroneCommunicator_Param.drone_url",
+        "GRID_SIZE",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "cycle",
+        "emergency_mode",
+        "field",
+        "init",
+        "mode",
+        "position_actual",
+        "socket"
+      ],
+      "writtenVariables": [
+        "battery_actual",
+        "current_time",
+        "cycle",
+        "field",
+        "last_time",
+        "sensor_data_actual"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'GRID_SIZE'": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "MAIN_LAND": {
+      "operationName": "MAIN_LAND",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonString",
+        "RpcSuccess",
+        "current_time",
+        "init",
+        "mode",
+        "socket"
+      ],
+      "writtenVariables": [
+        "current_time",
+        "last_time",
+        "mode",
+        "reward"
+      ],
+      "nonDetWrittenVariables": [
+        "reward"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))"
+      }
+    },
+    "DroneMainController.Drone_GetPitch": {
+      "operationName": "DroneMainController.Drone_GetPitch",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Drone_GetBackDistance": {
+      "operationName": "DroneMainController.Drone_GetBackDistance",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.Init": {
+      "operationName": "DroneMainController.Init",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "init"
+      ],
+      "writtenVariables": [
+        "init",
+        "socket"
+      ]
+    },
+    "MAIN_FORWARD": {
+      "operationName": "MAIN_FORWARD",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "CONCRETE_DEPTH",
+        "DEPTH",
+        "DroneCommunicator_Param.drone_url",
+        "GRID_SIZE",
+        "JsonNumber",
+        "JsonString",
+        "MAP_TO_ABSTRACT_POS",
+        "RpcSuccess",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "last_time",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'CONCRETE_DEPTH'": "integer",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'GRID_SIZE'": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.open_link_with_commander_type": {
+      "operationName": "DroneMainController.open_link_with_commander_type",
+      "parameterNames": [
+        "commander"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonBoolean",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "commander": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonBoolean'": "set(couple(boolean,freetype('JsonValue')))"
+      }
+    },
+    "DroneMainController.MOVE_LEFT": {
+      "operationName": "DroneMainController.MOVE_LEFT",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "CONCRETE_WIDTH",
+        "DEPTH",
+        "GRID_SIZE",
+        "MAP_TO_ABSTRACT_POS",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'CONCRETE_WIDTH'": "integer",
+        "'GRID_SIZE'": "integer"
+      }
+    },
+    "DroneMainController.Drone_GetRoll": {
+      "operationName": "DroneMainController.Drone_GetRoll",
+      "outputParameterNames": [
+        "out"
+      ],
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonNumber",
+        "JsonString",
+        "RpcSuccess",
+        "cycle",
+        "init",
+        "socket"
+      ],
+      "writtenVariables": [
+        "cycle"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))",
+        "out": "integer"
+      }
+    },
+    "DroneMainController.MOVE_RIGHT": {
+      "operationName": "DroneMainController.MOVE_RIGHT",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "GRID_SIZE",
+        "MAP_TO_ABSTRACT_POS",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "emergency_mode",
+        "field",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'GRID_SIZE'": "integer"
+      }
+    },
+    "DroneMainController.close_link_emergency_stop": {
+      "operationName": "DroneMainController.close_link_emergency_stop",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonBoolean",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'JsonBoolean'": "set(couple(boolean,freetype('JsonValue')))"
+      }
+    },
+    "MAIN_RIGHT": {
+      "operationName": "MAIN_RIGHT",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DEPTH",
+        "DroneCommunicator_Param.drone_url",
+        "GRID_SIZE",
+        "JsonNumber",
+        "JsonString",
+        "MAP_TO_ABSTRACT_POS",
+        "RpcSuccess",
+        "WIDTH",
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "emergency_mode",
+        "field",
+        "init",
+        "mission_failed",
+        "mode",
+        "position_actual",
+        "sensor_data_actual",
+        "socket",
+        "visited"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "concrete_position",
+        "current_position",
+        "current_time",
+        "last_time",
+        "mission_failed",
+        "position_actual",
+        "reward",
+        "sensor_data_actual",
+        "visited"
+      ],
+      "nonDetWrittenVariables": [
+        "concrete_position",
+        "reward"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'WIDTH'": "integer",
+        "'DEPTH'": "integer",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))",
+        "'MAP_TO_ABSTRACT_POS'": "set(couple(integer,integer))",
+        "'GRID_SIZE'": "integer",
+        "'JsonNumber'": "set(couple(real,freetype('JsonValue')))"
+      }
+    },
+    "MAIN_TAKEOFF": {
+      "operationName": "MAIN_TAKEOFF",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "BATTERY_STEP",
+        "DroneCommunicator_Param.drone_url",
+        "JsonString",
+        "RpcSuccess",
+        "battery",
+        "battery_actual",
+        "current_time",
+        "emergency_mode",
+        "init",
+        "mode",
+        "socket"
+      ],
+      "writtenVariables": [
+        "battery_actual",
+        "current_time",
+        "last_time",
+        "mode"
+      ],
+      "typeMap": {
+        "'BATTERY_STEP'": "integer",
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))"
+      }
+    },
+    "DroneMainController.Drone_Takeoff": {
+      "operationName": "DroneMainController.Drone_Takeoff",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))"
+      }
+    },
+    "DroneMainController.Drone_Land": {
+      "operationName": "DroneMainController.Drone_Land",
+      "topLevel": false,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "DroneCommunicator_Param.drone_url",
+        "JsonString",
+        "RpcSuccess",
+        "init",
+        "socket"
+      ],
+      "typeMap": {
+        "'JsonString'": "set(couple(string,freetype('JsonValue')))",
+        "'DroneCommunicator_Param.drone_url'": "string",
+        "'RpcSuccess'": "set(couple(freetype('JsonValue'),freetype('RpcResult')))"
+      }
+    },
+    "MAIN_SYNCHRONIZE_BATTERY": {
+      "operationName": "MAIN_SYNCHRONIZE_BATTERY",
+      "topLevel": true,
+      "type": "CLASSICAL_B",
+      "readVariables": [
+        "battery",
+        "current_time",
+        "emergency_mode"
+      ],
+      "writtenVariables": [
+        "battery",
+        "battery_actual",
+        "current_time",
+        "last_time"
+      ]
+    }
+  },
+  "globalIdentifierTypes": {
+    "reward": "real",
+    "init": "boolean",
+    "sensor_data_actual": "boolean",
+    "emergency_mode": "boolean",
+    "current_position": "couple(integer,integer)",
+    "position_actual": "boolean",
+    "battery": "integer",
+    "cycle": "integer",
+    "battery_actual": "boolean",
+    "mode": "global('MODES')",
+    "field": "set(couple(couple(integer,integer),integer))",
+    "last_time": "integer",
+    "visited": "set(couple(integer,integer))",
+    "mission_failed": "boolean",
+    "socket": "integer",
+    "concrete_position": "couple(integer,integer)",
+    "current_time": "integer"
+  },
+  "metadata": {
+    "fileType": "Trace",
+    "formatVersion": 6,
+    "savedAt": "2026-01-13T13:32:05.004430Z",
+    "creator": "traceReplay",
+    "proB2KernelVersion": "4.15.1-SNAPSHOT",
+    "proBCliVersion": "1.15.1-final",
+    "modelName": "DroneMainController"
+  }
+}
