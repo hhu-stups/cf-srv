@@ -3,12 +3,12 @@ DEFINITIONS
     "LibraryIO.def";
     "LibraryMeta.def";
     SET_PREF_OPERATION_REUSE == FALSE;
-    MAX_OPERATIONS_INITIALISATION  == 0;
+    //MAX_OPERATIONS_INITIALISATION  == 0;
     SET_PREF_MAX_OPERATIONS  == 0;
 
     //VISB_SVG_FILE == "";
     //VISB_SVG_BOX == rec(width:1000, height:1000);
-    VISB_SVG_OBJECTS1 == rec(svg_class:"foreignObject", x:0, y:0, width:800, height:450, `font-size`:7,
+    VISB_SVG_OBJECTS1 == rec(svg_class:"foreignObject", x:700, y:100, width:216, height:384, `font-size`:7,
          text:```<video id="vid1" style="width:100%; height:100%; box-sizing:border-box; font-size: 7px;" autoplay muted>
                     <source src="./drone_visb_real.mp4#t=${(last_time)/1000},${(current_time)/1000}" type="video/mp4">Unsupported
                  </video>```);
@@ -17,7 +17,7 @@ VARIABLES
 INVARIANT
     last_time : NATURAL & current_time : NATURAL
 INITIALISATION 
-  last_time, current_time := 0, DELTA_WALLTIME;
+  last_time, current_time := 0, 0;
   Init;
   //open_link;
   open_link_with_commander_type("motion");

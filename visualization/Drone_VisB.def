@@ -43,7 +43,6 @@ DEFINITIONS
 
     VISITED_TXT(i,X,Y) == rec(`id`:i, svg_class: "text",
         x: X*100+75, y: Y*100+75,
-        width:100, height:100,
         `font-size`:35, `text-anchor`:"left", `dominant-baseline`:"central",
         text: IF (WIDTH + 1 - X) |-> (DEPTH + 1 - Y) : visited THEN "V" ELSE "" END );
 

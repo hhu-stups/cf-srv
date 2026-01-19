@@ -1,10 +1,12 @@
-MACHINE DroneCommunicator_Param(drone_url) SEES LibraryJSON, LibraryZMQ_RPC
+MACHINE DroneCommunicator_Param(drone_url) INCLUDES LibraryJSON, LibraryZMQ_RPC
 CONSTRAINTS
     drone_url : STRING
 DEFINITIONS
   "LibraryZMQ_RPC.def";
   "LibraryReals.def";
-  SET_PREF_MAX_OPERATIONS == 0
+   SET_PREF_OPERATION_REUSE == FALSE;
+   MAX_OPERATIONS_INITIALISATION  == 0;
+   SET_PREF_MAX_OPERATIONS  == 0
 VARIABLES init, socket, cycle
 INVARIANT
   init:BOOL &

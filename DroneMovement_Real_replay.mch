@@ -1,5 +1,5 @@
 
-MACHINE DroneMovement_Real
+MACHINE DroneMovement_Real_replay
 SETS /* enumerated */
   MODES={LANDED,FLYING,FINISHED}
 CONCRETE_CONSTANTS
@@ -39,10 +39,10 @@ PROPERTIES
   & /*@label M6_Quadcopter_Concrete_Movement_Ctx:axm_concrete_depth */ CONCRETE_DEPTH = DEPTH * GRID_SIZE
   & /*@label M6_Quadcopter_Concrete_Movement_Ctx:axm_safety_distance */ SAFETY_DISTANCE : NATURAL
   & /*@label M6_Quadcopter_Concrete_Movement_Ctx:axm_map_abstract_pos */ MAP_TO_ABSTRACT_POS = /*@symbolic*/ %p.(p : INTEGER & p >= 0|p / GRID_SIZE + 1) \/ /*@symbolic*/ %p.(p : INTEGER & p < 0|p / GRID_SIZE)
-  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst:inst_DEPTH */ DEPTH = 5
-  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst:inst_WIDTH */ WIDTH = 5
-  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst:inst_grid_size */ GRID_SIZE = 600
-  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst:inst_safety_distance */ SAFETY_DISTANCE = 0
+  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_DEPTH */ DEPTH = 5
+  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_WIDTH */ WIDTH = 5
+  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_grid_size */ GRID_SIZE = 600
+  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_safety_distance */ SAFETY_DISTANCE = 0
   & BATTERY_STEP = 2
 INVARIANT
     concrete_position : INTEGER * INTEGER
@@ -87,9 +87,9 @@ INITIALISATION
       ||
          battery_actual := FALSE
       ||
-         current_position := BASE_POSITION
+         current_position :: (1 .. WIDTH) * (1 .. DEPTH)
       ||
-         visited := {BASE_POSITION}
+         visited :: POW((1 .. WIDTH) * (1 .. DEPTH))
       ||
          field := (1 .. WIDTH) * (1 .. DEPTH) * {0} <+ {BASE_POSITION |-> 1}
       ||
@@ -99,15 +99,15 @@ INITIALISATION
       ||
          concrete_position : (concrete_position : INTEGER * INTEGER & (prj1(INTEGER,INTEGER)(concrete_position) |-> prj1(INTEGER,INTEGER)(BASE_POSITION) : MAP_TO_ABSTRACT_POS & prj2(INTEGER,INTEGER)(concrete_position) |-> prj2(INTEGER,INTEGER)(BASE_POSITION) : MAP_TO_ABSTRACT_POS))
       ||
-         reward := 0.0
+         reward :: REAL
     END
 OPERATIONS
   TAKEOFF = 
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mode */ mode = LANDED
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency_mode */ emergency_mode = FALSE
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mode */ mode = LANDED
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery */ battery > BATTERY_STEP
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery_actual */ battery_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency_mode */ emergency_mode = FALSE
     THEN 
          mode := FLYING
       ||
@@ -116,16 +116,16 @@ OPERATIONS
   
   MOVE_LEFT = 
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mode */ mode = FLYING
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_position */ position_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_move_outside */ prj1(INTEGER,INTEGER)(current_position) + 1 <= WIDTH
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) + 1 |-> prj2(INTEGER,INTEGER)(current_position)) /= 2
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mission_status */ mission_failed = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_pos_does_not_move_outside */ prj1(INTEGER,INTEGER)(concrete_position) <= CONCRETE_WIDTH - GRID_SIZE
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mode */ mode = FLYING
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_sensor_data_actual */ sensor_data_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_position */ position_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery */ battery > BATTERY_STEP
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery_actual */ battery_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency_mode */ emergency_mode = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_move_outside */ prj1(INTEGER,INTEGER)(current_position) + 1 <= WIDTH
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) + 1 |-> prj2(INTEGER,INTEGER)(current_position)) /= 2
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mission_status */ mission_failed = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_pos_does_not_move_outside */ prj1(INTEGER,INTEGER)(concrete_position) <= CONCRETE_WIDTH - GRID_SIZE
     THEN 
          sensor_data_actual := FALSE
       ||
@@ -156,16 +156,16 @@ OPERATIONS
   
   MOVE_RIGHT = 
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mode */ mode = FLYING
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_position */ position_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_move_outside */ prj1(INTEGER,INTEGER)(current_position) - 1 >= 1
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) - 1 |-> prj2(INTEGER,INTEGER)(current_position)) /= 2
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mission_status */ mission_failed = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_pos_does_not_move_outside */ prj1(INTEGER,INTEGER)(concrete_position) >= GRID_SIZE
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mode */ mode = FLYING
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_sensor_data_actual */ sensor_data_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_position */ position_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery */ battery > BATTERY_STEP
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery_actual */ battery_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency_mode */ emergency_mode = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_move_outside */ prj1(INTEGER,INTEGER)(current_position) - 1 >= 1
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) - 1 |-> prj2(INTEGER,INTEGER)(current_position)) /= 2
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mission_status */ mission_failed = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_pos_does_not_move_outside */ prj1(INTEGER,INTEGER)(concrete_position) >= GRID_SIZE
     THEN 
          sensor_data_actual := FALSE
       ||
@@ -196,16 +196,16 @@ OPERATIONS
   
   MOVE_FORWARD = 
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mode */ mode = FLYING
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_position */ position_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_move_outside */ prj2(INTEGER,INTEGER)(current_position) + 1 <= DEPTH
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) |-> prj2(INTEGER,INTEGER)(current_position) + 1) /= 2
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mission_status */ mission_failed = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_pos_does_not_move_outside */ prj2(INTEGER,INTEGER)(concrete_position) <= CONCRETE_DEPTH - GRID_SIZE
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mode */ mode = FLYING
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_sensor_data_actual */ sensor_data_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_position */ position_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery */ battery > BATTERY_STEP
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery_actual */ battery_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency_mode */ emergency_mode = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_move_outside */ prj2(INTEGER,INTEGER)(current_position) + 1 <= DEPTH
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) |-> prj2(INTEGER,INTEGER)(current_position) + 1) /= 2
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mission_status */ mission_failed = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_pos_does_not_move_outside */ prj2(INTEGER,INTEGER)(concrete_position) <= CONCRETE_DEPTH - GRID_SIZE
     THEN 
          sensor_data_actual := FALSE
       ||
@@ -236,16 +236,16 @@ OPERATIONS
   
   MOVE_BACKWARD = 
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mode */ mode = FLYING
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_position */ position_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_move_outside */ prj2(INTEGER,INTEGER)(current_position) - 1 >= 1
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) |-> prj2(INTEGER,INTEGER)(current_position) - 1) /= 2
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mission_status */ mission_failed = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_pos_does_not_move_outside */ prj2(INTEGER,INTEGER)(concrete_position) >= GRID_SIZE
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mode */ mode = FLYING
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_sensor_data_actual */ sensor_data_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_position */ position_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery */ battery > BATTERY_STEP
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery_actual */ battery_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency_mode */ emergency_mode = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_move_outside */ prj2(INTEGER,INTEGER)(current_position) - 1 >= 1
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) |-> prj2(INTEGER,INTEGER)(current_position) - 1) /= 2
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mission_status */ mission_failed = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_pos_does_not_move_outside */ prj2(INTEGER,INTEGER)(concrete_position) >= GRID_SIZE
     THEN 
          sensor_data_actual := FALSE
       ||
@@ -276,7 +276,7 @@ OPERATIONS
   
   LAND = 
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mode */ mode = FLYING
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mode */ mode = FLYING
     THEN 
       mode := FINISHED ||
       reward :: REAL
@@ -284,27 +284,27 @@ OPERATIONS
   
   OBSERVE(concrete_backward_sensor,concrete_forward_sensor,concrete_left_sensor,concrete_right_sensor) =
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_left_sensor */ concrete_left_sensor : NATURAL
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_right_sensor */ concrete_right_sensor : NATURAL
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_forward_sensor */ concrete_forward_sensor : NATURAL
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_concrete_backward_sensor */ concrete_backward_sensor : NATURAL
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency */ emergency_mode = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_mode */ mode = FLYING
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_position */ position_actual = TRUE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_Battery */ battery > BATTERY_STEP
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery_actual */ battery_actual = TRUE
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_left_sensor */ concrete_left_sensor : NATURAL
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_right_sensor */ concrete_right_sensor : NATURAL
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_forward_sensor */ concrete_forward_sensor : NATURAL
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_concrete_backward_sensor */ concrete_backward_sensor : NATURAL
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency */ emergency_mode = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_mode */ mode = FLYING
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_position */ position_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_Battery */ battery > BATTERY_STEP
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery_actual */ battery_actual = TRUE
     THEN
          sensor_data_actual := TRUE
       ||
          battery_actual := FALSE
       ||
-         field := field <+ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) - 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) + 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) + 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ {x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) - 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))})))
+         field :: (1 .. WIDTH) * (1 .. DEPTH) --> 0 .. 2 //= field <+ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) - 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) + 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) + 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ {x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) - 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))})))
     END;
   
   SYNCHRONIZE_BATTERY(pbattery) =
     SELECT 
-        /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery */ pbattery : NATURAL
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency_mode */ emergency_mode = FALSE
+        /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery */ pbattery : NATURAL
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency_mode */ emergency_mode = FALSE
     THEN
          battery := pbattery
       ||
@@ -315,9 +315,9 @@ OPERATIONS
     SELECT 
         concrete_y : INTEGER
       & concrete_x : INTEGER
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_Battery */ battery > BATTERY_STEP
-      & /*@label M6_Quadcopter_Concrete_Movement_inst:grd_battery_actual */ battery_actual = TRUE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_emergency_mode */ emergency_mode = FALSE
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_Battery */ battery > BATTERY_STEP
+      & /*@label M6_Quadcopter_Concrete_Movement_inst2:grd_battery_actual */ battery_actual = TRUE
     THEN
          position_actual := TRUE
       ||

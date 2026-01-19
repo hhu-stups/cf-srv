@@ -41,8 +41,7 @@ PROPERTIES
   & /*@label M6_Quadcopter_Concrete_Movement_Ctx:axm_map_abstract_pos */ MAP_TO_ABSTRACT_POS = /*@symbolic*/ %p.(p : INTEGER & p >= 0|p / GRID_SIZE + 1) \/ /*@symbolic*/ %p.(p : INTEGER & p < 0|p / GRID_SIZE)
   & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_DEPTH */ DEPTH = 5
   & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_WIDTH */ WIDTH = 5
-  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_BASE */ BASE_POSITION = WIDTH / 2 |-> DEPTH / 2
-  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_grid_size */ GRID_SIZE = 500
+  & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_grid_size */ GRID_SIZE = 600
   & /*@label M6_Quadcopter_Concrete_Movement_Ctx_inst2:inst_safety_distance */ SAFETY_DISTANCE = 0
   & BATTERY_STEP = 2
 INVARIANT

@@ -416,7 +416,9 @@ class DroneEnv(gym.Env):
         result = ", ".join(field)
         return "{{{0}}}".format(result)
 
-    def synchronize_external_values(self, left, right, forward, backward, battery_level):
+    def synchronize_external_values(self, left, right, forward, backward, battery_level, x_extern, y_extern):
+        self.x = x_extern
+        self.y = y_extern
         if self.x - 1 >= 0:
             self.grid[self.x-1, self.y] = right
         if self.x + 1 <= WIDTH - 1:
@@ -425,6 +427,9 @@ class DroneEnv(gym.Env):
             self.grid[self.x, self.y-1] = backward
         if self.y + 1 <= DEPTH - 1:
             self.grid[self.x, self.y+1] = forward
+        if self.x >= 0 and self.x <= WIDTH - 1 and self.y >= 0 and self.y <= DEPTH - 1:
+            self.explored.add((self.x,self.y))
+            self.visited.add((self.x, self.y))
         self.battery = battery_level
 
 def get_paths():
@@ -527,7 +532,7 @@ def main():
                     prev_obs = None
                     done = False
                     finished = False
-                    delta = 1000
+                    delta = 200
 
                     request = json.loads(read_line(client_socket))
                     response = json.dumps({
@@ -583,7 +588,9 @@ def main():
                                     'right': "IF prj1(current_position) - 1 : 1..WIDTH THEN field(prj1(current_position)-1, prj2(current_position)) ELSE 2 END",
                                     'forward': "IF prj2(current_position) + 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) + 1) ELSE 2 END",
                                     'backward': "IF prj2(current_position) - 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) - 1) ELSE 2 END",
-                                    'battery': "battery"
+                                    'battery': "battery",
+                                    "x": "prj1(current_position)",
+                                    "y": "prj2(current_position)"
                                 }
                             }) + "\n"
                             client_socket.sendall(response.encode('utf-8'))
@@ -603,7 +610,9 @@ def main():
                                     'right': "IF prj1(current_position) - 1 : 1..WIDTH THEN field(prj1(current_position)-1, prj2(current_position)) ELSE 2 END",
                                     'forward': "IF prj2(current_position) + 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) + 1) ELSE 2 END",
                                     'backward': "IF prj2(current_position) - 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) - 1) ELSE 2 END",
-                                    'battery': "battery"
+                                    'battery': "battery",
+                                    "x": "prj1(current_position)",
+                                    "y": "prj2(current_position)"
                                 }
                             }) + "\n"
                             client_socket.sendall(response.encode('utf-8'))
@@ -623,7 +632,9 @@ def main():
                                     'right': "IF prj1(current_position) - 1 : 1..WIDTH THEN field(prj1(current_position)-1, prj2(current_position)) ELSE 2 END",
                                     'forward': "IF prj2(current_position) + 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) + 1) ELSE 2 END",
                                     'backward': "IF prj2(current_position) - 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) - 1) ELSE 2 END",
-                                    'battery': "battery"
+                                    'battery': "battery",
+                                    "x": "prj1(current_position)",
+                                    "y": "prj2(current_position)"
                                 }
                             }) + "\n"
                             client_socket.sendall(response.encode('utf-8'))
@@ -643,7 +654,9 @@ def main():
                                     'right': "IF prj1(current_position) - 1 : 1..WIDTH THEN field(prj1(current_position)-1, prj2(current_position)) ELSE 2 END",
                                     'forward': "IF prj2(current_position) + 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) + 1) ELSE 2 END",
                                     'backward': "IF prj2(current_position) - 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) - 1) ELSE 2 END",
-                                    'battery': "battery"
+                                    'battery': "battery",
+                                    "x": "prj1(current_position)",
+                                    "y": "prj2(current_position)"
                                 }
                             }) + "\n"
                             client_socket.sendall(response.encode('utf-8'))
@@ -663,7 +676,9 @@ def main():
                                     'right': "IF prj1(current_position) - 1 : 1..WIDTH THEN field(prj1(current_position)-1, prj2(current_position)) ELSE 2 END",
                                     'forward': "IF prj2(current_position) + 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) + 1) ELSE 2 END",
                                     'backward': "IF prj2(current_position) - 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) - 1) ELSE 2 END",
-                                    'battery': "battery"
+                                    'battery': "battery",
+                                    "x": "prj1(current_position)",
+                                    "y": "prj2(current_position)"
                                 }
                             }) + "\n"
                             client_socket.sendall(response.encode('utf-8'))
@@ -678,8 +693,10 @@ def main():
                         forward = int(external_values['forward'])
                         backward = int(external_values['backward'])
                         battery_level = int(external_values['battery'])
+                        x_extern = int(external_values['x']) - 1
+                        y_extern = int(external_values['y']) - 1
 
-                        env.synchronize_external_values(left, right, forward, backward, battery_level)
+                        env.synchronize_external_values(left, right, forward, backward, battery_level, x_extern, y_extern)
 
                         prev_obs = obs
                         obs_tensor, _ = model.policy.obs_to_tensor(obs)
@@ -699,7 +716,7 @@ def main():
 
                         response = json.dumps({
                             'op': actionName,
-                            'delta': delta,
+                            'delta': 10,
                             'predicate': "reward = {0}".format(reward),
                             'done': "true" if done else "false",
                             'externalFormulas': {
@@ -707,7 +724,9 @@ def main():
                                 'right': "IF prj1(current_position) - 1 : 1..WIDTH THEN field(prj1(current_position)-1, prj2(current_position)) ELSE 2 END",
                                 'forward': "IF prj2(current_position) + 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) + 1) ELSE 2 END",
                                 'backward': "IF prj2(current_position) - 1 : 1..DEPTH THEN field(prj1(current_position), prj2(current_position) - 1) ELSE 2 END",
-                                'battery': "battery"
+                                'battery': "battery",
+                                "x": "prj1(current_position)",
+                                "y": "prj2(current_position)"
                             }
                         }) + "\n"
                         client_socket.sendall(response.encode('utf-8'))
