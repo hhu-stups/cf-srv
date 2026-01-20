@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'Real_Traces/vid/**'
+  workflow_dispatch:
 
 permissions:
   contents: write
