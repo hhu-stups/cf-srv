@@ -26,6 +26,7 @@ jobs:
         run: |
           rm -rf out
           mkdir -p out/videos
+          cp -r _config.yml out/
           cp -r README.md out/
           cp -r Real_Traces/*.html out/
           cp -r Real_Traces/vid/*_compressed.mp4 out/videos/
