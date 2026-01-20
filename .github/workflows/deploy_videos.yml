@@ -25,8 +25,8 @@ jobs:
       - name: Prepare video directory
         run: |
           rm -rf out
-          mkdir -p videos
-          cp -r Real_Traces/vid/* videos/
+          mkdir -p out/videos
+          cp -r Real_Traces/vid/* out/videos/
 
       - name: Deploy videos to gh-pages
         uses: peaceiris/actions-gh-pages@v4
