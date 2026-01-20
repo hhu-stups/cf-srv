@@ -31,10 +31,16 @@ jobs:
           cp -r Real_Traces/*.html out/
           cp -r Real_Traces/vid/*_compressed.mp4 out/videos/
 
-      - name: Build index.html from README
+      - name: Build index.html
         run: |
+          sudo apt-get update
           sudo apt-get install -y pandoc
-          pandoc README.md -o out/index.html
+          pandoc README.md \
+            --from=gfm \
+            --template=template.html \
+            --metadata title="Crazyflie Case Study" \
+            --metadata description="Crazyflie Case Study by HHU STUPS Group" \
+            -o out/index.html
 
       - name: Deploy videos to gh-pages
         uses: peaceiris/actions-gh-pages@v4
