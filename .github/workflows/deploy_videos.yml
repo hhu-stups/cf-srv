@@ -31,6 +31,11 @@ jobs:
           cp -r Real_Traces/*.html out/
           cp -r Real_Traces/vid/*_compressed.mp4 out/videos/
 
+      - name: Build index.html from README
+        run: |
+          sudo apt-get install -y pandoc
+          pandoc README.md -o out/index.html
+
       - name: Deploy videos to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
