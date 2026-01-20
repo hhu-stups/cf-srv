@@ -26,7 +26,7 @@ jobs:
         run: |
           rm -rf out
           mkdir -p out/videos
-          cp -r README .
+          cp -r README.md .
           cp -r Real_Traces/vid/*_compressed.mp4 out/videos/
 
       - name: Deploy videos to gh-pages
