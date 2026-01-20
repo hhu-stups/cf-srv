@@ -1,0 +1,36 @@
+name: Deploy videos to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Real_Traces/vid/**'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-videos:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository with LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 0
+
+      - name: Prepare video directory
+        run: |
+          rm -rf out
+          mkdir -p videos
+          cp -r Real_Traces/vid/* videos/
+
+      - name: Deploy videos to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: out
+          force_orphan: true
