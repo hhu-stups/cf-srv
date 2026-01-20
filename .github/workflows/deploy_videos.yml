@@ -37,7 +37,7 @@ jobs:
           sudo apt-get install -y pandoc
           pandoc README.md \
             --from=gfm \
-            --template=template.html \
+            --template=out/template.html \
             --metadata title="Crazyflie Case Study" \
             --metadata description="Crazyflie Case Study by HHU STUPS Group" \
             -o out/index.html
