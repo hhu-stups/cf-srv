@@ -30,6 +30,7 @@ jobs:
           cp -r README.md out/
           cp -r Real_Traces/*.html out/
           cp -r Real_Traces/vid/*_compressed.mp4 out/videos/
+          cp -r images out/images
 
       - name: Build index.html
         run: |
