@@ -20,43 +20,43 @@ python3 cf_rpc.py
 
 ### More Scenarios
 
-[Scenario 1](https://hhu-stups.github.io/cf-srv/DroneMainController_1_video)
+[Scenario 1](https://hhu-stups.github.io/cf-srv/DroneMainController_1)
 
-[Scenario 2](https://hhu-stups.github.io/cf-srv/DroneMainController_2_video)
+[Scenario 2](https://hhu-stups.github.io/cf-srv/DroneMainController_2)
 
-[Scenario 4](https://hhu-stups.github.io/cf-srv/DroneMainController_4_video)
+[Scenario 4](https://hhu-stups.github.io/cf-srv/DroneMainController_4)
 
-[Scenario 5](https://hhu-stups.github.io/cf-srv/DroneMainController_5_video)
+[Scenario 5](https://hhu-stups.github.io/cf-srv/DroneMainController_5)
 
-[Scenario 6](https://hhu-stups.github.io/cf-srv/DroneMainController_6_video)
+[Scenario 6](https://hhu-stups.github.io/cf-srv/DroneMainController_6)
 
-[Scenario 7](https://hhu-stups.github.io/cf-srv/DroneMainController_7_video)
+[Scenario 7](https://hhu-stups.github.io/cf-srv/DroneMainController_7)
 
-[Scenario 8](https://hhu-stups.github.io/cf-srv/DroneMainController_8_video)
+[Scenario 8](https://hhu-stups.github.io/cf-srv/DroneMainController_8)
 
-[Scenario 9](https://hhu-stups.github.io/cf-srv/DroneMainController_9_video)
+[Scenario 9](https://hhu-stups.github.io/cf-srv/DroneMainController_9)
 
-[Scenario 10](https://hhu-stups.github.io/cf-srv/DroneMainController_10_video)
+[Scenario 10](https://hhu-stups.github.io/cf-srv/DroneMainController_10)
 
-[Scenario 11](https://hhu-stups.github.io/cf-srv/DroneMainController_11_video)
+[Scenario 11](https://hhu-stups.github.io/cf-srv/DroneMainController_11)
 
-[Scenario 12](https://hhu-stups.github.io/cf-srv/DroneMainController_12_video)
+[Scenario 12](https://hhu-stups.github.io/cf-srv/DroneMainController_12)
 
-[Scenario 13](https://hhu-stups.github.io/cf-srv/DroneMainController_13_video)
+[Scenario 13](https://hhu-stups.github.io/cf-srv/DroneMainController_13)
 
-[Scenario 14](https://hhu-stups.github.io/cf-srv/DroneMainController_14_video)
+[Scenario 14](https://hhu-stups.github.io/cf-srv/DroneMainController_14)
 
-[Scenario 17](https://hhu-stups.github.io/cf-srv/DroneMainController_17_video)
+[Scenario 17](https://hhu-stups.github.io/cf-srv/DroneMainController_17)
 
-[Scenario 18](https://hhu-stups.github.io/cf-srv/DroneMainController_18_video)
+[Scenario 18](https://hhu-stups.github.io/cf-srv/DroneMainController_18)
 
-[Scenario 19](https://hhu-stups.github.io/cf-srv/DroneMainController_19_video)
+[Scenario 19](https://hhu-stups.github.io/cf-srv/DroneMainController_19)
 
-[Scenario 20](https://hhu-stups.github.io/cf-srv/DroneMainController_20_video)
+[Scenario 20](https://hhu-stups.github.io/cf-srv/DroneMainController_20)
 
-[Scenario 21](https://hhu-stups.github.io/cf-srv/DroneMainController_21_video)
+[Scenario 21](https://hhu-stups.github.io/cf-srv/DroneMainController_21)
 
-[Scenario 22](https://hhu-stups.github.io/cf-srv/DroneMainController_22_video)
+[Scenario 22](https://hhu-stups.github.io/cf-srv/DroneMainController_22)
 
 
 
