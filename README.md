@@ -4,6 +4,9 @@ This repository contains the source code for a Python JsonRPC server implementat
 Furthermore, this repository provides some functionality of the crazyflie python library via ZMQ and the B Machines that can interface with it.
 
 The code for the JSON RPC server is implemented in the files `zmq_rpc.py` and `cf_rpc.py`.
+
+## Getting started
+
 The server can be started with:
 
 ```
@@ -60,8 +63,6 @@ python3 cf_rpc.py
 
 
 
-
-
 ## Interaction with Crazyflie Server
 
 One can interact with the Crazyflie server through the `DroneCommunicator.mch` B model, which can be loaded in the formal method tool 
@@ -96,3 +97,47 @@ The available commands to control the drones are as follows:
 | Drone_GetY                  | Read y position of drone                                |
 | Drone_GetZ                  | Read z position of drone                                |
 
+
+
+## Evaluation
+
+In the following, we show the results of the RL agent in the simulation and compare them to the actual performance in the real-world,
+demonstrating the simulation-to-reality gap.
+
+### Performance of RL Agent in Simulation
+
+| **Metric** | **Unshielded Agent** | **Shielded Agent** |
+|------------|----------------------|--------------------|
+| **Safety-Critical Metrics** |  |  |
+| Mission failure [%] | **2.9%** | **0.0%** |
+| Mission successful [%] | 24.9% | 24.1% |
+| Mission fail-safe (with base return) [%] | 44.1% | 47.9% |
+| Mission fail-safe (without base return) [%] | 28.1% | 28.0% |
+| **Performance Metrics** |  |  |
+| Actions performed | 129.31 ± 56.81 | 130.65 ± 61.06 |
+| Mission coverage [%] | 93.72% ± 9.55% | 92.92% ± 11.41% |
+| Total reward | 1004.00 ± 715.28 | 1010.40 ± 674.17 |
+
+
+This evaluation results from Monte Carlo simulation.
+The corresponding traces are available in [Shielded Agent](https://github.com/hhu-stups/cf-srv/tree/master/Shielded_Timed_Traces) and
+[Unshielded Agent](https://github.com/hhu-stups/cf-srv/tree/master/Unshielded_Timed_Traces), respectively.
+The Monte Carlo simulation as well as the traces are accessible through the project `Drone.prob2project`, which can be opened in `ProB2-UI`
+
+
+### Performance of RL Agent in Real World
+
+This evaluation results from running the RL agent in the real world.
+The corresponding traces are available in [Real Traces (some with videos)](https://github.com/hhu-stups/cf-srv/tree/master/Real_Traces).
+The traces are accessible through the HTML export and the project `Drone.prob2project`, which can be opened in `ProB2-UI`.
+One can re-run those traces through the B machine configured for replay [DroneMainController_replay](https://github.com/hhu-stups/cf-srv/blob/master/DroneMainController_replay.mch)
+
+
+| **Metric** | **Shielded Agent** |
+|------------|--------------------|
+| **Mission Performance** |  |
+|   Mission coverage [%] | 54.60% ± 18.93% |
+| **Exploration Statistics** |  |
+|   Position changes / Position updates | 49 / 200 (24.50%) |
+|   Re-explored fields / Observed fields | 428 / 665 |
+|   Inconsistent detections / Re-explored fields | 28 / 428 (6.5%) |
