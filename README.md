@@ -76,6 +76,16 @@ For simulation:
 
 [Scenario 22](https://hhu-stups.github.io/cf-srv/DroneMainController_22)
 
+### Example
+
+State before action to fly backward:
+
+![State before action to fly backward](/images/video_drone_22_before.png)
+
+State after action to fly backward:
+
+![State after action to fly backward](/images/video_drone_22_after.png)
+
 
 
 ## Interaction with Crazyflie Server
