@@ -7,11 +7,26 @@ The code for the JSON RPC server is implemented in the files `zmq_rpc.py` and `c
 
 ## Getting started
 
-The server can be started with:
+1. Install [ProB2-UI](https://github.com/hhu-stups/prob2_ui) in its latest nightly version.
+2. Start Crazyflie server
 
 ```
-python3 cf_rpc.py
+python cf_rpc.py
 ```
+
+3. Load the `Drone.prob2project` and load `DroneMainController.mch`
+
+For animation:
+
+4. Perform `SETUP_CONSTANTS`, `INITIALISATION`.
+5. Perform other flying actions `MAIN_TAKEOFF`, `MAIN_FORWARD`, `MAIN_OBSERVE` etc.
+
+For simulation:
+
+4. Open SimB in ProB2-UI
+5. Load RL Agent `DroneEnv.py
+6. Start the RL agent as a SimB simulation by clicking on the `Start` button
+
 
 ## Real World Scenarios
 
