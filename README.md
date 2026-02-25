@@ -15,17 +15,29 @@ python cf_rpc.py
 ```
 
 3. Load the `Drone.prob2project` and load `DroneMainController.mch`
+   
+![Step 1: Open Project](https://hhu-stups.github.io/cf-srv/images/Step1.png)
 
 For animation:
 
 4. Perform `SETUP_CONSTANTS`, `INITIALISATION`.
 5. Perform other flying actions `MAIN_TAKEOFF`, `MAIN_FORWARD`, `MAIN_OBSERVE` etc.
 
-For simulation:
+![Step 2a: Animation via Operations View](https://hhu-stups.github.io/cf-srv/images/AnimationStep1.png)
+
+For autonomous execution as Hardware-in-the-loop Execution or Simulation:
 
 4. Open SimB in ProB2-UI
+
+![Step 2b: Open SimB](https://hhu-stups.github.io/cf-srv/images/SimulationStep1.png)
+
 5. Load RL Agent `DroneEnv.py
+
+![Step 3b: Load RL Agent](https://hhu-stups.github.io/cf-srv/images/SimulationStep2.png)
+
 6. Start the RL agent as a SimB simulation by clicking on the `Start` button
+
+![Step 4b: Start Simulation/Hardware-in-the-loop Execution](https://hhu-stups.github.io/cf-srv/images/SimulationStep3.png)
 
 
 ## Real World Scenarios
