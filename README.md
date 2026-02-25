@@ -80,11 +80,11 @@ For simulation:
 
 State before action to fly backward:
 
-![State before action to fly backward](/images/video_drone_22_before.png)
+![State before action to fly backward](https://hhu-stups.github.io/cf-srv/images/video_drone_22_before.png)
 
 State after action to fly backward:
 
-![State after action to fly backward](/images/video_drone_22_after.png)
+![State after action to fly backward](https://hhu-stups.github.io/cf-srv/images/video_drone_22_after.png)
 
 
 

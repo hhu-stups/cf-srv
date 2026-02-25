@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - 'images/**'
       - 'Real_Traces/vid/**'
   workflow_dispatch:
 
