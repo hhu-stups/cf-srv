@@ -77,6 +77,134 @@
       ]
     },
     {
+      "name": "DroneMainController_replay",
+      "description": "",
+      "location": "DroneMainController_replay.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_5.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_12.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_8.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_20.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_17.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_16_wrong.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_7.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_10.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_22.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_2.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_18.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_Crash1.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_21.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_1.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_4.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_13.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_9.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_14.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_3.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_19.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_6.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_15_wrong.prob2trace",
+          "selected": true
+        },
+        {
+          "taskType": "REPLAY_TRACE",
+          "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_11.prob2trace",
+          "selected": true
+        }
+      ],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": [
+        "visualization/Drone_VisB_Mockup.def"
+      ]
+    },
+    {
       "name": "DroneCommunicator_Param_mock",
       "description": "",
       "location": "DroneCommunicator_Param_mock.mch",
@@ -498,9 +626,9 @@
   "metadata": {
     "fileType": "Project",
     "formatVersion": 57,
-    "savedAt": "2026-01-09T13:39:49.119208Z",
+    "savedAt": "2026-03-06T08:55:40.617806Z",
     "creator": "User",
-    "proB2KernelVersion": "4.15.1-SNAPSHOT",
+    "proB2KernelVersion": "4.15.2-SNAPSHOT",
     "proBCliVersion": null,
     "modelName": null
   }
