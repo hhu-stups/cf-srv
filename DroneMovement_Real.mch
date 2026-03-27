@@ -112,6 +112,8 @@ OPERATIONS
          mode := FLYING
       ||
          battery_actual := FALSE
+      ||
+         reward := 0.0
     END;
   
   MOVE_LEFT = 
@@ -299,6 +301,8 @@ OPERATIONS
          battery_actual := FALSE
       ||
          field := field <+ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) - 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) + 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) + 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ {x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) - 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))})))
+      ||
+         reward := 0.0
     END;
   
   SYNCHRONIZE_BATTERY(pbattery) =
@@ -309,6 +313,8 @@ OPERATIONS
          battery := pbattery
       ||
          battery_actual := TRUE
+      ||
+         reward := 0.0
     END;
   
   UPDATE_POSITION(concrete_x,concrete_y) =
@@ -346,5 +352,7 @@ OPERATIONS
               )
              )
          )
+      ||
+         reward := 0.0
     END
 END

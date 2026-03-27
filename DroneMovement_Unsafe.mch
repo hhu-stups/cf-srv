@@ -48,11 +48,6 @@ INVARIANT
      field(current_position) /= 2
     )
   & /*@label M4_Quadcopter_Movement:inv_visited */ visited <: (1 .. WIDTH) * (1 .. DEPTH)
-  & /*@label M4_Quadcopter_Movement:inv_current_pos_in_visited */ (
-     current_position : (1 .. WIDTH) * (1 .. DEPTH)
-     =>
-     current_position : visited
-    )
   & /*@label M3_Quadcopter_Battery:battery */ battery : NATURAL
   & reward : REAL
 INITIALISATION
@@ -83,9 +78,6 @@ OPERATIONS
   TAKEOFF = 
     SELECT 
         /*@label M5_Quadcopter_Mission_Status_inst:grd_mode */ mode = LANDED
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency_mode */ emergency_mode = FALSE
     THEN 
          mode := FLYING
       ||
@@ -97,13 +89,6 @@ OPERATIONS
   MOVE_LEFT = 
     SELECT 
         /*@label M5_Quadcopter_Mission_Status_inst:grd_mode */ mode = FLYING
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_position */ position_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_move_outside */ prj1(INTEGER,INTEGER)(current_position) + 1 <= WIDTH
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) + 1 |-> prj2(INTEGER,INTEGER)(current_position)) /= 2
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_mission_status */ mission_failed = FALSE
     THEN 
          sensor_data_actual := FALSE
@@ -134,13 +119,6 @@ OPERATIONS
   MOVE_RIGHT = 
     SELECT 
         /*@label M5_Quadcopter_Mission_Status_inst:grd_mode */ mode = FLYING
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_position */ position_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_move_outside */ prj1(INTEGER,INTEGER)(current_position) - 1 >= 1
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) - 1 |-> prj2(INTEGER,INTEGER)(current_position)) /= 2
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_mission_status */ mission_failed = FALSE
     THEN 
          sensor_data_actual := FALSE
@@ -171,13 +149,6 @@ OPERATIONS
   MOVE_FORWARD = 
     SELECT 
         /*@label M5_Quadcopter_Mission_Status_inst:grd_mode */ mode = FLYING
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_position */ position_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_move_outside */ prj2(INTEGER,INTEGER)(current_position) + 1 <= DEPTH
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) |-> prj2(INTEGER,INTEGER)(current_position) + 1) /= 2
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_mission_status */ mission_failed = FALSE
     THEN 
          sensor_data_actual := FALSE
@@ -208,13 +179,6 @@ OPERATIONS
   MOVE_BACKWARD = 
     SELECT 
         /*@label M5_Quadcopter_Mission_Status_inst:grd_mode */ mode = FLYING
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_sensor_data_actual */ sensor_data_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_position */ position_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery */ battery > BATTERY_STEP
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency_mode */ emergency_mode = FALSE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_move_outside */ prj2(INTEGER,INTEGER)(current_position) - 1 >= 1
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_does_not_collide */ field(prj1(INTEGER,INTEGER)(current_position) |-> prj2(INTEGER,INTEGER)(current_position) - 1) /= 2
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_mission_status */ mission_failed = FALSE
     THEN 
          sensor_data_actual := FALSE
@@ -253,14 +217,10 @@ OPERATIONS
   OBSERVE(left_sensor,backward_sensor,right_sensor,forward_sensor) =
     SELECT 
         /*@label M5_Quadcopter_Mission_Status_inst:grd_mode */ mode = FLYING
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_position */ position_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_Battery */ battery > BATTERY_STEP
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery_actual */ battery_actual = TRUE
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_left */ left_sensor : {1,2}
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_right */ right_sensor : {1,2}
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_forward */ forward_sensor : {1,2}
       & /*@label M5_Quadcopter_Mission_Status_inst:grd_backward */ backward_sensor : {1,2}
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency */ emergency_mode = FALSE
     THEN
          sensor_data_actual := TRUE
       ||
@@ -274,7 +234,6 @@ OPERATIONS
   SYNCHRONIZE_BATTERY(pbattery) =
     SELECT 
         /*@label M5_Quadcopter_Mission_Status_inst:grd_battery */ pbattery : NATURAL
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency_mode */ emergency_mode = FALSE
     THEN
          battery := pbattery
       ||
@@ -287,23 +246,12 @@ OPERATIONS
     SELECT 
         x : INTEGER
       & y : INTEGER
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_Battery */ battery > BATTERY_STEP
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_battery_actual */ battery_actual = TRUE
-      & /*@label M5_Quadcopter_Mission_Status_inst:grd_emergency_mode */ emergency_mode = FALSE
     THEN
          position_actual := TRUE
       ||
          battery_actual := FALSE
       ||
          current_position := x |-> y
-      ||
-         visited := IF
-             x |-> y : (1 .. WIDTH) * (1 .. DEPTH)
-         THEN
-           visited \/ {x |-> y}
-         ELSE
-           visited
-         END
       ||
          emergency_mode := bool(
              (
