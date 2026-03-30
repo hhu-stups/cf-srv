@@ -110,7 +110,7 @@
         {
           "taskType": "REPLAY_TRACE",
           "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_16_wrong.prob2trace",
-          "selected": true
+          "selected": false
         },
         {
           "taskType": "REPLAY_TRACE",
@@ -140,7 +140,7 @@
         {
           "taskType": "REPLAY_TRACE",
           "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_Crash1.prob2trace",
-          "selected": true
+          "selected": false
         },
         {
           "taskType": "REPLAY_TRACE",
@@ -190,12 +190,78 @@
         {
           "taskType": "REPLAY_TRACE",
           "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_15_wrong.prob2trace",
-          "selected": true
+          "selected": false
         },
         {
           "taskType": "REPLAY_TRACE",
           "location": "../validation-machine-learning/drone_rl/Real_Traces/DroneMainController_11.prob2trace",
           "selected": true
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "(final)",
+          "computations": "IF mode = FINISHED or mission_failed = TRUE  THEN 1 ELSE 0 END",
+          "desiredEffects": "1.0 - real(card(field~[{0}])) / real(card(field))"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "(final)",
+          "computations": "1",
+          "desiredEffects": "1.0 - real(card(field~[{0}])) / real(card(field))"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_UPDATE_POSITION",
+          "computations": "1",
+          "desiredEffects": "current_position"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_UPDATE_POSITION",
+          "computations": "1",
+          "desiredEffects": "1"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_OBSERVE",
+          "computations": "1",
+          "desiredEffects": "1"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_OBSERVE",
+          "computations": "1",
+          "desiredEffects": "card({x|->y| x : 1..WIDTH & y : 1..DEPTH &((x = prj1(current_position) - 1 & y = prj2(current_position)) or(x = prj1(current_position) + 1 & y = prj2(current_position)) or(x = prj1(current_position) & y = prj2(current_position) - 1) or(x = prj1(current_position) & y = prj2(current_position) + 1))})"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_UPDATE_POSITION",
+          "computations": "1",
+          "desiredEffects": "current_position"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_OBSERVE",
+          "computations": "1",
+          "desiredEffects": "card({x|->y| x : 1..WIDTH & y : 1..DEPTH & (field(x|->y) /= 0 or x|->y : visited) &((x = prj1(current_position) - 1 & y = prj2(current_position)) or(x = prj1(current_position) + 1 & y = prj2(current_position)) or(x = prj1(current_position) & y = prj2(current_position) - 1) or(x = prj1(current_position) & y = prj2(current_position) + 1))})"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_UPDATE_POSITION",
+          "computations": "1",
+          "desiredEffects": "card({x|->y| x : 1..WIDTH & y : 1..DEPTH &((x = prj1(current_position) - 1 & y = prj2(current_position)) or(x = prj1(current_position) + 1 & y = prj2(current_position)) or(x = prj1(current_position) & y = prj2(current_position) - 1) or(x = prj1(current_position) & y = prj2(current_position) + 1))}) - card({x|->y| x : 1..WIDTH & y : 1..DEPTH & (field(x|->y) = 0 & x|->y /: visited) &((x = prj1(current_position) - 1 & y = prj2(current_position)) or(x = prj1(current_position) + 1 & y = prj2(current_position)) or(x = prj1(current_position) & y = prj2(current_position) - 1) or(x = prj1(current_position) & y = prj2(current_position) + 1))})"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_OBSERVE",
+          "computations": "1",
+          "desiredEffects": "LET x,y BE x = prj1(current_position) - 1 & y = prj2(current_position) IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 or (x |-> y : visited & prev_field(x|->y) = 0)) THEN 1 ELSE 0 END END +LET x,y BE x = prj1(current_position) + 1 & y = prj2(current_position) IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 or (x |-> y : visited & prev_field(x|->y) = 0)) THEN 1 ELSE 0 END END +LET x,y BE x = prj1(current_position) & y = prj2(current_position) - 1 IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 or (x |-> y : visited & prev_field(x|->y) = 0)) THEN 1 ELSE 0 END END +LET x,y BE x = prj1(current_position) & y = prj2(current_position) + 1 IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 or (x |-> y : visited & prev_field(x|->y) = 0)) THEN 1 ELSE 0 END END"
+        },
+        {
+          "taskType": "TRACE_STATISTICS_FORMULAS",
+          "operation": "MAIN_OBSERVE",
+          "computations": "1",
+          "desiredEffects": "LET x,y BE x = prj1(current_position) - 1 & y = prj2(current_position) IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 & field(x |-> y) /= prev_field(x|->y)) THEN 1 ELSE 0 END END +LET x,y BE x = prj1(current_position) + 1 & y = prj2(current_position) IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 & field(x |-> y) /= prev_field(x|->y)) THEN 1 ELSE 0 END END +LET x,y BE x = prj1(current_position) & y = prj2(current_position) - 1 IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 & field(x |-> y) /= prev_field(x|->y)) THEN 1 ELSE 0 END END +LET x,y BE x = prj1(current_position) & y = prj2(current_position) + 1 IN IF x : 1..WIDTH & y : 1..DEPTH & (prev_field(x|->y) /= 0 & field(x |-> y) /= prev_field(x|->y)) THEN 1 ELSE 0 END END"
         }
       ],
       "ltlPatterns": [],
@@ -405,6 +471,16 @@
       "name": "DroneMovement_Real_Mockup",
       "description": "",
       "location": "DroneMovement_Real_Mockup.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": []
+    },
+    {
+      "name": "DroneMovement_Real_replay",
+      "description": "",
+      "location": "DroneMovement_Real_replay.mch",
       "lastUsedPreferenceName": "default",
       "validationTasks": [],
       "ltlPatterns": [],
@@ -626,7 +702,7 @@
   "metadata": {
     "fileType": "Project",
     "formatVersion": 57,
-    "savedAt": "2026-03-06T08:55:40.617806Z",
+    "savedAt": "2026-03-29T02:03:18.697725Z",
     "creator": "User",
     "proB2KernelVersion": "4.15.2-SNAPSHOT",
     "proBCliVersion": null,

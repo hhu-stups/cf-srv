@@ -24,7 +24,8 @@ ABSTRACT_VARIABLES
   position_actual,
   sensor_data_actual,
   mode,
-  reward
+  reward,
+  prev_field
 PROPERTIES
     CONCRETE_DEPTH : INTEGER
   & MAP_TO_ABSTRACT_POS : POW(INTEGER * INTEGER)
@@ -62,6 +63,7 @@ INVARIANT
      current_position : (1 .. WIDTH) * (1 .. DEPTH)
     )
   & /*@label M4_Quadcopter_Movement:inv_field */ field : (1 .. WIDTH) * (1 .. DEPTH) --> 0 .. 2
+  & prev_field : (1 .. WIDTH) * (1 .. DEPTH) --> 0 .. 2
   & /*@label M4_Quadcopter_Movement:no_collision */ (
      emergency_mode = FALSE
      =>
@@ -92,6 +94,8 @@ INITIALISATION
          visited :: POW((1 .. WIDTH) * (1 .. DEPTH))
       ||
          field := (1 .. WIDTH) * (1 .. DEPTH) * {0} <+ {BASE_POSITION |-> 1}
+      ||
+         prev_field := (1 .. WIDTH) * (1 .. DEPTH) * {0} <+ {BASE_POSITION |-> 1}
       ||
          emergency_mode := FALSE
       ||
@@ -299,6 +303,8 @@ OPERATIONS
          battery_actual := FALSE
       ||
          field :: (1 .. WIDTH) * (1 .. DEPTH) --> 0 .. 2 //= field <+ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) - 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_right_sensor <= GRID_SIZE + prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) + 1 & (y = prj2(INTEGER,INTEGER)(current_position) & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_left_sensor <= GRID_SIZE + (GRID_SIZE - prj1(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ ({x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) + 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 2) or (not(concrete_forward_sensor <= GRID_SIZE + (GRID_SIZE - prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE)) & val = 1))))))} \/ {x,y,val|val : INTEGER & (x = prj1(INTEGER,INTEGER)(current_position) & (y = prj2(INTEGER,INTEGER)(current_position) - 1 & (x : 1 .. WIDTH & (y : 1 .. DEPTH & ((concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE & val = 2) or (not(concrete_backward_sensor <= GRID_SIZE + prj2(INTEGER,INTEGER)(concrete_position) mod GRID_SIZE) & val = 1))))))})))
+      ||
+         prev_field := field
     END;
   
   SYNCHRONIZE_BATTERY(pbattery) =
