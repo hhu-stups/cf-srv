@@ -153,7 +153,6 @@ demonstrating the simulation-to-reality gap.
 | **Performance Metrics** |  |  |
 | Actions performed | 129.31 ± 56.81 | 130.65 ± 61.06 |
 | Mission coverage [%] | 93.72% ± 9.55% | 92.92% ± 11.41% |
-| Total reward | 1004.00 ± 715.28 | 1010.40 ± 674.17 |
 
 
 This evaluation results from Monte Carlo simulation.
@@ -173,8 +172,8 @@ One can re-run those traces through the B machine configured for replay [DroneMa
 | **Metric** | **Shielded Agent** |
 |------------|--------------------|
 | **Mission Performance** |  |
-|   Mission coverage [%] | 54.60% ± 18.93% |
+|   Mission coverage [%] | 53.80% ± 19.24% |
 | **Exploration Statistics** |  |
-|   Position changes / Position updates | 49 / 200 (24.50%) |
-|   Re-explored fields / Observed fields | 428 / 665 |
-|   Inconsistent detections / Re-explored fields | 28 / 428 (6.5%) |
+|   Position changes / Position updates | 49 / 199 (24.62%) |
+|   Re-explored fields / Observed fields | 432 / 665 |
+|   Inconsistent detections / Re-explored fields | 31 / 432 (7.18%) |
