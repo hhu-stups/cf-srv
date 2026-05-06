@@ -42,6 +42,10 @@ For autonomous execution as Hardware-in-the-loop Execution or Simulation:
 
 ## Real World Scenarios
 
+### Get Started with Drone Communicator Scenario
+
+[Drone Communicator Scenario](https://hhu-stups.github.io/cf-srv/videos/DroneCommunicator-DEMO.mp4)
+
 ### HTML Scenarios with Videos
 
 [Scenario 3](https://hhu-stups.github.io/cf-srv/DroneMainController_3_video)
